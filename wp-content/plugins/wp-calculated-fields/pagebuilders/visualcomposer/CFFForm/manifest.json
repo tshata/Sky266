@@ -1,0 +1,19 @@
+{
+  "elements": {
+    "CFFForm": {
+      "settings": {
+        "name": "Wordpress Calculated Fields",
+        "metaThumbnailUrl": "[publicPath]/cff-thumbnail.png",
+        "metaPreviewUrl": "[publicPath]/cff-preview.png",
+        "metaDescription": "Add a Wordpress Calculated Fields."
+      }
+    }
+  },
+  "categories": {
+    "Misc": {
+      "elements": [
+        "CFFForm"
+      ]
+    }
+  }
+}

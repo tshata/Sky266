@@ -1,0 +1,7 @@
+.cff-widefat *{
+	width: 100% !important;
+    clear: both !important;
+    display: block !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+}
