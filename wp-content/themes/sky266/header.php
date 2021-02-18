@@ -99,7 +99,7 @@
                      <?php } ?>
                     
                     <?php if( is_user_logged_in() ){ ?>
-                    <li class="dropdown"><a class="btn btn-primary" href="<?php echo esc_url( home_url( 'index.php/my-account' ) ); ?>">Profile<b class="caret"></b></a>
+                    <li class="dropdown"><a class="btn btn-primary" href="<?php echo esc_url( home_url( 'index.php/profile' ) ); ?>">Profile<b class="caret"></b></a>
 
     									        <!-- submenu-wrapper -->
     									        <div class="submenu-wrapper submenu-wrapper-topbottom">

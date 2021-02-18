@@ -23,7 +23,7 @@
 									<div style="padding: 20px;">
                                      
 								   </div><!--/.about-us-intro-content  -->
-                           <div style="z-index:-99> <?php  echo do_shortcode('[ultimatemember form_id="3226"]');  ?> </div>
+                           <div style="z-index:-99> <?php  echo do_shortcode('[ultimatemember form_id="3234"]');  ?> </div>
 								</div><!--/.col-->
 							</div><!-- /.row -->
 						</div><!-- /.container -->
