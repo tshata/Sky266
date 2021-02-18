@@ -18,7 +18,7 @@
 
 
    <?php  echo do_shortcode('[shipping_plugin]');  ?> 
-    session_start();
+
 
 
 
