@@ -1,0 +1,203 @@
+
+### Begin Install Info ###
+
+## Please include this information when posting support requests ##
+
+
+--- Site Info ---
+
+Site URL:					https://localhost/sky266
+Home URL:					https://localhost/sky266
+Multisite:					No
+
+--- Hosting Provider ---
+
+Host:						DBH: localhost, SRV: localhost
+
+--- User Browser ---
+
+Platform:                 Windows 
+Browser Name:             Chrome  
+Browser Version:          88.0.4324.182 
+User Agent String:        Mozilla/5.0 (Windows NT 10.0; Wi 
+			  n64; x64) AppleWebKit/537.36 (KH
+                          TML, like Gecko) Chrome/88.0.432
+                          4.182 Safari/537.36
+                          
+---- Current User Details --
+
+Role: administrator
+
+
+--- WordPress Configurations ---
+
+Version:						5.6.1
+Language:					en_US
+Permalink Structure:			/%postname%/
+Active Theme:				Sky266 1.4
+Page On Front:				Home (#9)
+Page For Posts:				 (#0)
+ABSPATH:					C:\\Bitnami\\wampstack-8.0.2-0\\apache2\\htdocs\\sky266/
+All Posts/Pages:				4
+WP Remote Post:           		wp_remote_post() works
+WP_DEBUG:                 			Disabled
+WP Table Prefix:          			Length: 3, Status: Acceptable
+Memory Limit:   				40MB
+
+
+--- UM Configurations ---
+
+Version:						2.1.15
+Upgraded From:            		2.1.15
+Current URL Method:			
+Cache User Profile:			Yes
+Generate Slugs on Directories:	Yes
+Force UTF-8 Encoding: 		No
+JS/CSS Compression: 			No
+Port Forwarding in URL: 		No
+Exclude CSS/JS on Home: 		No
+
+
+--- UM Pages Configuration ---
+
+User:						https://localhost/sky266/user/
+Account:						https://localhost/sky266/account/
+Members:					https://localhost/sky266/members/
+Register:						https://localhost/sky266/register/
+Login:						https://localhost/sky266/login/
+Logout:						https://localhost/sky266/logout/
+Password Reset:				https://localhost/sky266/password-reset/
+
+
+--- UM Users Configuration ---
+
+Default New User Role: 		um_silver-member
+Profile Permalink Base:		user_login
+User Display Name:			username
+Force Name to Uppercase:		No
+Redirect author to profile: 		Yes
+Enable Members Directory:	Yes
+Use Gravatars: 				No
+Require a strong password: 	Off
+
+
+--- UM Access Configuration ---
+
+Panic Key: 								
+Global Site Access:						Site accessible to Everyone
+Backend Login Screen for Guests:			No
+Redirect to alternative login page:			
+Backend Register Screen for Guests:		No
+Redirect to alternative register page:		
+Access Control widget for Admins only: 		No
+Enable the Reset Password Limit:			Yes
+Reset Password Limit: 3Disable Reset Password Limit for Admins: No
+Blacklist Words: 							5
+
+
+--- UM Email Configurations ---
+
+Mail appears from:  			Sky266
+Mail appears from address:  	ict@tech-corp.co.ls
+Use HTML for E-mails:   		Yes
+Account Welcome Email:  		Yes
+Account Activation Email:   	Yes
+Pending Review Email:   		Yes
+Account Approved Email: 		Yes
+Account Rejected Email: 		Yes
+Account Deactivated Email:  	Yes
+Account Deleted Email:  		Yes
+Password Reset Email:   		Yes
+Password Changed Email: 		Yes
+
+
+--- UM Total Users ---
+
+                All Users(10)
+administrator(1)
+wpc_bookings_cordinator(5)
+wpcargo_manager(1)
+wpcargo_driver(4)
+none(0)
+
+
+--- UM Roles ---
+
+                Administrator (administrator)
+Editor (editor)
+Author (author)
+Contributor (contributor)
+Subscriber (subscriber)
+Agent (wpcargo_agent)
+Bookings Cordinator (wpc_bookings_cordinator)
+Manager (wpcargo_manager)
+Driver (wpcargo_driver)
+Client (wpcargo_client)
+Silver Member (um_silver-member)
+
+
+--- UM Custom Templates ---
+
+                N/A
+
+
+--- UM Email HTML Templates ---
+
+                N/A
+
+
+--- Web Server Configurations ---
+
+PHP Version:              			8.0.2
+MySQL Version:            			8.0.22
+Web Server Info:          			Apache
+
+
+--- PHP Configurations ---
+
+PHP Memory Limit:         			512M
+PHP Upload Max Size:      			40M
+PHP Post Max Size:        			40M
+PHP Upload Max Filesize:  			40M
+PHP Time Limit:           			120
+PHP Max Input Vars:       			1000
+PHP Arg Separator:        			&
+PHP Allow URL File Open:  			Yes
+
+
+--- Web Server Extensions/Modules ---
+
+DISPLAY ERRORS:           			N/A
+FSOCKOPEN:                			Your server supports fsockopen.
+cURL:                     			Your server supports cURL.
+SOAP Client:              			Your server does not have the SOAP Client enabled.
+SUHOSIN:                  			Your server does not have SUHOSIN installed.
+GD Library:               			PHP GD library is NOT installed on your web server.
+Mail:                     			PHP mail function exist on your web server.
+Exif:				          PHP Exif library is installed on your web server.
+
+
+--- Session Configurations ---
+
+Session:                  			Disabled
+Session Name:             			PHPSESSID
+Cookie Path:              			/
+Save Path:                			C:/Bitnami/WAMPST~1.2-0/php/tmp
+Use Cookies:              			On
+Use Only Cookies:         			On
+
+
+--- WordPress Active Plugins ---
+
+                Akismet Anti-Spam: 4.1.7
+Colorlib Login Customizer: 1.2.97
+Courier-Plugin: 1.0.0
+Form Plugin: 1.0
+Security by CleanTalk: 2.57.1
+Sucuri Security - Auditing, Malware Scanner and Hardening: 1.8.24
+Ultimate Member: 2.1.15
+User Role Editor: 4.56.1
+Wordpress Calculated Fields: 1.0.422
+WP Admin UI Customize: 1.5.12
+
+### End Install Info ###

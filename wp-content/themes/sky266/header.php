@@ -87,7 +87,8 @@
                               <div id="other_div" class="col-sm-3 hidden-ms hidden-xs">
                                  <div class="right-links">
 			  						<ul class="list-inline">
-                                        <li><a class="btn btn-primary" href="<?php echo esc_url( home_url( 'index.php/request-quote' ) ); ?>">Request Quote and Book Now</a></li>
+                    <?php if( !is_user_logged_in()){ ?> <li><a class="btn btn-primary" href="<?php echo esc_url( home_url( 'index.php/register' ) ); ?>">Register<i class="fa"></i></a></li> <?php } ?>
+                                        <li><a class="btn btn-primary" href="<?php echo esc_url( home_url( 'index.php/request-quote' ) ); ?>">Quote/Book</a></li>
 			  							<?php if( !is_user_logged_in()){ ?> <li><a class="btn btn-primary" href="<?php echo esc_url( home_url( 'index.php/my-account' ) ); ?>">Login<i class="fa fa-key"></i></a></li> <?php } ?>
                                         <?php if( is_user_logged_in() ){ ?>
                                             <li class="dropdown"><a class="btn btn-primary" href="<?php echo esc_url( home_url( 'index.php/my-account' ) ); ?>">Profile<b class="caret"></b></a>
