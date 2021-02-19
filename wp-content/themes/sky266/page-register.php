@@ -11,18 +11,19 @@
 		</div>
 	</div>
 </section><!--/.page-title-section -->
-<div id="primary" class="content-area"> <br><br>
+<div id="primary" class="content-area">,
 	<main id="main" class="site-main" role="main">
 	
           	       <div class="container">
-							<div class="row">
+							<!-- <div class="row"> -->
 								<div class="col-sm-12">
 								<div class="col-sm-12">
-                        <div class="col-sm-12">
-                        <div class="col-sm-12">
-									<div style="padding: 20px;">
+                      		    <div class="col-sm-12">
+                       		    <div class="col-sm-12">
+								   
+									<!-- <div style="padding: 20px;">
                                      
-								   </div><!--/.about-us-intro-content  -->
+								   </div>/.about-us-intro-content  -->
                            <div style="z-index:-99> <?php  echo do_shortcode('[ultimatemember form_id="3226"]');  ?> </div>
 								</div><!--/.col-->
 							</div><!-- /.row -->
