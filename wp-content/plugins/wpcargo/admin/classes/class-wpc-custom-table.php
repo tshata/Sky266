@@ -261,6 +261,7 @@ add_filter( 'post_row_actions', 'modify_list_row_actions', 10, 2 );
 
 function modify_list_row_actions( $actions, $post ) {
     // Check for your post type.
+	$new_actions = array();
     if ( $post->post_type == "wpcargo_shipment" ) {
         $trash = $actions['trash'];
         $edit = $actions['edit'];

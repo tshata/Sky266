@@ -92,7 +92,7 @@
                     <li><a class="btn btn-primary" href="<?php echo esc_url( home_url( 'index.php/register' ) ); ?>">Register<i class="fa"></i></a>
                     <?php } ?>
                     <?php if( !is_user_logged_in()){ ?> 
-                    <li><a class="btn btn-primary" href="<?php echo esc_url( home_url( 'index.php/my-account' ) ); ?>">Login<i class="fa fa-key"></i></a></li>
+                    <li><a class="btn btn-primary" href="<?php echo esc_url( home_url( 'index.php/login' ) ); ?>">Login<i class="fa fa-key"></i></a></li>
                     </li> <?php } ?>
                                         
                     <li><a class="btn btn-primary" href="<?php echo esc_url( home_url( 'index.php/request-quote' ) ); ?>">Quote/Book</a></li>
@@ -120,7 +120,7 @@
 					</header>
                     <?php
                       $pagename = get_query_var('pagename');
-                      $excluded_pages = array("request-quote","my-account","register","about","tracking","contact","KnowledgeHub","profile");
+                      $excluded_pages = array("request-quote","my-account","register","login","about","tracking","contact","KnowledgeHub","profile");
                       if(!in_array($pagename, $excluded_pages)) {
                     ?>
                     <div id="main-carousel" class="carousel slide hero-slide" data-ride="carousel">

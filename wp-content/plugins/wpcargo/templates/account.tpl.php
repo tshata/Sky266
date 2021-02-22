@@ -10,6 +10,7 @@
          <?php
              if(in_array( 'wpcargo_driver', $user_info->roles )) 	require_once( WPCARGO_PLUGIN_PATH.'templates/driver-dashboard.php' );
              else if(in_array( 'Client', $user_info->roles )) require_once( WPCARGO_PLUGIN_PATH.'templates/shipments-table.php' );
+             else if(in_array( 'Silver Member', $user_info->roles )) require_once( WPCARGO_PLUGIN_PATH.'/wp-content/themes/sky266/page-profile.php' );
              else require_once( WPCARGO_PLUGIN_PATH.'templates/shipments-table.php' );  ?>
      </div>
      <div class="sf-content" id="profile_div" style="display:none;">

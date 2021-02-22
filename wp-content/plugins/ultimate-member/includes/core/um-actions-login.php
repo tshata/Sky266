@@ -11,7 +11,7 @@ function um_submit_form_errors_hook_login( $args ) {
 
 	$form_id = $args['form_id'];
 	$mode = $args['mode'];
-	$user_password = $args['user_password'];
+	$user_password = $args['user_pass'];
 
 
 	if ( isset( $args['username'] ) && $args['username'] == '' ) {
@@ -48,27 +48,27 @@ function um_submit_form_errors_hook_login( $args ) {
 		$authenticate = $args['user_login'];
 	}
 
-	if ( $args['user_password'] == '' ) {
-		UM()->form()->add_error( 'user_password', __( 'Please enter your password', 'ultimate-member' ) );
+	if ( $args['user_pass'] == '' ) {
+		UM()->form()->add_error( 'user_pass', __( 'Please enter your password', 'ultimate-member' ) );
 	}
 
 	$user = get_user_by( 'login', $user_name );
-	if ( $user && wp_check_password( $args['user_password'], $user->data->user_pass, $user->ID ) ) {
+	if ( $user && wp_check_password( $args['user_pass'], $user->data->user_pass, $user->ID ) ) {
 		UM()->login()->auth_id = username_exists( $user_name );
 	} else {
-		UM()->form()->add_error( 'user_password', __( 'Password is incorrect. Please try again.', 'ultimate-member' ) );
+		UM()->form()->add_error( 'user_pass', __( 'Password is incorrect. Please try again.', 'ultimate-member' ) );
 	}
 
 	// @since 4.18 replacement for 'wp_login_failed' action hook
 	// see WP function wp_authenticate()
 	$ignore_codes = array( 'empty_username', 'empty_password' );
 
-	$user = apply_filters( 'authenticate', null, $authenticate, $args['user_password'] );
+	$user = apply_filters( 'authenticate', null, $authenticate, $args['user_pass'] );
 	if ( is_wp_error( $user ) && ! in_array( $user->get_error_code(), $ignore_codes ) ) {
 		UM()->form()->add_error( $user->get_error_code(), __( $user->get_error_message(), 'ultimate-member' ) );
 	}
 
-	$user = apply_filters( 'wp_authenticate_user', $user, $args['user_password'] );
+	$user = apply_filters( 'wp_authenticate_user', $user, $args['user_pass'] );
 	if ( is_wp_error( $user ) && ! in_array( $user->get_error_code(), $ignore_codes ) ) {
 		UM()->form()->add_error( $user->get_error_code(), __( $user->get_error_message(), 'ultimate-member' ) );
 	}
