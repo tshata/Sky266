@@ -217,7 +217,7 @@ add_action( 'wp_ajax_nopriv_price_estimates_action', 'price_estimates_action_cal
     */
 /**
  * Ajax Callback
- *
+ */
 function trip_selector_action_callback(){
     global $wpdb;
     $o_country = isset( $_POST['o_country'] ) ? $_POST['o_country'] : '';
@@ -270,7 +270,7 @@ function trip_selector_action_callback(){
     echo json_encode(array($options,implode(",",$modes)));
     wp_die(); // required. to end AJAX request.
 }
-/* Load Ajax Callback to "wp_ajax_*" Action Hook *
+/* Load Ajax Callback to "wp_ajax_*" Action Hook */
 add_action( 'wp_ajax_trip_selector_action', 'trip_selector_action_callback' );
 add_action( 'wp_ajax_nopriv_trip_selector_action', 'trip_selector_action_callback' );
 
@@ -384,9 +384,8 @@ function view_prices_action_callback(){
              <div style='width:45%; display:inline-block; vertical-align: top; margin-bottom:5px;'>
                <table class='viewTable'>
                 <tr><td colspan='2'><h2>Other Road Freight Prices</h2></tr>";
-             $trips_table.="<tr><td>Booking Fee</td><td>M".number_format((float)$road_item_costs['booking_fee'], 2, '.', ',')."</td></tr>";
+             //$trips_table.="<tr><td>Booking Fee</td><td>M".number_format((float)$road_item_costs['booking_fee'], 2, '.', ',')."</td></tr>";
              foreach($road_item_costs as $key=>$value){
-                 if($key!="booking_fee")
                     $trips_table.="<tr><td>".$items[$key]['item_name']."</td><td>M".number_format((float)$value, 2, '.', ',')."</td></tr>";
                }
               $trips_table.="</table></div> ";
@@ -411,9 +410,8 @@ function view_prices_action_callback(){
              <div style='width:45%; display:inline-block; vertical-align: top; margin-bottom:5px;'>
                <table class='viewTable'>
                 <tr><td colspan='2'><h2>Other Air Freight Prices</h2></tr>";
-             $trips_table.="<tr><td>Booking Fee</td><td>M".number_format((float)$air_item_costs['booking_fee'], 2, '.', ',')."</td></tr>";
+             //$trips_table.="<tr><td>Booking Fee</td><td>M".number_format((float)$air_item_costs['booking_fee'], 2, '.', ',')."</td></tr>";
              foreach($air_item_costs as $key=>$value){
-                 if($key!="booking_fee")
                     $trips_table.="<tr><td>".$items[$key]['item_name']."</td><td>M".number_format((float)$value, 2, '.', ',')."</td></tr>";
                }
               $trips_table.="</table></div> ";
@@ -437,9 +435,8 @@ function view_prices_action_callback(){
              <div style='width:45%; display:inline-block; vertical-align: top; margin-bottom:5px;'>
                <table class='viewTable'>
                 <tr><td colspan='2'><h2>Other Ocean Freight Prices</h2></tr>";
-             $trips_table.="<tr><td>Booking Fee</td><td>M".number_format((float)$ocean_item_costs['booking_fee'], 2, '.', ',')."</td></tr>";
+             //$trips_table.="<tr><td>Booking Fee</td><td>M".number_format((float)$ocean_item_costs['booking_fee'], 2, '.', ',')."</td></tr>";
              foreach($ocean_item_costs as $key=>$value){
-                 if($key!="booking_fee")
                     $trips_table.="<tr><td>".$items[$key]['item_name']."</td><td>M".number_format((float)$value, 2, '.', ',')."</td></tr>";
                }
               $trips_table.="</table></div> ";
@@ -544,13 +541,10 @@ function route_form_action_callback(){
                  <tr><?php  $i=1;
                      $route_item_costs = unserialize($prices->road_item_costs);
                   ?>
-                   <td><label>Booking Fee</label>
-                            <input type="text" name="road_booking_fee" value="<?php echo $route_item_costs["booking_fee"];?>">
-                   </td>
                <?php $results = get_settings_items();
                      $items = unserialize($results->meta_data);
                      foreach( $items as $key => $item_data ){
-                        if(isset($item_data['is_route_item']) && $item_data['is_route_item'] == 1 && $key!="booking_fee") {  if($i%6==0) echo"<tr>";?>
+                        if(isset($item_data['is_route_item']) && $item_data['is_route_item'] == 1) {  if($i%6==0) echo"<tr>";?>
                         <td><label><?php echo $item_data["item_name"]; ?></label>
                             <input type="text" name="<?php echo 'road_'.$key;?>" value="<?php echo (isset($route_item_costs[$key])) ? number_format((float)$route_item_costs[$key], 2, '.', ',') : number_format((float)$item_data['item_price'], 2, '.', ',');?>">
                         </td>
@@ -578,13 +572,10 @@ function route_form_action_callback(){
                  <tr><?php  $i=1;
                      $route_item_costs = unserialize($prices->ocean_item_costs);
                   ?>
-                   <td><label>Booking Fee</label>
-                            <input type="text" name="ocean_booking_fee" value="<?php echo $route_item_costs["booking_fee"];?>">
-                   </td>
                <?php $results = get_settings_items();
                      $items = unserialize($results->meta_data);
                      foreach( $items as $key => $item_data ){
-                        if(isset($item_data['is_route_item']) && $item_data['is_route_item'] == 1 && $key!="booking_fee") {  if($i%6==0) echo"<tr>";?>
+                        if(isset($item_data['is_route_item']) && $item_data['is_route_item'] == 1) {  if($i%6==0) echo"<tr>";?>
                         <td><label><?php echo $item_data["item_name"]; ?></label>
                             <input type="text" name="<?php echo 'ocean_'.$key;?>" value="<?php echo (isset($route_item_costs[$key])) ? number_format((float)$route_item_costs[$key], 2, '.', ',') : number_format((float)$item_data['item_price'], 2, '.', ',');?>">
                         </td>
@@ -612,13 +603,10 @@ function route_form_action_callback(){
                  <tr><?php  $i=1;
                      $route_item_costs = unserialize($prices->air_item_costs);
                   ?>
-                   <td><label>Booking Fee</label>
-                            <input type="text" name="air_booking_fee" value="<?php echo $route_item_costs["booking_fee"];?>">
-                   </td>
                <?php $results = get_settings_items();
                      $items = unserialize($results->meta_data);
                      foreach( $items as $key => $item_data ){
-                        if(isset($item_data['is_route_item']) && $item_data['is_route_item'] == 1 && $key!="booking_fee") {  if($i%6==0) echo"<tr>";?>
+                        if(isset($item_data['is_route_item']) && $item_data['is_route_item'] == 1) {  if($i%6==0) echo"<tr>";?>
                         <td><label><?php echo $item_data["item_name"]; ?></label>
                             <input type="text" name="<?php echo 'air_'.$key;?>" value="<?php echo (isset($route_item_costs[$key])) ? number_format((float)$route_item_costs[$key], 2, '.', ',') : number_format((float)$item_data['item_price'], 2, '.', ',');?>">
                         </td>
@@ -917,79 +905,116 @@ add_action( 'wp_ajax_nopriv_quote_more_action', 'quote_more_action_callback' );
 /**
  * Ajax Callback
  */
-function payment_more_action_callback(){   ?>
-  <style>
-     #list_view table tbody .row td, #list_view table thead .row td{
-       border-right: 2px solid;
-       border-bottom: 2px solid;
-     }
-     #list_view table tbody .row td:nth-child(5) , #list_view table thead .row td:nth-child(5){
-       border-right: none;
-     }
-  </style>
-  <?php  $shipment_id =  sanitize_text_field(trim($_POST['post_id']));
-       $payment_history = unserialize(get_post_meta( $shipment_id, 'wpcargo_payment_history', true ));
-       $received_from = get_shipper_name($shipment_id);
-       $total = 0;
-       echo '<div id="list_view"> <a href="#" class="button button-primary" type="button" style="float:right; margin-top:-20px; margin-bottom:10px;" onclick="make_payment()">Receive Payment</a>';
-       if(is_array($payment_history)) {
-           echo' <table class="view" style="font-size: 12px; width:100%; line-height:30px;">
-            <thead style="font-size: 14px; font-weight:700; padding-bottom:12px;">
-                <tr class="row"><td>Date</td><td>Receipt#</td><td>Method</td><td>Amount</td><td></td></tr></thead>
-                  <tbody>';
-               foreach($payment_history AS $key => $values){
-                    if($values["approval"] == "0" ){
-                         echo $key;
-                         echo '<tr class="row"><td>'.date_format(date_create($key),"d-M-Y, H:i").'</td><td>'.$values["receipt_no"].'</td><td id="method">'.$values["method"].'</td><td id="amount">M '.$values["amount"].'</td><td><a href="#" data-row_id="'.$key.'" data-shipment_id="'.$shipment_id.'" class="button button-primary" type="button" onclick="approve_payment()">Approve</a></td></tr>';
-                         //$total+=(float)str_replace(",","",$values['amount']);
-                       }
-                   else{
-                       echo '<tr class="row"><td>'.date_format(date_create($key),"d-M-Y, H:i").'</td><td>'.$values["receipt_no"].'</td><td>'.$values["method"].'</td><td>M '.$values["amount"].'</td><td><a href="#" data-row_id="'.$key.'" data-shipment_id="'.$shipment_id.'" class="button button-primary" type="button" onclick="payment_singleview(this)">View</a></td></tr>';
-                       $total+=(float)str_replace(",","",$values['amount']);
-                    }
-               }
-           echo'
-               <tr><td colspan="5"><br></td></tr>
-               </tbody><tfoot>
-                 <tr><td colspan="3" style="font-size:14px; text-align:right; padding-right:25px;"><b>Total Paid</b></td><td colspan="2" style="border-top: solid 2px; border-bottom: solid 2px; font-size:14px;"><b id="total">&nbsp;&nbsp;M '.number_format($total, 2, '.', ',').'</b></td></tr>
-               </tfoot></table>';
-       }
-       else echo "<br>no payment data";
-       echo '</div>
-             <div style="display:none;" id="payment_form">
-             <p style="color:red;" id=msg_box></p>';
-       echo '<table class="wpcargo form-table" style="width:90%" >
-                  <tr>
-                    <th><label>Payment Date : </label></th>
-                    <td><input style="width:100%;" type="date" required="required" id="payment_date" name="payment_date" value="'.date("Y-m-d").'"></td>
-                  </tr>
-                  <tr>
-                    <th><label>Method of Payment : </label></th>
-                    <td style="width:60%;"> <select style="width:100%;" required="required" id="payment_method" name="payment_method" onchange="toggle_payment_fields(this)">
-                         <option value="">Select one</option><option>Standard Bank</option><option>FNB Lesotho</option><option>NedBank Lesotho</option>
-                         <option value="Mpesa">Mpesa</option><option value="Ecocash">Ecocash</option>
-                         <option>Cash</option><option>Account</option><option>Other</option></select></td>
-                  </tr>
-                  <tr>
-                    <th><label>Received From : </label></th>
-                    <td><input style="width:100%;" readonly type="text" required id="received_from" name="received_from" placeholder="" value="'.$received_from.'"></td>
-                  </tr>
-                  <tr id="payment_reference_row" style="display:none;">
-                    <th><label>Payment Reference : </label></th>
-                    <td><input style="width:100%;" type="text" required="required" id="payment_reference" name="payment_reference" placeholder="Type here" value=""></td>
-                  </tr>
-                  <tr id="payment_amount_row" style="display:none;">
-                    <th><label>Amount Paid : </label></th>
-                    <td>M&nbsp;<input style="width:90%;" type="text" required id="payment_amount" name="payment_amount" value="" placeholder="0.00"/></td>
-                  </tr>
-                </table> ';
-       echo "</div>";
+ function payment_more_action_callback(){   ?>
+   <style>
+      #list_view table tbody .row td, #list_view table thead .row td{
+        border-right: 2px solid;
+        border-bottom: 2px solid;
+      }
+      #list_view table tbody .row td:nth-child(5) , #list_view table thead .row td:nth-child(5){
+        border-right: none;
+      }
+   </style>
+   <?php  $shipment_id =  sanitize_text_field(trim($_POST['post_id']));
+        $payment_history = unserialize(get_post_meta( $shipment_id, 'wpcargo_payment_history', true ));
+        $received_from = get_shipper_name($shipment_id);
+        $total = 0;
+        echo '<div id="list_view"> <a href="#" class="button button-primary" type="button" style="float:right; margin-top:-20px; margin-bottom:10px;" onclick="make_payment()">Receive Payment</a>';
+        if(is_array($payment_history)) {
+            echo' <table class="view" style="font-size: 12px; width:100%; line-height:30px;">
+             <thead style="font-size: 14px; font-weight:700; padding-bottom:12px;">
+                 <tr class="row"><td>Date</td><td>Receipt#</td><td>Method</td><td>Amount</td><td></td></tr></thead>
+                   <tbody>';
+                foreach($payment_history AS $key => $values){
+                     if($values["approval"] == "0" ){
+                          echo $key;
+                          echo '<tr class="row"><td id="date">'.date_format(date_create($key),"d-M-Y, H:i").'</td><td>'.$values["receipt_no"].'</td><td id="revised_method" >'.$values["method"].'</td><td id="revised_amount" >M '.$values["amount"].'</td><td><a href="#" data-row_id="'.$key.'" data-shipment_id="'.$shipment_id.'" class="button button-primary" type="button" onclick="revised_online_payments()">Approve</a></td></tr>';
 
-    wp_die(); // required. to end AJAX request.
-}
-/* Load Ajax Callback to "wp_ajax_*" Action Hook */
-add_action( 'wp_ajax_payment_more_action', 'payment_more_action_callback' );
-add_action( 'wp_ajax_nopriv_payment_more_action', 'payment_more_action_callback' );
+
+                          //$total+=(float)str_replace(",","",$values['amount']);
+                        }
+                    else{
+                        echo '<tr class="row"><td>'.date_format(date_create($key),"d-M-Y, H:i").'</td><td>'.$values["receipt_no"].'</td><td>'.$values["method"].'</td><td>M '.$values["amount"].'</td><td><a href="#" data-row_id="'.$key.'" data-shipment_id="'.$shipment_id.'" class="button button-primary" type="button" onclick="payment_singleview(this)">View</a></td></tr>';
+                        $total+=(float)str_replace(",","",$values['amount']);
+                     }
+                }
+            echo'
+                <tr><td colspan="5"><br></td></tr>
+                </tbody><tfoot>
+                  <tr><td colspan="3" style="font-size:14px; text-align:right; padding-right:25px;"><b>Total Paid</b></td><td colspan="2" style="border-top: solid 2px; border-bottom: solid 2px; font-size:14px;"><b id="total">&nbsp;&nbsp;M '.number_format($total, 2, '.', ',').'</b></td></tr>
+                </tfoot></table>';
+        }
+        else echo "<br>no payment data";
+        echo '</div>
+              <div style="display:none;" id="payment_form">
+              <p style="color:red;" id=msg_box></p>';
+        echo '<table class="wpcargo form-table" style="width:90%" >
+                   <tr>
+                     <th><label>Payment Date : </label></th>
+                     <td><input style="width:100%;" type="date" required="required" id="payment_date" name="payment_date" value="'.date("Y-m-d").'"></td>
+                   </tr>
+                   <tr>
+                     <th><label>Method of Payment : </label></th>
+                     <td style="width:60%;"> <select style="width:100%;" required="required" id="payment_method" name="payment_method" onchange="toggle_payment_fields(this)">
+                          <option value="">Select one</option><option>Standard Bank</option><option>FNB Lesotho</option><option>NedBank Lesotho</option>
+                          <option value="Mpesa">Mpesa</option><option value="Ecocash">Ecocash</option>
+                          <option>Cash</option><option>Account</option><option>Other</option></select></td>
+                   </tr>
+                   <tr>
+                     <th><label>Received From : </label></th>
+                     <td><input style="width:100%;" readonly type="text" required id="received_from" name="received_from" placeholder="" value="'.$received_from.'"></td>
+                   </tr>
+                   <tr id="payment_reference_row" style="display:none;">
+                     <th><label>Payment Reference : </label></th>
+                     <td><input style="width:100%;" type="text" required="required" id="payment_reference" name="payment_reference" placeholder="Type here" value=""></td>
+                   </tr>
+                   <tr id="payment_amount_row" style="display:none;">
+                     <th><label>Amount Paid : </label></th>
+                     <td>M&nbsp;<input style="width:90%;" type="text" required id="payment_amount" name="payment_amount" value="" placeholder="0.00"/></td>
+                   </tr>
+                 </table> ';
+        echo "</div>";
+
+
+				echo '<div style="display:none;" id="payment_revision_form">
+							<p style="color:red;" id=msg_box></p>';
+							foreach($payment_history AS $key => $values){
+									 if($values["approval"] == "0" ){
+												echo '<h2>Reciept no: '.$values["receipt_no"].'</h2>';
+				echo '<table class="wpcargo form-table" style="width:90%" >
+									 <tr>
+										 <th><label>Payment Date : </label></th>
+										 <td><input style="width:100%;" readonly type="text" required="required" id="payment_datef" name="payment_date" value="'.date_format(date_create($key),"d-M-Y, H:i").'"></td>
+									 </tr>
+									 <tr>
+										 <th><label>Method of Payment : </label></th>
+										 <td style="width:60%;"> <select style="width:100%;" required="required" id="payment_methodfd" name="payment_method" onchange="toggle_payment_fields(this)">
+													<option value="'.$values["method"].'">'.$values["method"].'</option><option>Standard Bank</option><option>FNB Lesotho</option><option>NedBank Lesotho</option>
+													<option value="Mpesa">Mpesa</option><option value="Ecocash">Ecocash</option>
+													<option>Cash</option><option>Account</option><option>Other</option></select></td>
+									 </tr>
+									 <tr>
+										 <th><label>Received From : </label></th>
+										 <td><input style="width:100%;" readonly type="text" required id="received_fromf" name="received_from" placeholder="" value="'.$received_from.'"></td>
+									 </tr>
+									 <tr id="payment_reference_row" >
+										 <th><label>Payment Reference : </label></th>
+										 <td><input style="width:100%;" type="text" required="required" id="payment_referencef" name="payment_reference"  value="'.$values["reference"].'"></td>
+									 </tr>
+									 <tr id="payment_amount_row" >
+										 <th><label>Amount Paid : </label></th>
+										 <td>M&nbsp;<input style="width:90%;" type="text" required id="payment_amountf" name="payment_amount" value="'.$values["amount"].'" placeholder="0.00"/></td>
+									 </tr>
+								 </table> ';
+							 }
+					}
+				echo "</div>";
+
+     wp_die(); // required. to end AJAX request.
+ }
+ /* Load Ajax Callback to "wp_ajax_*" Action Hook */
+ add_action( 'wp_ajax_payment_more_action', 'payment_more_action_callback' );
+ add_action( 'wp_ajax_nopriv_payment_more_action', 'payment_more_action_callback' );
 
 /**
  * Ajax Callback
@@ -1038,40 +1063,80 @@ add_action( 'wp_ajax_nopriv_payment_singleview_action', 'payment_singleview_acti
 /**
  * Ajax Callback
  */
-function save_payment_action_callback(){
-       $_POST=filter_var_array($_POST);
-       $current_user = wp_get_current_user();
-       $received_by = $current_user->display_name;
-       $shipment_id =  sanitize_text_field($_POST['post_id']);
-       $payment_time = date('H:i');
-       $payment_date = sanitize_text_field($_POST['payment_date'])." ".$payment_time;
-       $payment_method = sanitize_text_field($_POST["payment_method"]);
-       $payment_reference = sanitize_text_field($_POST["payment_reference"]);
-       $received_from = sanitize_text_field($_POST["received_from"]);
-       $booking_reference = get_post_meta( $shipment_id, 'booking_reference', true );
-       $msg = wpcargo_shipment_status_update($shipment_id,$current_user,"Payment Approved","Payment Approval");
-       if($payment_method!="Account"){
-           $payment_amount = sanitize_text_field($_POST["payment_amount"]);
-           $payment_history = unserialize(get_post_meta( $shipment_id, 'wpcargo_payment_history', true ));
-           $payment_no = (!is_array($payment_history))? 1 : count($payment_history)+1;
-           $exploded_booking_reference = explode("-",$booking_reference);
-           $receipt_no = "PAY-".$exploded_booking_reference[1]."-".$payment_no;
-           $payment = array("method"=>$payment_method,"reference"=>$payment_reference,"received_from"=>$received_from,"receipt_no"=>$receipt_no,"amount"=>$payment_amount,"received_by"=>$received_by, "approval" => 1);
-           $payment_history[$payment_date] = $payment;
-           update_post_meta( $shipment_id, 'wpcargo_payment_history', maybe_serialize($payment_history));
-           $msg="";
-           //display current receipt
-           //to load / display receipt
-           $_POST['row_id'] = $payment_date;
-           $_POST['shipment_id'] = $shipment_id;
-           payment_singleview_action_callback();
+ function save_payment_action_callback(){
+        $_POST=filter_var_array($_POST);
+        $current_user = wp_get_current_user();
+        $received_by = $current_user->display_name;
+        $shipment_id =  sanitize_text_field($_POST['post_id']);
+        $payment_time = date('H:i');
+        $payment_date = sanitize_text_field($_POST['payment_date'])." ".$payment_time;
+        $payment_method = sanitize_text_field($_POST["payment_method"]);
+        $payment_reference = sanitize_text_field($_POST["payment_reference"]);
+        $received_from = sanitize_text_field($_POST["received_from"]);
+        $booking_reference = get_post_meta( $shipment_id, 'booking_reference', true );
+        $msg = wpcargo_shipment_status_update($shipment_id,$current_user,"Payment Approved","Payment Approval");
+        if($payment_method!="Account"){
+            $payment_amount = sanitize_text_field($_POST["payment_amount"]);
+            $payment_history = unserialize(get_post_meta( $shipment_id, 'wpcargo_payment_history', true ));
+            $payment_no = (!is_array($payment_history))? 1 : count($payment_history)+1;
+            $exploded_booking_reference = explode("-",$booking_reference);
+            $receipt_no = "PAY-".$exploded_booking_reference[1]."-".$payment_no;
+            $payment = array("method"=>$payment_method,"reference"=>$payment_reference,"received_from"=>$received_from,"receipt_no"=>$receipt_no,"amount"=>$payment_amount,"received_by"=>$received_by, "approval" => 1);
+            $payment_history[$payment_date] = $payment;
+            update_post_meta( $shipment_id, 'wpcargo_payment_history', maybe_serialize($payment_history));
+            $msg="";
+            //display current receipt
+            //to load / display receipt
+            $_POST['row_id'] = $payment_date;
+            $_POST['shipment_id'] = $shipment_id;
+            payment_singleview_action_callback();
+       }
+       else echo "Payment Approved by Account".
+     wp_die(); // required. to end AJAX request.
+ }
+ /* Load Ajax Callback to "wp_ajax_*" Action Hook */
+ add_action( 'wp_ajax_save_payment_action', 'save_payment_action_callback');
+ add_action( 'wp_ajax_nopriv_save_payment_action', 'save_payment_action_callback');
+
+/* Approve Client/Online Booking Payment */
+function approve_payment_action_callback(){
+  $_POST = filter_var_array($_POST);
+  $current_user = wp_get_current_user();
+  $received_by = $current_user->display_name;
+  $shipment_id = sanitize_text_field($_POST['post_id']);
+  $payment_date = sanitize_text_field($_POST['payment_date']);
+	$pay_method = sanitize_text_field($_POST['revised_method']);
+	$pay_amount = sanitize_text_field($_POST['revised_amount']);
+	$received_from = sanitize_text_field($_POST['received_from']);
+	$payment_reference = sanitize_text_field($_POST['payment_reference']);
+
+  $payment_time = date('H:i');
+  $payment_timestamp = $payment_date." ".$payment_time;
+  $payment_history = unserialize(get_post_meta($shipment_id, 'wpcargo_payment_history', true ));
+  $booking_reference = get_post_meta( $shipment_id, 'booking_reference', true );
+  $payment_no = 1;
+  $exploded_booking_reference = explode("-",$booking_reference);
+  $receipt_no = "PAY-".$exploded_booking_reference[1]."-".$payment_no;
+  $msg = wpcargo_shipment_status_update($shipment_id,$current_user,"Payment Approved","Payment Approval");
+
+
+  foreach($payment_history AS $key => $values){
+
+      if($values["approval"] == "0"){
+			$reciept_no = $values["receipt_no"];
+      $payment = array("method"=>$pay_method,"reference"=>$payment_reference,"received_from"=>$received_from,"receipt_no"=>$receipt_no,"amount"=>$pay_amount,"received_by"=>$received_by,"approval" => 1);
+      $payment_history[$key] = $payment;
+      update_post_meta( $shipment_id, 'wpcargo_payment_history', maybe_serialize($payment_history));
+
+
       }
-      else echo "Payment Approved by Account".
-    wp_die(); // required. to end AJAX request.
+
+
+  }
+
 }
-/* Load Ajax Callback to "wp_ajax_*" Action Hook */
-add_action( 'wp_ajax_save_payment_action', 'save_payment_action_callback');
-add_action( 'wp_ajax_nopriv_save_payment_action', 'save_payment_action_callback');
+add_action( 'wp_ajax_approve_payment_action_callback', 'approve_payment_action_callback' );
+add_action( 'wp_ajax_nopriv_approve_payment_action_callback', 'approve_payment_action_callback' );
 
 /**
  * Ajax Callback
@@ -1983,8 +2048,9 @@ add_action( 'wp_ajax_nopriv_duplicate_schedule_action', 'duplicate_schedule_acti
 function schedule_single_action_callback(){
     global $wpdb;
     $selected_schedule = sanitize_text_field(trim($_POST['selected_schedule'])); ?>
-    <h1><?php echo $selected_schedule." Settings"; ?>
-        <a style="float: right;" class="button" href="<?php echo admin_url().'admin.php?page=collection-schedules'; ?>" >Back</a></h1>
+    <h1>
+        <a style="margin-right:40px;" class="button" href="<?php echo admin_url().'admin.php?page=collection-schedules'; ?>" >Back</a>
+        <?php echo $selected_schedule." Settings"; ?></h1>
        <div>
            <table class="viewTable" id="single_schedule_table_list">
             <thead>
@@ -2167,114 +2233,66 @@ add_action( 'wp_ajax_nopriv_trip_assign_save_action', 'trip_assign_save_action_c
 /**
  * Ajax Callback
  */
-function client_save_payment_action_callback(){
-       $_POST = filter_var_array($_POST);
-       $shipment_id = sanitize_text_field($_POST['post_id']);
-       $payment_date = sanitize_text_field($_POST['payment_date']);
-       $payment_method = sanitize_text_field($_POST["payment_identifier"]);
-       $payment_reference = sanitize_text_field($_POST["payment_reference"]);
-       $payment_amount = sanitize_text_field($_POST["payment_amount"]);
-       $payment_time = date('H:i');
-       $payment_timestamp = $payment_date." ".$payment_time;
-       //$receipt_no = sanitize_text_field($_POST["receipt_no"]);
+ function client_save_payment_action_callback(){
+        $_POST = filter_var_array($_POST);
+        $shipment_id = sanitize_text_field($_POST['post_id']);
+        $payment_date = sanitize_text_field($_POST['payment_date']);
+        $payment_method = sanitize_text_field($_POST["payment_identifier"]);
+        $payment_reference = sanitize_text_field($_POST["payment_reference"]);
+        $payment_amount = sanitize_text_field($_POST["payment_amount"]);
+        $payment_time = date('H:i');
+        $payment_timestamp = $payment_date." ".$payment_time;
+        //$receipt_no = sanitize_text_field($_POST["receipt_no"]);
 
-       $booking_reference = get_post_meta( $shipment_id, 'booking_reference', true );
-       //$payment_amount = sanitize_text_field($_POST["payment_amount"]);
-       $payment_history = unserialize(get_post_meta( $shipment_id, 'wpcargo_payment_history', true ));
-       $payment_no = (!is_array($payment_history))? 1 : count($payment_history)+1;
-       $exploded_booking_reference = explode("-",$booking_reference);
-       $receipt_no = "PAY-".$exploded_booking_reference[1]."-".$payment_no;
-       $payment = array("method"=>$payment_method,"reference"=>$payment_reference,"received_from"=>$received_from,"receipt_no"=>$receipt_no,"amount"=>$payment_amount,"received_by"=>$received_by,"approval" => 0);
-       $payment_history[$payment_timestamp] = $payment;
-       update_post_meta( $shipment_id, 'wpcargo_payment_history', maybe_serialize($payment_history));
-       echo "Your Payment of M".number_format((float)$payment_amount, 2, '.', '')." has been submited for review. \n Please Note down your Booking reference: ". $booking_reference;
-       //$msg="";
-       //display current receipt
-       //to load / display receipt
-       //$_POST['row_id'] = $payment_date;
-       //$_POST['shipment_id'] = $shipment_id;
-      // payment_singleview_action_callback();
+        $booking_reference = get_post_meta( $shipment_id, 'booking_reference', true );
+        //$payment_amount = sanitize_text_field($_POST["payment_amount"]);
+        $payment_history = unserialize(get_post_meta( $shipment_id, 'wpcargo_payment_history', true ));
+        $payment_no = (!is_array($payment_history))? 1 : count($payment_history)+1;
+        $exploded_booking_reference = explode("-",$booking_reference);
+        $receipt_no = "PAY-".$exploded_booking_reference[1]."-".$payment_no;
+        $payment = array("method"=>$payment_method,"reference"=>$payment_reference,"received_from"=>$received_from,"receipt_no"=>$receipt_no,"amount"=>$payment_amount,"received_by"=>$received_by,"approval" => 0);
+        $payment_history[$payment_timestamp] = $payment;
+        update_post_meta( $shipment_id, 'wpcargo_payment_history', maybe_serialize($payment_history));
+        echo "Your Payment of M".number_format((float)$payment_amount, 2, '.', '')." has been submited for review. \n Please Note down your Booking reference: ". $booking_reference;
+        //$msg="";
+        //display current receipt
+        //to load / display receipt
+        //$_POST['row_id'] = $payment_date;
+        //$_POST['shipment_id'] = $shipment_id;
+       // payment_singleview_action_callback();
+			 $wpcargo_status 	= "Pending";
+         $status 	        = "Payment Recieved";
+         $status_location 	= "";
+         $status_time 		=  date('H:i');
+         $status_remarks 	=  "Online Payment Recieved";
+         $status_date 		= date('Y-m-d');
+         $apply_to_shipment 	= true;
+         $wpcargo_shipments_update = maybe_unserialize( get_post_meta( $shipment_id, 'wpcargo_shipments_update', true ) );
+         // Make sure that it is set.
+         $new_history = array(
+             'date' => $status_date,
+             'time' => $status_time,
+             'location' => $status_location,
+             'updated-name' => (!empty($received_by))?$received_by->display_name : "Online Client",
+             'updated-by' => $received_by,
+             'remarks'	=> $status_remarks,
+             'status'    => $status
+         );
 
-    wp_die(); // required. to end AJAX request.
-}
-/* Load Ajax Callback to "wp_ajax_*" Action Hook */
-add_action( 'wp_ajax_client_save_payment_action', 'client_save_payment_action_callback' );
-add_action( 'wp_ajax_nopriv_client_save_payment_action', 'client_save_payment_action_callback' );
+         if( !empty( $wpcargo_shipments_update ) ){
+             if( $wpcargo_status ){
+                 array_push($wpcargo_shipments_update, $new_history);
+             }
+             update_post_meta($shipment_id, 'wpcargo_shipments_update', maybe_serialize( $wpcargo_shipments_update ) );
+         }
+         $msg = " ";
 
-function approve_payment_action_callback(){
-  $_POST = filter_var_array($_POST);
-  $current_user = wp_get_current_user();
-  $received_by = $current_user->display_name;
-  $shipment_id = sanitize_text_field($_POST['post_id']);
-  $payment_date = sanitize_text_field($_POST['payment_date']);
-  $payment_time = date('H:i');
-  $payment_timestamp = $payment_date." ".$payment_time;
-  $payment_history = unserialize(get_post_meta($shipment_id, 'wpcargo_payment_history', true ));
-  $booking_reference = get_post_meta( $shipment_id, 'booking_reference', true );
-  $payment_no = 1;
-  $exploded_booking_reference = explode("-",$booking_reference);
-  $receipt_no = "PAY-".$exploded_booking_reference[1]."-".$payment_no;
-  $msg = wpcargo_shipment_status_update($shipment_id,$current_user,"Payment Approved","Payment Approval");
+     wp_die(); // required. to end AJAX request.
+ }
+ /* Load Ajax Callback to "wp_ajax_*" Action Hook */
+ add_action( 'wp_ajax_client_save_payment_action', 'client_save_payment_action_callback' );
+ add_action( 'wp_ajax_nopriv_client_save_payment_action', 'client_save_payment_action_callback' );
 
-
-  foreach($payment_history AS $key => $values){
-
-      if($values["approval"] == "0"){
-      $reciept_no = $values["receipt_no"];
-      $pay_method = $values["method"];
-      $pay_amount = $values["amount"];
-      $received_from = $values["recieved_from"];
-      $payment_reference = $values["reference"];
-
-      $payment = array("method"=>$pay_method,"reference"=>$payment_reference,"received_from"=>$received_from,"receipt_no"=>$receipt_no,"amount"=>$pay_amount,"received_by"=>$received_by,"approval" => 1);
-      $payment_history[$key] = $payment;
-      update_post_meta( $shipment_id, 'wpcargo_payment_history', maybe_serialize($payment_history));
-
-      $wpcargo_status 	= "Pending";
-        $status 	        = "Payment Approval";
-        $status_location 	= "";
-        $status_time 		=  date('H:i');
-        $status_remarks 	=  "Payment Approved";
-        $status_date 		= date('Y-m-d');
-        $apply_to_shipment 	= true;
-        $wpcargo_shipments_update = maybe_unserialize( get_post_meta( $shipment_id, 'wpcargo_shipments_update', true ) );
-        // Make sure that it is set.
-        $new_history = array(
-            'date' => $status_date,
-            'time' => $status_time,
-            'location' => $status_location,
-            'updated-name' => (!empty($received_by))?$received_by->display_name : sanitize_text_field( $_POST["wpcargo_receiver_fname"])." ".sanitize_text_field( $_POST["wpcargo_receiver_sname"]),
-            'updated-by' => $received_by,
-            'remarks'	=> $status_remarks,
-            'status'    => $status
-        );
-
-        if( !empty( $wpcargo_shipments_update ) ){
-            if( $wpcargo_status ){
-                array_push($wpcargo_shipments_update, $new_history);
-            }
-            update_post_meta($shipment_id, 'wpcargo_shipments_update', maybe_serialize( $wpcargo_shipments_update ) );
-        }
-
-        $new_post = array(
-              'ID' => $shipment_id,
-              'post_status' => 'publish',
-              'comment_status' => 'closed',
-              'ping_status' => 'closed',
-              'post_parent' => '0',
-              'post_type' => 'wpcargo_shipment'
-
-        );
-        wp_update_post($new_post);
-        $msg = " ";
-      }
-
-
-  }
-
-}
-add_action( 'wp_ajax_approve_payment_action_callback', 'approve_payment_action_callback' );
-add_action( 'wp_ajax_nopriv_approve_payment_action_callback', 'approve_payment_action_callback' );
 /**
  * Ajax Callback
  */
@@ -2624,14 +2642,21 @@ function driver_save_forms_action_callback(){
                    $booking_reference = get_post_meta( $shipment_id, 'booking_reference', true );
                    $exploded_booking_reference = explode("-",$booking_reference);
                    $invoice_no = "INV-".$exploded_booking_reference[1];
-                   //generate a new invoice
+                   //reset all invoice elements
                    foreach($data as $key => $item){
-                      if(sanitize_text_field($_POST['failure_cause'])=="Our Fault" || $key!="collectionfee"){
-                         $item["price"] = 0.00;
-                         $item["total"] = 0.00;
-                       }
-                      $newdata[$key] = $item;
+                         if($key != "bookingfee") {
+                             $item["price"] = 0.00;
+                             $item["total"] = 0.00;
+                             $newdata[$key] = $item;
+                         }
                    }
+                   if(sanitize_text_field($_POST['failure_cause'])=="Client Fault"){
+                         $settingsitemresults = get_settings_items();
+                         $settingsitems = unserialize($settingsitemresults->meta_data);
+                         $item["price"] = $settingsitems['bookingfee']['item_price'];
+                         $item["total"] = $settingsitems['bookingfee']['item_price'];
+                         $newdata["bookingfee"] = $item;
+                     }
                    //save invoice data
                    update_post_meta( $shipment_id, 'wpcargo_invoice', serialize($newdata));
                    update_post_meta( $shipment_id, 'wpcargo_invoice_no', $invoice_no);
@@ -2653,4 +2678,3 @@ function driver_save_forms_action_callback(){
 /* Load Ajax Callback to "wp_ajax_*" Action Hook */
 add_action( 'wp_ajax_driver_save_forms_action', 'driver_save_forms_action_callback' );
 add_action( 'wp_ajax_nopriv_driver_save_forms_action', 'driver_save_forms_action_callback' );
-

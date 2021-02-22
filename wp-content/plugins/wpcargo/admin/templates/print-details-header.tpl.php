@@ -60,8 +60,20 @@ $url_barcode	= WPCARGO_PLUGIN_URL."/includes/barcode.php?codetype=Code128&size=6
               }
              $amount_due  = shipment_amount_due($shipment_id);
            //state for finance clearance
-           if($shipment_status == "Active")
-              echo (is_array(unserialize($wpcargo_invoice)) && $amount_due==0)? '<p id="finance_cleared"><i class="dashicons dashicons-yes"></i>Finance Cleared</p>' : '<p><i class="dashicons dashicons-no"></i>Finance Cleared</p>';
+           if($shipment_status == "Active"){
+             $new_post = array(
+                   'ID' => $shipment_id,
+                   'post_status' => 'publish',
+                   'comment_status' => 'closed',
+                   'ping_status' => 'closed',
+                   'post_parent' => '0',
+                   'post_type' => 'wpcargo_shipment'
+
+             );
+             wp_update_post($new_post);
+             echo (is_array(unserialize($wpcargo_invoice)) && $amount_due==0)? '<p id="finance_cleared"><i class="dashicons dashicons-yes"></i>Finance Cleared</p>' : '<p><i class="dashicons dashicons-no"></i>Finance Cleared</p>';
+           }
+
         ?></div>
 		<?php $options = get_option('wpcargo_option_settings');  ?>
 		<img src="<?php echo $options['settings_shipment_ship_logo']; ?>">

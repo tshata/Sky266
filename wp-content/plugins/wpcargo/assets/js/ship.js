@@ -193,7 +193,7 @@ function nextPrev(n,Btn="") {
 
 
           //package details
-        $("#summary #label_info_special").html($('#service_items').val());
+        $("#summary #label_info_special").html($('#service_items').val().split(" "));
         $("#summary #label_info_est_weight").html($("#wpcargo_package_weight").val() + " kg");
         $("#summary #label_info_est_cbm").html($("#wpcargo_package_cbm").val() + " cbm");
         $("#summary #label_info_goods_desc").html($("#goods_description").val());
@@ -301,7 +301,7 @@ function select_service(elm){
   else add_remove_services(elm.value,"remove");
 }
 function add_remove_services(elmvalue,action){
-  var arr = $('#service_items').val().split(" , ");
+  var arr = $('#service_items').val().split(",");
   var idx = arr.indexOf(elmvalue);
   if (idx >= 0) {
     arr.splice(idx, 1);
@@ -310,7 +310,7 @@ function add_remove_services(elmvalue,action){
     if($('#service_items').val()=="") arr = [elmvalue];
     else arr.push(elmvalue);
   }
-  $('#service_items').val(arr.join(" \n "));
+  $('#service_items').val(arr.join(","));
 }
 function address_fields_toggle(elm){
      var parent_div = (elm.id=="wpcargo_shipper_address_type")? "#collection-details" : "#delivery-details";

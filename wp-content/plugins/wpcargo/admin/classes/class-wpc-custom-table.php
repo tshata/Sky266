@@ -265,20 +265,21 @@ function modify_list_row_actions( $actions, $post ) {
         $trash = $actions['trash'];
         $edit = $actions['edit'];
         $duplicate = $actions['duplicate'];
-        $actions = array();  //reset actions
+        $new_actions = array();  //reset actions
         $wpcargo_shipments_update = get_post_meta( $post->ID, 'wpcargo_shipments_update', true );
         if( strpos($wpcargo_shipments_update, "Collection Successful") == false && strpos($wpcargo_shipments_update, "Delivery Successful") == false)
         {
-           $actions['edit']=$edit;
+           $new_actions['edit']=$edit;
         }
         if( get_post_meta( $post->ID, 'wpcargo_status', true )!="Complete")
         {
-           $actions['trash']=str_replace("Trash","Terminate",$trash);
+           $new_actions['trash']=str_replace("Trash","Terminate",$trash);
         }
-        $actions['duplicate']=$duplicate;
+        $new_actions['duplicate']=$duplicate;
+        //$new_actions['untrash']=$actions['untrash'];
     }
 
-    return $actions;
+    return $new_actions;
 }
 
 // hide views in post list table (e.g 'All','Published','Trash','Drafts')
@@ -294,9 +295,10 @@ function my_table_view( $views ) {
     return $newviews;
 
 }
+// remove bul actions
 add_filter('bulk_actions-edit-wpcargo_shipment','register_my_bulk_actions');
 function register_my_bulk_actions($bulk_actions){
-   $bulk_actions['trash'] = str_replace("Move to Trash","Terminate",$bulk_actions['trash']);
-   return $bulk_actions;
+   //$bulk_actions['trash'] = str_replace("Move to Trash","Terminate",$bulk_actions['trash']);
+   return array();
 }
 

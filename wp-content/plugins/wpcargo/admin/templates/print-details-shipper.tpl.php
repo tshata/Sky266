@@ -79,28 +79,28 @@
         </p>
        <div id="print-shipment-info">
         <table style="font-size: 12px; width:100%;">
-           <?php
-                 $old_prices = get_post_meta($shipment_id, 'wpcargo_price_estimates-old', true);
-                 $current_prices = get_post_meta($shipment_id, 'wpcargo_price_estimates', true);
-                 $wpcargo_invoice = get_post_meta($shipment_id, 'wpcargo_invoice', true);
-                 $payment_history = get_post_meta($shipment_id, 'wpcargo_payment_history', true);
-                 $first = (is_array(unserialize($old_prices))) ? (float)get_total_price($old_prices) : 0;
-                 $final = (is_array(unserialize($current_prices))) ? (float)get_total_price($current_prices) : 0;
-                 $invoice = (is_array(unserialize($wpcargo_invoice))) ? (float)get_total_price($wpcargo_invoice) : 0;
-                 $amount_paid = 0;
-                 if(is_array(unserialize($payment_history))) {
-                     foreach(unserialize($payment_history) AS $key=>$values){
-                         if($values["approval"] == "0" ){
-                           $amount_paid = 0;
-                         }
-                         else {
-                           $amount_paid+=(float)str_replace(",","",$values['amount']);
-                         }
+          <?php
+                $old_prices = get_post_meta($shipment_id, 'wpcargo_price_estimates-old', true);
+                $current_prices = get_post_meta($shipment_id, 'wpcargo_price_estimates', true);
+                $wpcargo_invoice = get_post_meta($shipment_id, 'wpcargo_invoice', true);
+                $payment_history = get_post_meta($shipment_id, 'wpcargo_payment_history', true);
+                $first = (is_array(unserialize($old_prices))) ? (float)get_total_price($old_prices) : 0;
+                $final = (is_array(unserialize($current_prices))) ? (float)get_total_price($current_prices) : 0;
+                $invoice = (is_array(unserialize($wpcargo_invoice))) ? (float)get_total_price($wpcargo_invoice) : 0;
+                $amount_paid = 0;
+                if(is_array(unserialize($payment_history))) {
+                    foreach(unserialize($payment_history) AS $key=>$values){
+                        if($values["approval"] == "0" ){
+                          $amount_paid = 0;
+                        }
+                        else {
+                          $amount_paid+=(float)str_replace(",","",$values['amount']);
+                        }
 
-                  } }
-                 $amount_due  = $invoice - $amount_paid;
+                 } }
+                $amount_due  = $invoice - $amount_paid;
 
-           ?>
+          ?>
            <!--tr id="quote1"><td><label>Initial Quotation : </label></td><td>M<?php echo number_format((float)$first, 2, '.', ','); ?>&nbsp;<a class="link" id="old_quote" type="button" onclick="quote_more(this,<?php echo $shipment_id;?>,'old_wpcargo_price_estimates')"> >>view>></a></td></tr>
            <tr><td><label>Final Quotation : </label></td><td>M <span id="quote2"><?php echo number_format((float)$final, 2, '.', ','); ?></span>&nbsp;<a class="link" id="new_quote" type="button" onclick="quote_more(this,<?php echo $shipment_id;?>,'wpcargo_price_estimates')"> >>view>></a></td></tr>
            <tr><td><label>Invoiced Amount : </label></td><td>M <span id="invoice"><?php echo number_format((float)$invoice, 2, '.', ','); ?></span>&nbsp;<?php if(!empty($wpcargo_invoice)){?> <a class="link" id="invoice" type="button" onclick="quote_more(this,<?php echo $shipment_id;?>,'wpcargo_invoice')"> >>view>> </a><?php } else {?> <a class="link" id="new_invoice" type="button" onclick="quote_more(this,<?php echo $shipment_id;?>,'wpcargo_invoice')"> Create Invoice </a><?php }?></td></tr>

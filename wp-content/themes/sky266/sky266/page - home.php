@@ -121,12 +121,12 @@
               					<h3>Who we are</h3>
               					<div class="about-content-block">
                 					<span>Distinctively Orchestrate Standardized</span>
-                					<p>  </p>
+                					<p>Progressively architect prospective imperatives through competitive communities. Professionally productize user strategic theme areas.</p>
               					</div>
               					<br>
               					<div class="about-content-block">
                 					<span>Synergistically extend open source</span>
-                					<p>  </p>
+                					<p>Progressively architect prospective imperatives through competitive communities. Professionally productize user strategic theme areas.</p>
               					</div>
               				</div><!-- /about-us-content -->
               			</div><!--/.col-->
@@ -136,12 +136,12 @@
               					<h3>What we do</h3>
               					<div class="about-content-block">
                 					<span>Distinctively Orchestrate Standardized</span>
-                					<p>  Professionally productize user strategic theme areas.</p>
+                					<p>Progressively architect prospective imperatives through competitive communities. Professionally productize user strategic theme areas.Professionally productize user strategic theme areas.</p>
               					</div>
               					<br>
               					<div class="about-content-block">
                 					<span>Synergistically extend open source e-business.</span>
-                					<p>  </p>
+                					<p>Progressively architect prospective imperatives through competitive communities. Professionally productize user strategic theme areas.</p>
               					</div>
               				</div><!-- /about-us-content -->
               			</div><!-- /.col-->

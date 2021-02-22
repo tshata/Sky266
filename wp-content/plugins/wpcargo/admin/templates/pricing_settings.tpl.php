@@ -22,7 +22,6 @@
                   foreach ( $items as $key => $item_data ) {
                     $road_item_costs[$key] = (isset($_POST["road_".$key])) ? sanitize_text_field(str_replace(',','',$_POST["road_".$key])) : sanitize_text_field(str_replace(',','',$item_data['item_price']));
                 }}
-                $road_item_costs["booking_fee"] = $_POST['road_booking_fee'];
             }
             if(isset($_POST["air_pricing"])){
                $air_kg_costs  = array();
@@ -34,7 +33,6 @@
                   foreach ( $items as $key => $item_data ) {
                     $air_item_costs[$key] = (isset($_POST['air_'.$key])) ? sanitize_text_field(str_replace(',','',$_POST['air_'.$key])) : sanitize_text_field(str_replace(',','',$item_data['item_price']));
                 }}
-                $air_item_costs["booking_fee"] = $_POST['air_booking_fee'];
             }
             if(isset($_POST["ocean_pricing"])){
                 $ocean_cbm_costs  = array();
@@ -45,9 +43,8 @@
                 if(!empty($items)) {
                   foreach ( $items as $key => $item_data ) {
                     $ocean_item_costs[$key] = (isset($_POST['ocean_'.$key])) ? sanitize_text_field(str_replace(',','',$_POST['ocean_'.$key])) : sanitize_text_field(str_replace(',','',$item_data['item_price']));
-                }}
-                $ocean_item_costs["booking_fee"] = $_POST['ocean_booking_fee'];
-            }      
+                }}                                                              
+            }
             if($_POST['current_form']=='new_route_form') {
                	$wpdb->insert(
             		'routes',

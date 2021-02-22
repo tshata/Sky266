@@ -110,7 +110,12 @@
                        </table>
                   </div>
                   <div id="failed">
-                      <label>Reasons for failure: </label>
+                      <label>Cause of failure: </label>
+                      <select name="failure_cause" style="background:white;">
+                         <option>Client Fault</option>
+                         <option>Our Fault</option>
+                      </select> <br>
+                      <label>Remarks: </label>
                       <textarea style="background: white;" name="reasons" placeholder="type here"></textarea>
                   </div>
                   <input type="hidden" name="booking_id" id="booking_id" value="" >
@@ -134,6 +139,7 @@
            location.reload(true);
         }
         else {
+          $('body').append('<div class="wpcargo-loading">Loading...</div>');
           $.ajax({
               url: wpcargoAJAXHandler.ajax_url,
               type:"POST",
@@ -144,6 +150,7 @@
               success:function(data) {
                    $('#content_div' ).html(data);
                    $('#myModal input[name="trip_id"]' ).val(trip_id);
+                   $('.wpcargo-loading').hide();
               },
               error: function(errorThrown){
                   $( '#content_div' ).html('Error retrieving data. Please try again.');
@@ -158,6 +165,7 @@
            trip_singleview(trip_id);
         }
         else {
+          $('body').append('<div class="wpcargo-loading">Loading...</div>');
           $.ajax({
               url: wpcargoAJAXHandler.ajax_url,
               type:"POST",
@@ -169,6 +177,7 @@
               },
               success:function(data) {
                    $('#content_div' ).html(data);
+                   $('.wpcargo-loading').hide();
               },
               error: function(errorThrown){
                   $( '#content_div' ).html('Error retrieving data. Please try again.');
@@ -180,6 +189,7 @@
       }
 
       function booking_singleview(btn){
+          $('body').append('<div class="wpcargo-loading">Loading...</div>');
           $.ajax({
               url: wpcargoAJAXHandler.ajax_url,
               type:"POST",
@@ -192,6 +202,7 @@
               },
               success:function(data) {
                    $('#content_div' ).html(data);
+                   $('.wpcargo-loading').hide();
               },
               error: function(errorThrown){
                   $( '#content_div' ).html('Error retrieving data. Please try again.');
@@ -263,7 +274,7 @@
         		}
         	});
             //trips table datatable
-            var table = $('#trips_table_list').DataTable();
+            var table = $('#trips_table_list').DataTable({stateSave: true});
             $('#trips_table_list tbody').on('click', 'tr', function () {
                 trip_singleview(this.id);
             } );
@@ -275,7 +286,7 @@
                   url: wpcargoAJAXHandler.ajax_url,
                   type:"POST",
                   data: $("#myModal").serializeArray(),
-                  success:function(data) {
+                  success:function(data) {  
                       if($("#current_form").val()=="activate_trip_form"){
                           $('#trip_status').text("Active");
                           $('#trip_update_link').text("End Trip");

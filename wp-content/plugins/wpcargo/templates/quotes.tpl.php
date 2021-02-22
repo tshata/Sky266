@@ -89,7 +89,7 @@
             'date' => $status_date,
             'time' => $status_time,
             'location' => $status_location,
-            'updated-name' => (!empty($current_user->ID))?$current_user->display_name : sanitize_text_field( $_POST["wpcargo_receiver_fname"])." ".sanitize_text_field( $_POST["wpcargo_receiver_sname"]),
+            'updated-name' => (!empty($current_user->ID))?$current_user->display_name : "Online Client",
             'updated-by' => $current_user->ID,
             'remarks'	=> $status_remarks,
             'status'    => $status
@@ -147,6 +147,7 @@ function shipment_save( $post_id ) {
     // if the submit button is clicked, send the email
    	if ( isset( $_POST['wpc_metabox_nonce'] ) && $_POST['wpc_metabox_nonce']=="Pay Later" ) {
            shipment_save( $post_id ); //saving shipment
+           //header("Location: Home");
            $shipment_number = sanitize_text_field( $_POST["post_name"] );
            require_once( WPCARGO_PLUGIN_PATH.'templates/pay-later.php' );
   	}
@@ -334,4 +335,3 @@ function save_Pdf(){
     alert("saving pdf");
 }
 </script>
-

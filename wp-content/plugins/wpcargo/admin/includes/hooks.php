@@ -20,7 +20,7 @@ function wpcargo_plugins_loaded_hook_callback(){
     add_action( 'wpcargo_email_footer_divider', 'wpcargo_email_footer_divider_callback' );
     if( get_option('shmap_active') && !empty( trim( get_option('shmap_api')  ) ) ){
         add_action('before_wpcargo_shipment_history', 'wpcargo_shipment_history_map_callback', 10, 1 );
-    } 
+    }
 }
 add_action( 'plugins_loaded', 'wpcargo_plugins_loaded_hook_callback' );
 
@@ -94,7 +94,7 @@ function wpcargo_activation_setup_settings(){
 		);
 	}
 	update_option( 'wpcargo_option_settings', $general_settings );
-	
+
 	if( empty( get_option('wpcargo_title_suffix') ) ){
 		update_option( 'wpcargo_title_suffix', '-CARGO' );
 	}
@@ -444,7 +444,7 @@ function register_custom_post_status(){
         'exclude_from_search'       => false,
         'show_in_admin_all_list'    => true,
         'show_in_admin_status_list' => true,
-        'label_count'               => _n_noop( 'Online Pending Bookings  <span class="count">(%s)</span>', 'Online Pending Bookings <span class="count">(%s)</span>' ),
+        'label_count'               => _n_noop( 'Online Pending <span class="count">(%s)</span>', 'Online Pending <span class="count">(%s)</span>' ),
     ) );
 }
 add_action( 'init', 'register_custom_post_status' );
@@ -618,4 +618,3 @@ function rd_duplicate_post_link( $actions, $post ) {
 }
 
 add_filter( 'post_row_actions', 'rd_duplicate_post_link', 10, 2 );
-

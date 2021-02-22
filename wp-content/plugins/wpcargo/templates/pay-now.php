@@ -41,9 +41,10 @@ select{
           <table  style="width:85%;">
             <?php
             $settings_items = unserialize(get_settings_items()->meta_data);
-            $wpcargo_price_estimates = unserialize($wpcargo_price_estimates);
+            $wpcargo_prices = unserialize($wpcargo_price_estimates);
             $total = 0;
-            foreach($wpcargo_price_estimates AS $key => $row){
+            if(is_array($wpcargo_prices)) {
+            foreach($wpcargo_prices AS $key => $row){
                 $op_sign = ($settings_items[$key]["item_type"]=="Expenditure") ? "-": "";
                  $item_name = ($key=="freight")? "Freight" : $settings_items[$key]["item_name"];
                  echo '<tr style="border:solid 1px;">
@@ -55,7 +56,8 @@ select{
 
 
                $total_price+=$price_estimates_arr[$key]["total"];
-            }// finally display table
+            }
+          }// finally display table
             echo '<tr style="border:solid 1px;"> <td style="padding:5px;"><b>Total</b></td> <td style="padding:5px;"><b>M '.number_format((float)$total, 2, '.', ',').'</b></td> <tr>';
            ?>
            </table>
@@ -112,31 +114,38 @@ select{
           $("#nextBtn").css("background","#187CC9");
           $("#nextBtn").attr("disabled", false);
           if(btn.id == "mobileMpesa"){
+              document.getElementById("bankSelect").style.display = "none";
+              document.getElementById("otherMethods").style.display = "none";
+              document.getElementById("reference_div").style.marginTop = "-1em";
+              document.getElementById("payment_identifier").value = "Mpesa";
               $("#payment_details .wpcargo-label #heading").text("Mpesa Payment Details");
               $("#payment_details #company_details").text("PAY TO: 57555325 (Ntsane Pheko)");
-              $("#payment_details #payment_idenTifier").text("Phone Number Used:");
-              $("#payment_details #payment_identifier").attr("placeholder","Phone Number Used");
-              $("#payment_details #payment_reference").attr("placeholder","Reference");
+              $("#payment_details #payment_reference").attr("placeholder","Reference / Phone Number Used");
               $("#payment_details #payment_date").attr("placeholder","Date of Payment");
               $("#payment_details #payment_amount").attr("placeholder","Amount Paid");
-              $('#payment_items #payment_method').val("Mobile Money")
+              $('#payment_items #payment_method').val("Mobile Money");
           }
           else if(btn.id == "mobileEco"){
+              document.getElementById("bankSelect").style.display = "none";
+              document.getElementById("otherMethods").style.display = "none";
+              document.getElementById("reference_div").style.marginTop = "-1em";
+              document.getElementById("payment_identifier").value = "Ecocash";
               $("#payment_details .wpcargo-label #heading").text("Ecocash Payment Details");
               $("#payment_details #company_details").text("PAY TO: 62555325 (Ntsane Pheko)");
-              $("#payment_details #payment_idenTifier").text("Phone Number Used:");
-              $("#payment_details #payment_identifier").attr("placeholder","Phone Number Used");
-              $("#payment_details #payment_reference").attr("placeholder","Reference");
+              $("#payment_details #payment_reference").attr("placeholder","Reference / Phone Number Used");
               $("#payment_details #payment_date").attr("placeholder","Date of Payment");
               $("#payment_details #payment_amount").attr("placeholder","Amount Paid");
-              $('#payment_items #payment_method').val("Mobile Money")
+              $('#payment_items #payment_method').val("Mobile Money");
           }
           else if(btn.id == "other"){
+              document.getElementById("bankSelect").style.display = "none";
+              document.getElementById("otherMethods").style.display = "block";
+              document.getElementById("reference_div").style.margin = "2.8em 0 0 0";
               $("#payment_details .wpcargo-label #heading").text("Other Payment Details");
               $("#payment_details #payment_idenTifier").text("Payment Method:");
               $("#payment_details #company_details").text("State method used for payment");
               $("#payment_details #payment_identifier").attr("placeholder","Payment Method");
-              $("#payment_details #payment_reference").attr("placeholder","Receipt Number");
+              $("#payment_details #payment_reference").attr("placeholder","Reference");
               $("#payment_details #payment_date").attr("placeholder","Date of Payment");
               $("#payment_details #payment_amount").attr("placeholder","Amount Paid");
               $('#payment_items #payment_method').val("Cash");
@@ -144,16 +153,16 @@ select{
           else if(btn.id == "bank"){
               document.getElementById("bankSelect").style.display = "block";
               document.getElementById("otherMethods").style.display = "none";
+              document.getElementById("reference_div").style.margin = "2.8em 0 0 0";
               var bankNames = "PAY TO:  STANDARD LESOTHO BANK: 9080007532411" + "<br/>" + "FIRST NATIONAL BANK: "+ "<br/>" +"\tNEDBANK:";
               $("#payment_details .wpcargo-label #heading").text("Bank Payment Details");
               $("#payment_details #company_details").html(bankNames);
               $("#payment_details #payment_idenTifier").text("Bank Name:");
-              //$("#payment_details #payment_identifier").attr("placeholder","Bank Name");
               $("#payment_details #payment_reference").attr("placeholder","Reference");
               $("#payment_details #payment_date").attr("placeholder","Date of Payment");
               $("#payment_details #payment_amount").attr("placeholder","Amount Paid");
               $('#payment_items #payment_method').val("Bank");
-              
+
           }
    }
    $(document).ready(function () {

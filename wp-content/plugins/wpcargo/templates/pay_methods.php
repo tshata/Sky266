@@ -95,7 +95,8 @@ hr {
                  <p  style="border-bottom: 1px solid white;"><span id="company_details"></span> <span id="time"> 05:00 </span> </p><br><br>
                 <div>
                     <div id="bankSelect" class="sf_columns column_3" style="display: none">
-                      <span id="payment_idenTifier"></span><select id="payment_identifierb">
+                      <input type="hidden" id="bank"/>
+                      <span id="payment_idenTifier"></span><select class="input" id="payment_identifierb">
                       <option value=" ">Select Bank Name</option>
                       <option value="Standard Bank">Standard Bank</option>
                       <option value="FNB Lesotho">FNB Lesotho</option>
@@ -103,19 +104,19 @@ hr {
                       </select>
                   </div>
                   <div id="otherMethods" class="sf_columns column_3">
-                      <span id="payment_idenTifier"></span><input type="text" id="payment_identifier" placeholder="Phone Number Used" data-required="true">
+                      <span id="payment_idenTifier"></span><input class="input" type="text" id="payment_identifier" placeholder="Phone Number Used" data-required="true">
                   </div>
 
-                  <div class="sf_columns column_3">
-                     <br><br> Payment Reference:<input type="text" id="payment_reference" placeholder="Reference" data-required="true" data-email="true">
+                  <div class="sf_columns column_3" id="reference_div">
+                     <span >Payment Reference:</span> <input type="text" class="input" id="payment_reference" placeholder="Reference" data-required="true" data-email="true">
                   </div>
                 </div>
                 <div>
                   <div class="sf_columns column_3">
-                    <br><br>   Date of Payment:<input type="date" id="payment_date" placeholder="Date of Payment" data-required="true" data-confirm="true">
+                    <br><br>   Date of Payment:<input type="date" class="input" id="payment_date" placeholder="Date of Payment" data-required="true" data-confirm="true">
                   </div>
                   <div class="sf_columns column_3">
-                     <br><br>  Amount Paid:<input type="money" id="payment_amount" placeholder="Amount Paid" data-required="true" data-confirm="true">
+                     <br><br>  Amount Paid:<input type="money" class="input" id="payment_amount" placeholder="Amount Paid" data-required="true" data-confirm="true">
                   </div>
                 </div>
                 <br>
@@ -135,19 +136,23 @@ var modal = document.getElementById("myModal");
 
 
 // Get the <span> element that closes the modal
-//var span = document.getElementsByClassName("close")[0];
- var x;
-if(btn.id == "bank"){
-     var x = document.getElementById("payment_identifierb").value;
-     alert(x);
-}else{
-  var x = document.getElementById("payment_identifier").value;
-}
+var closeBtn = document.getElementById("modal_close");
+var x;
 
 var submit = document.getElementById("submit_payment");
     submit.onclick = function(){
 
+      var y = document.getElementById("bankSelect");
 
+      x = (window.getComputedStyle(y).display === "block") ? document.getElementById("payment_identifierb").value : document.getElementById("payment_identifier").value;
+      //$('#payment_items #payment_identifier').val() ;
+      var amount = document.getElementById('payment_amount').value;
+      var booking_fee = $('#bookingFee').val();
+        if( amount < booking_fee){
+          alert("Please pay amount equal or greater than M" + $('#bookingFee').val() + " to activate your booking");
+          modal.style.display = "none";
+          document.getElementById('payment_amount').reset();
+        }else if (amount >= booking_fee){
         $.ajax({
               url: wpcargoAJAXHandler.ajax_url,
               type:"POST",
@@ -165,21 +170,19 @@ var submit = document.getElementById("submit_payment");
               /*$('#info').html( data );
                   $('#form').hide();
                   $('#info').show(); */
-                  window.location.href = "Home";
               },
               error: function(errorThrown){
                   alert("Error retrieving data. Please try again.");
                   /*$('#info').html("Error retrieving data. Please try again.");
                   $('#form').hide();
-                  $('#info').show();*/
+                  $('#info').show(); */
               }
 
           });
         $('.wpcargo-loading').show();
         modal.style.display = "none";
-        document.getElementById("nextBtn").style.display = "none";
-
-
+        window.location.href = "Home";
+      }
     }
 
 
@@ -188,9 +191,9 @@ var submit = document.getElementById("submit_payment");
     $("#nextBtn").attr("disabled", true);
 
     var btn = document.getElementById("nextBtn");
-    //var span = document.getElementsByClassName("close")[0];
 
     btn.onclick = function() {
+
 
     function startTimer(duration, display) {
             var timer = duration, minutes, seconds;
@@ -221,19 +224,17 @@ var submit = document.getElementById("submit_payment");
     }
 
     // When the user clicks on <span> (x), close the modal
-    var closeBtn = document.getElementById("modal_close");
     closeBtn.onclick = function() {
         modal.style.display = "none";
     }
 
 
     // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
+   /* window.onclick = function(event) {
         if (event.target == modal) {
             modal.style.display = "none";
         }
-    }
+    } */
 
 
 </script>
-

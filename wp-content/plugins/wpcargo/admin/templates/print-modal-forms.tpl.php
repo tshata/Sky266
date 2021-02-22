@@ -422,8 +422,8 @@ function save_invoice(){
                     var self = $(this);
                     var key = self.find("td:eq(0)").text().trim().replace(/ /g,'').toLowerCase();
                     key_data['unit'] = self.find("td:eq(1)").text().replace('M', '').replace(':', '').replace(',', '').replace('X', '').trim();
-                    key_data['price'] = self.find("td:eq(2) #price").val().replace('M', '').replace(':', '').replace(',', '').replace('-', '').replace('X', '').trim();
-                    key_data['qty'] = self.find("td:eq(3) #qty").val().replace('M', '').replace(':', '').replace(',', '').replace('X', '').trim();
+                    key_data['price'] = self.find("td:eq(2) span").text().replace('M', '').replace(':', '').replace(',', '').replace('X', '').trim();
+                    key_data['qty'] = self.find("td:eq(3) span").text().replace('M', '').replace(':', '').replace(',', '').replace('X', '').trim();
                     key_data['total'] = self.find("td:eq(4)").text().replace('M', '').replace(':', '').replace(',', '').replace('-', '').replace('X', '').trim();
                     table_data[key]= key_data;
                 });
@@ -433,6 +433,7 @@ function save_invoice(){
            post_id : $('#post_id').val(),
            table_data : table_data
         };
+
        $.ajax({
             url: wpcargoAJAXHandler.ajax_url,
             type:"POST",
@@ -453,17 +454,19 @@ function save_invoice(){
         });
    }
 }
-function approve_payment(){
-    var curday = function(sp){
-    today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth()+1; //As January is 0.
-    var yyyy = today.getFullYear();
+function revised_online_payments(){
+	     $("#quote_div #payment_display").hide();
+	     $("#quote_div #list_view").hide();
+	     $("#quote_div #payment_revision_form").show();
+	     $('#submit_btn').attr("onclick","approve_payment()");
+	     $('#submit_btn').text("Approve Payment");
+	     $('#submit_btn').show();
+	     $('#print_btn').hide();
 
-    if(dd<10) dd='0'+dd;
-    if(mm<10) mm='0'+mm;
-    return (dd+sp+mm+sp+yyyy);
-    };
+}
+function approve_payment(){
+		//revised_online_payments();
+   var payment_method = $('#payment_methodfd').val();
    var confirm_pay = confirm("Do you want to continue with payment approval?");
    if(confirm_pay){
     $('.wpcargo-loading').show();
@@ -473,7 +476,11 @@ function approve_payment(){
           data: {
               action    : 'approve_payment_action_callback',
               post_id : $('#post_id').val(),
-              payment_date : curday('-')
+							revised_amount : $('#payment_amountf').val(),
+							revised_method: payment_method,
+              payment_date : $('#payment_datef').val(),
+              payment_reference : $('#payment_referencef').val(),
+              received_from : $('#received_fromf').val()
           },
           success:function(data) {
                window.location['reload']();
