@@ -11,7 +11,7 @@
 		</div>
 	</div>
 </section><!--/.page-title-section -->
-<div id="primary" class="content-area">,
+<div id="primary" class="content-area">
 	<main id="main" class="site-main" role="main">
 	
           	       <div class="container">

@@ -37,7 +37,7 @@
 									<div style="padding: 20px;">
                                         <p><?php the_content(); ?></p>
 								   </div><!--/.about-us-intro-content  -->
-
+								   <div style="z-index:-99> <?php  echo do_shortcode('[ultimatemember form_id="3234"]');  ?> </div>
 								</div><!--/.col-->
 							</div><!-- /.row -->
 						</div><!-- /.container -->

@@ -100,7 +100,7 @@
                 					</span>
                 				</h2>
                 				<div>
-                  				<p>Etiam non augue in tortor facilisis porttitor at sit amet justo. Sed blandit tempor hendrerit. Suspendisse quis tincidunt nisl. Nulla bibendum purus elit, ut hendrerit orci porttitor id. Donec egestas dapibus massa, et tempor nulla ultricies quis. Donec mattis, metus vel pharetra pulvinar, nunc leo consectetur purus, sit amet tincidunt dui lorem ac elit. Vivamus nulla nisl, sodales eu rutrum sit amet, viverra eu eros. Proin sollicitudin congue augue, eget condimentum purus dictum sit amet. Aenean et tempor augue.</p>
+                  				<p>Must have informative text here.</p>
                 				</div>
                 				<a href="<?php echo esc_url( home_url( 'index.php/request-quote' ) ); ?>" class="btn btn-primary quote-btn btn-lg">Get a Quote <i class="fa fa-long-arrow-right"></i></a>
 
@@ -121,12 +121,12 @@
               					<h3>Who we are</h3>
               					<div class="about-content-block">
                 					<span>Distinctively Orchestrate Standardized</span>
-                					<p>Progressively architect prospective imperatives through competitive communities. Professionally productize user strategic theme areas.</p>
+                					<p>  </p>
               					</div>
               					<br>
               					<div class="about-content-block">
                 					<span>Synergistically extend open source</span>
-                					<p>Progressively architect prospective imperatives through competitive communities. Professionally productize user strategic theme areas.</p>
+                					<p>  </p>
               					</div>
               				</div><!-- /about-us-content -->
               			</div><!--/.col-->
@@ -136,91 +136,16 @@
               					<h3>What we do</h3>
               					<div class="about-content-block">
                 					<span>Distinctively Orchestrate Standardized</span>
-                					<p>Progressively architect prospective imperatives through competitive communities. Professionally productize user strategic theme areas.Professionally productize user strategic theme areas.</p>
+                					<p>  Professionally productize user strategic theme areas.</p>
               					</div>
               					<br>
               					<div class="about-content-block">
                 					<span>Synergistically extend open source e-business.</span>
-                					<p>Progressively architect prospective imperatives through competitive communities. Professionally productize user strategic theme areas.</p>
+                					<p>  </p>
               					</div>
               				</div><!-- /about-us-content -->
               			</div><!-- /.col-->
 
-              			<div class="col-sm-4 col-xs-12">
-              				<div class="about-us-content capabilities">
-              					<div class="about-content-block">
-                					<h3>Our Capabilities</h3>
-                					<ul>
-                						<li>Airport service</li>
-                						<li>24 hours service in 7 days a week</li>
-                						<li>Priority delivery service</li>
-                						<li>Senior discounts</li>
-                						<li>Corporate accounts available</li>
-                					</ul>
-              					</div>
-
-              				</div><!-- /about-us-content -->
-              			</div><!--/.col-->
-              		</div><!-- /.row -->
-              	</div><!-- /.container -->
-
-              </section>
-              <!-- /About-us-wrap -->
-
-               <!-- portfolio-section start -->
-          <section class="fleets-wrap">
-                <div class="container">
-                    <div class="section-heading">
-                        <h2 class="section-title">Our Services</h2>
-                    </div> <!--section-heading-->
-                </div><!--/.container-->
-
-                <div class="container-fluid">
-                	<div class="no-padding">
-                      <div class="row">
-                        	<div class="col-md-12">
-                    <div class="owl-carousel fleet-carousel">
-
-                           <?php
-                                  $services =  query_posts( "post_type=services");
-                                  $i=0;
-                               foreach ( $services as $service) : setup_postdata($service);
-                             ?>   <?php $post_id= $service->ID ;
-                                        $wpblog_fetrdimg = wp_get_attachment_url( get_post_thumbnail_id($service->ID) );
-                                        $link = get_permalink($post_id);
-                                        $post_title = apply_filters( 'the_title' , $service->post_title );
-                                        $post_content = apply_filters( 'the_content' , $service->post_content);
-                            ?>
-                                <div class="item">
-                                	<div class="owl-item-thumb">
-                                		<img src="<?php echo $wpblog_fetrdimg;?>" alt="">
-                                		<div class="owl-item-overlay"></div>
-                                  	<a class="img-link" href="<?php echo $wpblog_fetrdimg;?>"><img src="<?php echo get_template_directory_uri() . '/img/zoomin.png';?>" alt="+"/></a>
-                                	</div><!-- owl-item-thumb -->
-                                	<div class="owl-tem-content">
-                                  	<h3><a href="#"><?php echo $post_title; ?></a></h3>
-                                  	<p><a class="btn btn-primary" href="<?php echo $link; ?>">Read More<i class="fa fa-long-arrow-right"></i></a></p>
-                                	</div><!-- owl-item-content -->
-                                </div><!-- /item -->
-
-                            <?php $i++;   endforeach;  ?>
-
-                    </div><!--/.owl-carousel-->
-
-                    <!-- owl-carousel-control -->
-                        <div class="fleet-carousel-navigation
-                            slider-control">
-                            <span class="prev left"><i class="flaticon-previous11"></i></span>
-                            <span class="next right"><i class="flaticon-next15"></i></span>
-                        </div>
-
-                        	</div><!-- /.col-md-12 -->
-
-                      </div><!-- /.row -->
-                    </div><!--/.no-padding-->
-                  </div><!-- /.container-fluid -->
-              </section>
-              <!-- fleets-wrap end -->
-
+              			
 <?php get_footer(); ?>
 
