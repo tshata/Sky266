@@ -17,6 +17,8 @@
 			</thead>
 			<tbody>
 				<?php
+				$user = $_SESSION['user'];
+				$loggeduserid = $user['id'];
 					if ( $shipment_query->have_posts() ) :
 						while ( $shipment_query->have_posts() ) : $shipment_query->the_post();
 							//$shipperID = wpcargo_get_postmeta( get_the_ID(), 'registered_shipper'  );

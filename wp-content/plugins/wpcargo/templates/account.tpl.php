@@ -1,49 +1,53 @@
-<h5  style="line-height:30px;"><?php echo esc_html__('You are Logged in as: ', 'wpcargo' ).' <b>'.$user_full_name.'</b>'; ?>
+<h5 style="line-height:30px;">
+    <?php echo esc_html__('You are Logged in as: ', 'wpcargo' ).' <b>'.$user_full_name.'</b>'; ?>
     <div id="dashboard_nav">
-      <button class="link active" name="dashboard" id="dashboard" onclick="payments_toggle(this)">Dashboard</button>
-      <button class="link" name="profile" id="profile" onclick="payments_toggle(this)" >My Profile</button>
-      <a class="link" href="<?php echo esc_url(wp_logout_url(home_url())); ?>">Logout<i class="fa fa-key"></i></a>
+        <button class="link active" name="dashboard" id="dashboard" onclick="payments_toggle(this)">Dashboard</button>
+        <button class="link" name="profile" id="profile" onclick="payments_toggle(this)">My Profile</button>
+        <a class="link" href="<?php echo esc_url(wp_logout_url(home_url())); ?>">Logout<i class="fa fa-key"></i></a>
     </div>
 </h5>
-<div id="wpcargo-account"> <!-- form step tree -->
-     <div class="sf-content" id="dashboard_div">
-         <?php
+<div id="wpcargo-account">
+    <!-- form step tree -->
+    <?php //print_r   ($user_info); ?>
+    <div class="sf-content" id="dashboard_div">
+        <?php
              if(in_array( 'wpcargo_driver', $user_info->roles )) 	require_once( WPCARGO_PLUGIN_PATH.'templates/driver-dashboard.php' );
              else if(in_array( 'Client', $user_info->roles )) require_once( WPCARGO_PLUGIN_PATH.'templates/shipments-table.php' );
-             else require_once( WPCARGO_PLUGIN_PATH.'templates/shipments-table.php' );  ?>
-     </div>
-     <div class="sf-content" id="profile_div" style="display:none;">
-             profile
-     </div>
-   <br>
+             else require_once( WPCARGO_PLUGIN_PATH.'templates/member_dashboard.php' );  ?>
+    </div>
+    <div class="sf-content" id="profile_div" style="display:none;">
+        profile
+    </div>
+    <br>
 </div>
 <script>
-   function payments_toggle(btn){
-          $(".sf-content").hide();
-          $("#"+btn.id+"_div").show();
+function payments_toggle(btn) {
+    $(".sf-content").hide();
+    $("#" + btn.id + "_div").show();
 
-          $('#dashboard_nav .link').each(function() {
-              if (this.id == btn.id) {
-                  $(this).addClass('active');
-              }else{
-                  $(this).removeClass('active');
-              }
-            });
-   }
-   $(document).ready(function () {
-       $(".sf-content").hide();
-       $("#dashboard_div").show();
-       $("#dashboard_nav #dashboard").addClass('active');
-
-       $('#dataTable').DataTable({
-            stateSave: true,
-            sort: true,
-            searching: true,
-        });
-
+    $('#dashboard_nav .link').each(function() {
+        if (this.id == btn.id) {
+            $(this).addClass('active');
+        } else {
+            $(this).removeClass('active');
+        }
     });
- </script>            
- <!--style>
+}
+$(document).ready(function() {
+    $(".sf-content").hide();
+    $("#dashboard_div").show();
+    $("#dashboard_nav #dashboard").addClass('active');
+
+    $('#dataTable').DataTable({
+        stateSave: true,
+        sort: true,
+        searching: true,
+    });
+
+    <?php echo  $user_info; ?>
+});
+</script>
+<!--style>
    #wpcargo-account {
       border:solid 1px white;
       outline: none;
