@@ -7,7 +7,7 @@
                     <h4>Bookings</h4>
                 </div>
                 <ul class="card-module_menu-container_3Hu8Y">
-                    <li><a data-react-link="true" href="#">View Bookings</a></li>
+                    <li><a href="<?php require( __DIR__.'/shipments-table.php'  ); ?>">View Bookings</a></li>
                     <li><a href="<?php echo esc_url( home_url( 'index.php/request' ) ); ?>">Make New Booking</a></li>
                     <li><a href="#">Edit Bookings(only none collected)</a></li>
                     <li><a href="#">Delete Booking</a></li>
