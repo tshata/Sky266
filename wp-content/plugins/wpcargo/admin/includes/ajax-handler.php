@@ -11,9 +11,9 @@ function view_shipment_details_callback(){
     $current_shipment_id = $shipment_id;
 	ob_start();
 	?>
-	<div id="wpcargo-result">
-		<div id="wpcargo-result-wrapper" class="wpcargo-wrap-details container">
-			<?php
+<div id="wpcargo-result">
+    <div id="wpcargo-result-wrapper" class="wpcargo-wrap-details container">
+        <?php
 			do_action('wpcargo_before_track_details', $shipment );
 			do_action('wpcargo_track_header_details', $shipment );
 			do_action('wpcargo_track_shipper_details', $shipment );
@@ -25,9 +25,9 @@ function view_shipment_details_callback(){
 				do_action('wpcargo_after_package_totals', $shipment );
 			}
 			?>
-		</div>
-	</div>
-	<?php
+    </div>
+</div>
+<?php
 	$output = ob_get_clean();
 	echo $output;
 	wp_die();
@@ -457,170 +457,190 @@ function route_form_action_callback(){
      $index = $_POST['index'];
      $routes = $wpdb->get_results( "SELECT * FROM routes WHERE id = '$index' ");
      $prices = $routes[0];  ?>
-          <?php echo ($index!='') ? '<h1 style="width: 100%;">Editing ('.$prices->origin_city.'-'.$prices->dest_city.') Prices</h1>' : '<h1>Adding New Route</h1>';  ?>
-     <?php if(!empty($msg)) echo "<p style='background-color: #dbf5e0; padding: 6px; width:100%;'>".$msg."</p>"; ?>
-     <input type="hidden" id='route_id' name='route_id' value="<?php echo $prices->id; ?>">
-  	 <table class="form-table">
-  		<tr <?php echo($index!='') ?'hidden' :''; ?>>
-  			<th scope="row"><?php esc_html_e( 'Original Country', 'wpcargo' ) ; ?></th>
-  			<th scope="row"><?php esc_html_e( 'Destination Country', 'wpcargo' ) ; ?></th>
+<?php echo ($index!='') ? '<h1 style="width: 100%;">Editing ('.$prices->origin_city.'-'.$prices->dest_city.') Prices</h1>' : '<h1>Adding New Route</h1>';  ?>
+<?php if(!empty($msg)) echo "<p style='background-color: #dbf5e0; padding: 6px; width:100%;'>".$msg."</p>"; ?>
+<input type="hidden" id='route_id' name='route_id' value="<?php echo $prices->id; ?>">
+<table class="form-table">
+    <tr <?php echo($index!='') ?'hidden' :''; ?>>
+        <th scope="row"><?php esc_html_e( 'Original Country', 'wpcargo' ) ; ?></th>
+        <th scope="row"><?php esc_html_e( 'Destination Country', 'wpcargo' ) ; ?></th>
 
-        </tr>
-        <tr <?php echo($index!='') ?'hidden' :''; ?>>
-            <td>
-  				<select id="org_1" name='o_country_select' onchange="trip_selector(this)">
-  					<option value="">--Select Country--</option>
-  					<?php $countries = wpc_get_countries_cities("GROUP BY country_name");
+    </tr>
+    <tr <?php echo($index!='') ?'hidden' :''; ?>>
+        <td>
+            <select id="org_1" name='o_country_select' onchange="trip_selector(this)">
+                <option value="">--Select Country--</option>
+                <?php $countries = wpc_get_countries_cities("GROUP BY country_name");
                           foreach ( $countries as $country ) { ?>
-  						    <?php if($country->is_origin) {?> <option  <?php echo ( trim($country->country_name) == $prices->origin_country) ? 'selected' : '' ?>><?php echo $country->country_name;?></option>
-  					<?php } } ?>
-  				</select>
-                <p class="description">
-                   <?php esc_html_e('Select country from list','wpcargo'); ?>
-                 </p>
-             </td>
-            <td>
-  				<select id="dest_1" name='d_country_select' onchange="trip_selector(this)">
-  					<option value="">--Select Country--</option>
-  					<?php $countries = wpc_get_countries_cities("GROUP BY country_name");
+                <?php if($country->is_origin) {?> <option
+                    <?php echo ( trim($country->country_name) == $prices->origin_country) ? 'selected' : '' ?>>
+                    <?php echo $country->country_name;?></option>
+                <?php } } ?>
+            </select>
+            <p class="description">
+                <?php esc_html_e('Select country from list','wpcargo'); ?>
+            </p>
+        </td>
+        <td>
+            <select id="dest_1" name='d_country_select' onchange="trip_selector(this)">
+                <option value="">--Select Country--</option>
+                <?php $countries = wpc_get_countries_cities("GROUP BY country_name");
                           foreach ( $countries as $country ) { ?>
-  						    <?php if($country->is_destination) {?> <option  <?php echo ( trim($country->country_name) == $prices->dest_country) ? 'selected' : '' ?>><?php echo $country->country_name;?></option>
-  					<?php } } ?>
-  				</select>
-                <p class="description">
-                   <?php esc_html_e('Select city from list','wpcargo'); ?>
-                 </p>
-              </td>
-        </tr>
-        <tr <?php echo($index!='') ?'hidden' :''; ?>>
-  			<th scope="row"><?php esc_html_e( 'Original City', 'wpcargo' ) ; ?></th>
-            <th scope="row"><?php esc_html_e( 'Destination City', 'wpcargo' ) ; ?></th>
-        </tr>
-        <tr <?php echo($index!='') ?'hidden' :''; ?>>
-  		   <td>
-  				<select id="org_1_1" name='o_city_select' onchange="trip_selector(this)">
-  					<option value="">--Select City--</option>
-  					<?php $countries = wpc_get_countries_cities("ORDER BY country_name");
+                <?php if($country->is_destination) {?> <option
+                    <?php echo ( trim($country->country_name) == $prices->dest_country) ? 'selected' : '' ?>>
+                    <?php echo $country->country_name;?></option>
+                <?php } } ?>
+            </select>
+            <p class="description">
+                <?php esc_html_e('Select city from list','wpcargo'); ?>
+            </p>
+        </td>
+    </tr>
+    <tr <?php echo($index!='') ?'hidden' :''; ?>>
+        <th scope="row"><?php esc_html_e( 'Original City', 'wpcargo' ) ; ?></th>
+        <th scope="row"><?php esc_html_e( 'Destination City', 'wpcargo' ) ; ?></th>
+    </tr>
+    <tr <?php echo($index!='') ?'hidden' :''; ?>>
+        <td>
+            <select id="org_1_1" name='o_city_select' onchange="trip_selector(this)">
+                <option value="">--Select City--</option>
+                <?php $countries = wpc_get_countries_cities("ORDER BY country_name");
                           foreach ( $countries as $country ) { ?>
-  						    <?php if($country->is_origin) {?> <option  <?php echo ( trim($country->city_name) == $prices->origin_city) ? 'selected' : '' ?>><?php echo $country->city_name;?></option>
-  					<?php } } ?>
-  				</select>
-                <p class="description">
-                   <?php esc_html_e('Select city from list','wpcargo'); ?>
-                 </p>
-            </td>
-  			<td>
-  				<select id="dest_1_1" name='d_city_select' onchange="trip_selector(this)">
-  					<option value="">--Select Country--</option>
-  					<?php $countries = wpc_get_countries_cities("ORDER BY country_name");
+                <?php if($country->is_origin) {?> <option
+                    <?php echo ( trim($country->city_name) == $prices->origin_city) ? 'selected' : '' ?>>
+                    <?php echo $country->city_name;?></option>
+                <?php } } ?>
+            </select>
+            <p class="description">
+                <?php esc_html_e('Select city from list','wpcargo'); ?>
+            </p>
+        </td>
+        <td>
+            <select id="dest_1_1" name='d_city_select' onchange="trip_selector(this)">
+                <option value="">--Select Country--</option>
+                <?php $countries = wpc_get_countries_cities("ORDER BY country_name");
                           foreach ( $countries as $country ) { ?>
-  						    <?php if($country->is_destination) {?> <option  <?php echo ( trim($country->city_name) == $prices->dest_city) ? 'selected' : '' ?>><?php echo $country->city_name;?></option>
-  					<?php } } ?>
-  				</select>
-                <p class="description">
-                   <?php esc_html_e('Select city from list','wpcargo'); ?>
-                 </p>
-              </td>
-        </tr>
-        <tr><td colspan="2"><br>
-           <?php   $general_pricing_items = general_pricing_items("kgs"); $i=0;
+                <?php if($country->is_destination) {?> <option
+                    <?php echo ( trim($country->city_name) == $prices->dest_city) ? 'selected' : '' ?>>
+                    <?php echo $country->city_name;?></option>
+                <?php } } ?>
+            </select>
+            <p class="description">
+                <?php esc_html_e('Select city from list','wpcargo'); ?>
+            </p>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2"><br>
+            <?php   $general_pricing_items = general_pricing_items("kgs"); $i=0;
                    $road_kg_costs = unserialize($prices->road_costs);
            ?>
-           <label><input style="width:20px; height:20px" type="checkbox" <?php echo (is_array($road_kg_costs))? "checked" : ""; ?> name="road_pricing" onclick="toggle_price_fields(this)"> Road Freight Prices</label>
-           <div id="road_pricing" style=" <?php echo (!is_array($road_kg_costs))? "display: none;" : ""; ?>">
-             <table>
-               <?php
+            <label><input style="width:20px; height:20px" type="checkbox"
+                    <?php echo (is_array($road_kg_costs))? "checked" : ""; ?> name="road_pricing"
+                    onclick="toggle_price_fields(this)"> Road Freight Prices</label>
+            <div id="road_pricing" style=" <?php echo (!is_array($road_kg_costs))? "display: none;" : ""; ?>">
+                <table>
+                    <?php
                      foreach($general_pricing_items as $input=>$data){   if($i%6==0) echo"<tr>";
                         $color = ($data['price_type']=="closed") ? 'color:red;' : '';
                         echo '<td style="'.$color.'"><label>'.$data['label'].'</label><input type="text" name="road_'.$input.'" value="'.number_format((float)$road_kg_costs[$input], 2, '.', ',').'"></td>';
                          if(($i+1)%6==0) echo"</tr>";
                  $i++;} ?>
-             </table>
-             <label>Other Items Prices</label>
-             <table>
-                 <tr><?php  $i=1;
+                </table>
+                <label>Other Items Prices</label>
+                <table>
+                    <tr><?php  $i=1;
                      $route_item_costs = unserialize($prices->road_item_costs);
                   ?>
-               <?php $results = get_settings_items();
+                        <?php $results = get_settings_items();
                      $items = unserialize($results->meta_data);
                      foreach( $items as $key => $item_data ){
                         if(isset($item_data['is_route_item']) && $item_data['is_route_item'] == 1) {  if($i%6==0) echo"<tr>";?>
                         <td><label><?php echo $item_data["item_name"]; ?></label>
-                            <input type="text" name="<?php echo 'road_'.$key;?>" value="<?php echo (isset($route_item_costs[$key])) ? number_format((float)$route_item_costs[$key], 2, '.', ',') : number_format((float)$item_data['item_price'], 2, '.', ',');?>">
+                            <input type="text" name="<?php echo 'road_'.$key;?>"
+                                value="<?php echo (isset($route_item_costs[$key])) ? number_format((float)$route_item_costs[$key], 2, '.', ',') : number_format((float)$item_data['item_price'], 2, '.', ',');?>">
                         </td>
-                     <?php if(($i+1)%6==0) echo"</tr>"; $i++; }
+                        <?php if(($i+1)%6==0) echo"</tr>"; $i++; }
                 } ?>
-             </table>
-          </div>
-          </td>
-        </tr>
-        <tr><td colspan="2"><br>
+                </table>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2"><br>
             <?php $general_pricing_items = general_pricing_items("cbms"); $i=0;
                    $ocean_cbm_costs = unserialize($prices->ocean_costs);
             ?>
-           <label><input style="width:20px; height:20px" type="checkbox" <?php echo (is_array($ocean_cbm_costs))? "checked" : ""; ?> name="ocean_pricing" onclick="toggle_price_fields(this)"> Ocean Freight Prices</label>
-           <div id="ocean_pricing" style="<?php echo (!is_array($ocean_cbm_costs))? "display: none;" : ""; ?>">
-             <table>
-               <?php foreach($general_pricing_items as $input=>$data){   if($i%6==0) echo"<tr>";
+            <label><input style="width:20px; height:20px" type="checkbox"
+                    <?php echo (is_array($ocean_cbm_costs))? "checked" : ""; ?> name="ocean_pricing"
+                    onclick="toggle_price_fields(this)"> Ocean Freight Prices</label>
+            <div id="ocean_pricing" style="<?php echo (!is_array($ocean_cbm_costs))? "display: none;" : ""; ?>">
+                <table>
+                    <?php foreach($general_pricing_items as $input=>$data){   if($i%6==0) echo"<tr>";
                         $color = ($data['price_type']=="closed") ? 'color:red;' : '';
                          echo '<td style="'.$color.'"><label>'.$data['label'].'</label><input type="text" name="ocean_'.$input.'" value="'.number_format((float)$ocean_cbm_costs[$input], 2, '.', ',').'"></td>';
                          if(($i+1)%6==0) echo"</tr>";
                  $i++;} ?>
-             </table>
-             <label>Other Items Prices</label>
-             <table>
-                 <tr><?php  $i=1;
+                </table>
+                <label>Other Items Prices</label>
+                <table>
+                    <tr><?php  $i=1;
                      $route_item_costs = unserialize($prices->ocean_item_costs);
                   ?>
-               <?php $results = get_settings_items();
+                        <?php $results = get_settings_items();
                      $items = unserialize($results->meta_data);
                      foreach( $items as $key => $item_data ){
                         if(isset($item_data['is_route_item']) && $item_data['is_route_item'] == 1) {  if($i%6==0) echo"<tr>";?>
                         <td><label><?php echo $item_data["item_name"]; ?></label>
-                            <input type="text" name="<?php echo 'ocean_'.$key;?>" value="<?php echo (isset($route_item_costs[$key])) ? number_format((float)$route_item_costs[$key], 2, '.', ',') : number_format((float)$item_data['item_price'], 2, '.', ',');?>">
+                            <input type="text" name="<?php echo 'ocean_'.$key;?>"
+                                value="<?php echo (isset($route_item_costs[$key])) ? number_format((float)$route_item_costs[$key], 2, '.', ',') : number_format((float)$item_data['item_price'], 2, '.', ',');?>">
                         </td>
-                     <?php if(($i+1)%6==0) echo"</tr>"; $i++; }
+                        <?php if(($i+1)%6==0) echo"</tr>"; $i++; }
                 } ?>
-             </table>
-           </div>
-          </td>
-        </tr>
-        <tr><td colspan="2"><br>
-           <?php $general_pricing_items = general_pricing_items("kgs"); $i=0;
+                </table>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2"><br>
+            <?php $general_pricing_items = general_pricing_items("kgs"); $i=0;
                    $air_kg_costs = unserialize($prices->air_costs);
            ?>
-           <label><input style="width:20px; height:20px" type="checkbox" <?php echo (is_array($air_kg_costs))? "checked" : ""; ?> name="air_pricing" onclick="toggle_price_fields(this)"> Air Freight Prices</label>
+            <label><input style="width:20px; height:20px" type="checkbox"
+                    <?php echo (is_array($air_kg_costs))? "checked" : ""; ?> name="air_pricing"
+                    onclick="toggle_price_fields(this)"> Air Freight Prices</label>
             <div id="air_pricing" style="<?php echo (!is_array($air_kg_costs))? "display: none;" : ""; ?>">
-             <table>
-               <?php foreach($general_pricing_items as $input=>$data){   if($i%6==0) echo"<tr>";
+                <table>
+                    <?php foreach($general_pricing_items as $input=>$data){   if($i%6==0) echo"<tr>";
                         $color = ($data['price_type']=="closed") ? 'color:red;' : '';
                         echo '<td style="'.$color.'"><label>'.$data['label'].'</label><input type="text" name="air_'.$input.'" value="'.number_format((float)$air_kg_costs[$input], 2, '.', ',').'"></td>';
                          if(($i+1)%6==0) echo"</tr>";
                  $i++;} ?>
-             </table>
-             <label>Other Items Prices</label>
-             <table>
-                 <tr><?php  $i=1;
+                </table>
+                <label>Other Items Prices</label>
+                <table>
+                    <tr><?php  $i=1;
                      $route_item_costs = unserialize($prices->air_item_costs);
                   ?>
-               <?php $results = get_settings_items();
+                        <?php $results = get_settings_items();
                      $items = unserialize($results->meta_data);
                      foreach( $items as $key => $item_data ){
                         if(isset($item_data['is_route_item']) && $item_data['is_route_item'] == 1) {  if($i%6==0) echo"<tr>";?>
                         <td><label><?php echo $item_data["item_name"]; ?></label>
-                            <input type="text" name="<?php echo 'air_'.$key;?>" value="<?php echo (isset($route_item_costs[$key])) ? number_format((float)$route_item_costs[$key], 2, '.', ',') : number_format((float)$item_data['item_price'], 2, '.', ',');?>">
+                            <input type="text" name="<?php echo 'air_'.$key;?>"
+                                value="<?php echo (isset($route_item_costs[$key])) ? number_format((float)$route_item_costs[$key], 2, '.', ',') : number_format((float)$item_data['item_price'], 2, '.', ',');?>">
                         </td>
-                     <?php if(($i+1)%6==0) echo"</tr>"; $i++; }
+                        <?php if(($i+1)%6==0) echo"</tr>"; $i++; }
                 } ?>
-             </table>
-           </div>
-          </td>
-        </tr>
-  	</table>
-    <!--center><br><input id="submit_btn" name="submit" type="submit" value="Save Changes"></center-->
+                </table>
+            </div>
+        </td>
+    </tr>
+</table>
+<!--center><br><input id="submit_btn" name="submit" type="submit" value="Save Changes"></center-->
 
 
-  <?php wp_die(); // required. to end AJAX request.
+<?php wp_die(); // required. to end AJAX request.
 }
 /* Load Ajax Callback to "wp_ajax_*" Action Hook */
 add_action( 'wp_ajax_route_form_action', 'route_form_action_callback' );
@@ -741,34 +761,62 @@ add_action( 'wp_ajax_nopriv_shipment_modal_action', 'shipment_modal_action_callb
  * Ajax Callback
  */
 function quotations_list_action_callback(){   ?>
-  <style>
-     #list_view table tbody .row td, #list_view table thead .row td{
-       border-right: 2px solid;
-       border-bottom: 2px solid;
-     }
-     #list_view table tbody .row td:nth-child(5) , #list_view table thead .row td:nth-child(5){
-       border-right: none;
-       text-align: center;
-     }
-  </style>
-  <?php
+<style>
+#list_view table tbody .row td,
+#list_view table thead .row td {
+    border-right: 2px solid;
+    border-bottom: 2px solid;
+}
+
+#list_view table tbody .row td:nth-child(5),
+#list_view table thead .row td:nth-child(5) {
+    border-right: none;
+    text-align: center;
+}
+</style>
+<?php
        $shipment_id =  sanitize_text_field(trim($_POST['shipment_id']));
        $quote1_val =  sanitize_text_field(trim($_POST['quote1']));
        $quote2_val =  sanitize_text_field(trim($_POST['quote2']));
        $booking_reference = get_post_meta( $shipment_id, 'booking_reference', true );
        $shipment_code_r = explode("-",$booking_reference);
        $shipment_code = $shipment_code_r[1];  ?>
-       <div id="list_view">
-       <table class="view" style="font-size: 12px; width:100%; line-height:30px;">
-         <thead><tr class="row"><td style="width:15%;font-weight:700;">#</td><td style="width:20%; font-weight:700;">Quote #</td><td style="width:25%;font-weight:700;">Quotation</td><td style="width:15%; font-weight:700;">Amount</td><td></td></tr></thead>
-         <tbody>
-           <tr class="row"><td>1</td><td><?php echo "Qt".$shipment_code."-1"; ?></td><td>New Quotation</td><td>M <?php echo $quote1_val; ?></td><td><a href="#" class="button button-primary" id="old_quote" type="button" onclick="quote_more(this,'<?php echo $shipment_id; ?>','old_wpcargo_price_estimates')">View</a></td></tr>
-           <tr class="row"><td>2</td><td><?php echo "Qt".$shipment_code."-2"; ?></td><td>Final Quotation</td><td>M <?php echo $quote2_val; ?></td><td><a href="#" class="button button-primary" id="new_quote" type="button" onclick="quote_more(this,'<?php echo $shipment_id; ?>','wpcargo_price_estimates')">View</a></td></tr>
-           <tr><td colspan="5"><br></td></tr>
-         </tbody>
-       </table>
-     </div>
-   <?php
+<div id="list_view">
+    <table class="view" style="font-size: 12px; width:100%; line-height:30px;">
+        <thead>
+            <tr class="row">
+                <td style="width:15%;font-weight:700;">#</td>
+                <td style="width:20%; font-weight:700;">Quote #</td>
+                <td style="width:25%;font-weight:700;">Quotation</td>
+                <td style="width:15%; font-weight:700;">Amount</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="row">
+                <td>1</td>
+                <td><?php echo "Qt".$shipment_code."-1"; ?></td>
+                <td>New Quotation</td>
+                <td>M <?php echo $quote1_val; ?></td>
+                <td><a href="#" class="button button-primary" id="old_quote" type="button"
+                        onclick="quote_more(this,'<?php echo $shipment_id; ?>','old_wpcargo_price_estimates')">View</a>
+                </td>
+            </tr>
+            <tr class="row">
+                <td>2</td>
+                <td><?php echo "Qt".$shipment_code."-2"; ?></td>
+                <td>Final Quotation</td>
+                <td>M <?php echo $quote2_val; ?></td>
+                <td><a href="#" class="button button-primary" id="new_quote" type="button"
+                        onclick="quote_more(this,'<?php echo $shipment_id; ?>','wpcargo_price_estimates')">View</a></td>
+            </tr>
+            <tr>
+                <td colspan="5"><br></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<?php
     wp_die(); // required. to end AJAX request.
 }
 /* Load Ajax Callback to "wp_ajax_*" Action Hook */
@@ -814,33 +862,66 @@ function quote_more_action_callback(){
      $actual_weight = wpcargo_package_actual_weight( $shipment_id );
      $dm_weight = wpcargo_package_volumetric( $shipment_id );
       ?>
-     <div style="border-bottom: 4px solid;">
-          <div style="width:69%; display:inline-block; height:120px;"> <img src='<?php echo WPCARGO_PLUGIN_URL."assets/images/receipt_head.png";?>' width="100%;" height="120px;"></div>
-          <div class="print-tn" style="width:29%; display:inline-block; text-align:center; height:100px; vertical-align:top; padding-top:13px;"><?php echo $booking_reference;?><img src="<?php echo $url_barcode;?>" alt="<?php echo $booking_reference;?>" width="100%" height="70px;"/> </div>
-       </div>
-       <div class="print-body">
-         <p><div style="width:49%; display:inline-block; vertical-align:top;">
-              <p class="black_bg" style="width:94%;"><b><?php echo $info['item_name']; ?></b></p>
-              <div style=" border: solid 1px; width:90%; padding: 0 10px;">
-                  <p><div style="width:22%; display:inline-block;"><b>Name: </b></div><div style="width:78%; border-bottom:1px solid; display:inline-block;"> <?php echo $shipper;?></div></p>
-    			  <p><div style="width:22%; display:inline-block;">&nbsp;</div><div style="width:78%; border-bottom:1px solid; display:inline-block;"><br></div></p>
-                  <p><div style="width:22%; display:inline-block;"><b>Tel/Cel: </b></div><div style="width:78%; border-bottom:1px solid; display:inline-block;"> <?php echo get_post_meta( $shipment_id, 'wpcargo_receiver_phone_1', true );?></div></p>
-                  <p><div style="width:22%; display:inline-block;"><b>Email: </b></div><div style="width:78%; border-bottom:1px solid; display:inline-block;"> <?php echo get_post_meta( $shipment_id, 'wpcargo_receiver_email', true );?></div></p>
-              </div>
-            </div>
-            <div style="width:49%; display:inline-block; vertical-align:top;">
-              <p><div style="width:35%; display:inline-block; text-align: right;"><b>Date :&nbsp;</b></div><div style="width:65%; border-bottom:1px solid; display:inline-block;">&nbsp;<?php echo date_format(date_create($info['item_date']),"d-M-Y");?></div>
-			     <div style="width:35%; display:inline-block; text-align: right;"><b>Invoice No. :&nbsp;</b></div><div style="width:65%; border-bottom:1px solid; display:inline-block;">&nbsp;<?php echo $info['item_no'];?></div>
-                 <div style="width:35%; display:inline-block; text-align: right;"><b>Booking Ref :&nbsp;</b></div><div style="width:65%; border-bottom:1px solid; display:inline-block;">&nbsp;<?php echo $booking_reference; ?></div>
-                 <div style="width:35%; display:inline-block; text-align: right;"><b>Route :&nbsp;</b></div><div style="width:65%; border-bottom:1px solid; display:inline-block;">&nbsp;<?php echo get_post_meta( $shipment_id, 'wpcargo_origin_city_field', true )."-".get_post_meta( $shipment_id, 'wpcargo_destination_city', true ); ?></div>
-                 <div style="width:35%; display:inline-block; text-align: right;"><b>Packages :&nbsp;</b></div><div style="width:65%; border-bottom:1px solid; display:inline-block;">&nbsp;<?php echo $packages; ?></div>
-                 <div style="width:35%; display:inline-block; text-align: right;"><b>Actual Weight :&nbsp;</b></div><div style="width:65%; border-bottom:1px solid; display:inline-block;">&nbsp;<?php echo $actual_weight; ?></div>
-                 <div style="width:35%; display:inline-block; text-align: right;"><b>DM Weight :&nbsp;</b></div><div style="width:65%; border-bottom:1px solid; display:inline-block;">&nbsp;<?php echo $dm_weight; ?></div>
-                 <div style="width:35%; display:inline-block; text-align: right;"><b>Booking By :&nbsp;</b></div><div style="width:65%; border-bottom:1px solid; display:inline-block;">&nbsp;<?php echo $booking_by; ?></div>
-              </p>
-            </div>
-         </p>
-      <?php
+<div style="border-bottom: 4px solid;">
+    <div style="width:69%; display:inline-block; height:120px;"> <img
+            src='<?php echo WPCARGO_PLUGIN_URL."assets/images/receipt_head.png";?>' width="100%;" height="120px;"></div>
+    <div class="print-tn"
+        style="width:29%; display:inline-block; text-align:center; height:100px; vertical-align:top; padding-top:13px;">
+        <?php echo $booking_reference;?><img src="<?php echo $url_barcode;?>" alt="<?php echo $booking_reference;?>"
+            width="100%" height="70px;" /> </div>
+</div>
+<div class="print-body">
+    <p>
+    <div style="width:49%; display:inline-block; vertical-align:top;">
+        <p class="black_bg" style="width:94%;"><b><?php echo $info['item_name']; ?></b></p>
+        <div style=" border: solid 1px; width:90%; padding: 0 10px;">
+            <p>
+            <div style="width:22%; display:inline-block;"><b>Name: </b></div>
+            <div style="width:78%; border-bottom:1px solid; display:inline-block;"> <?php echo $shipper;?></div>
+            </p>
+            <p>
+            <div style="width:22%; display:inline-block;">&nbsp;</div>
+            <div style="width:78%; border-bottom:1px solid; display:inline-block;"><br></div>
+            </p>
+            <p>
+            <div style="width:22%; display:inline-block;"><b>Tel/Cel: </b></div>
+            <div style="width:78%; border-bottom:1px solid; display:inline-block;">
+                <?php echo get_post_meta( $shipment_id, 'wpcargo_receiver_phone_1', true );?></div>
+            </p>
+            <p>
+            <div style="width:22%; display:inline-block;"><b>Email: </b></div>
+            <div style="width:78%; border-bottom:1px solid; display:inline-block;">
+                <?php echo get_post_meta( $shipment_id, 'wpcargo_receiver_email', true );?></div>
+            </p>
+        </div>
+    </div>
+    <div style="width:49%; display:inline-block; vertical-align:top;">
+        <p>
+        <div style="width:35%; display:inline-block; text-align: right;"><b>Date :&nbsp;</b></div>
+        <div style="width:65%; border-bottom:1px solid; display:inline-block;">
+            &nbsp;<?php echo date_format(date_create($info['item_date']),"d-M-Y");?></div>
+        <div style="width:35%; display:inline-block; text-align: right;"><b>Invoice No. :&nbsp;</b></div>
+        <div style="width:65%; border-bottom:1px solid; display:inline-block;">&nbsp;<?php echo $info['item_no'];?>
+        </div>
+        <div style="width:35%; display:inline-block; text-align: right;"><b>Booking Ref :&nbsp;</b></div>
+        <div style="width:65%; border-bottom:1px solid; display:inline-block;">&nbsp;<?php echo $booking_reference; ?>
+        </div>
+        <div style="width:35%; display:inline-block; text-align: right;"><b>Route :&nbsp;</b></div>
+        <div style="width:65%; border-bottom:1px solid; display:inline-block;">
+            &nbsp;<?php echo get_post_meta( $shipment_id, 'wpcargo_origin_city_field', true )."-".get_post_meta( $shipment_id, 'wpcargo_destination_city', true ); ?>
+        </div>
+        <div style="width:35%; display:inline-block; text-align: right;"><b>Packages :&nbsp;</b></div>
+        <div style="width:65%; border-bottom:1px solid; display:inline-block;">&nbsp;<?php echo $packages; ?></div>
+        <div style="width:35%; display:inline-block; text-align: right;"><b>Actual Weight :&nbsp;</b></div>
+        <div style="width:65%; border-bottom:1px solid; display:inline-block;">&nbsp;<?php echo $actual_weight; ?></div>
+        <div style="width:35%; display:inline-block; text-align: right;"><b>DM Weight :&nbsp;</b></div>
+        <div style="width:65%; border-bottom:1px solid; display:inline-block;">&nbsp;<?php echo $dm_weight; ?></div>
+        <div style="width:35%; display:inline-block; text-align: right;"><b>Booking By :&nbsp;</b></div>
+        <div style="width:65%; border-bottom:1px solid; display:inline-block;">&nbsp;<?php echo $booking_by; ?></div>
+        </p>
+    </div>
+    </p>
+    <?php
        echo'
         <table class="grid_table" style="font-size: 14px; width:100%;">
         <thead><tr><td style="width:50%; font-size:18px; font-weight:700;">DESCRIPTION</td><td style="width:8%; font-size:18px; font-weight:700;">UNIT</td><td style="width:19%; font-size:18px; font-weight:700;">UNIT PRICE</td><td style="width:8%; font-size:18px; font-weight:700;">QTY</td><td style="width:15%; font-size:18px; font-weight:700;">AMOUNT</td></tr></thead>
@@ -882,21 +963,26 @@ function quote_more_action_callback(){
        echo'</select><a class="button" href="#" onclick="add_row()">Add</a> </td></tr>';
        echo'</tfoot></table>';
     ?>
+</div>
+<div>
+    <p>
+    <div style="width:59%; display:inline-block; vertical-align:top; margin-right:4%;">
+        <p style="border-top: solid 3px; margin-top: 25px; padding: 20px 2px;">Unless on the basis of an account, an
+            invoice must be fully settled upon collection or delivery of goods to the final destination. proof of
+            payment must be emailed to: <b>accounts@sky266.co.ls</b></p>
     </div>
-       <div>
-        <p><div style="width:59%; display:inline-block; vertical-align:top; margin-right:4%;">
-            <p style="border-top: solid 3px; margin-top: 25px; padding: 20px 2px;">Unless on the basis of an account, an invoice must be fully settled upon collection or delivery of goods to the final destination. proof of payment must be emailed to: <b>accounts@sky266.co.ls</b></p>
-        </div>
-        <div style="width:35%; display:inline-block; vertical-align:top;">
-            <p><b>STANDARD LESOTHO BANK</b><br>
-               <b style="margin-left: 18px;">NAME: </b> Sky-Corp t/a Sky266<br>
-               <b style="margin-left: 18px;">ACCOUNT #: </b> 9080007532411<br>
-               <b style="margin-left: 18px;">BRANCH: </b> Tower (062067)<br>
+    <div style="width:35%; display:inline-block; vertical-align:top;">
+        <p><b>STANDARD LESOTHO BANK</b><br>
+            <b style="margin-left: 18px;">NAME: </b> Sky-Corp t/a Sky266<br>
+            <b style="margin-left: 18px;">ACCOUNT #: </b> 9080007532411<br>
+            <b style="margin-left: 18px;">BRANCH: </b> Tower (062067)<br>
             <b>MPESA: </b> 57555325<br>
-            <b>ECOCASH: </b> 62555325</p>
-        </div></p>
-      </div>
-  <?php
+            <b>ECOCASH: </b> 62555325
+        </p>
+    </div>
+    </p>
+</div>
+<?php
     wp_die(); // required. to end AJAX request.
 }
 /* Load Ajax Callback to "wp_ajax_*" Action Hook */
@@ -906,16 +992,19 @@ add_action( 'wp_ajax_nopriv_quote_more_action', 'quote_more_action_callback' );
  * Ajax Callback
  */
  function payment_more_action_callback(){   ?>
-   <style>
-      #list_view table tbody .row td, #list_view table thead .row td{
-        border-right: 2px solid;
-        border-bottom: 2px solid;
-      }
-      #list_view table tbody .row td:nth-child(5) , #list_view table thead .row td:nth-child(5){
-        border-right: none;
-      }
-   </style>
-   <?php  $shipment_id =  sanitize_text_field(trim($_POST['post_id']));
+<style>
+#list_view table tbody .row td,
+#list_view table thead .row td {
+    border-right: 2px solid;
+    border-bottom: 2px solid;
+}
+
+#list_view table tbody .row td:nth-child(5),
+#list_view table thead .row td:nth-child(5) {
+    border-right: none;
+}
+</style>
+<?php  $shipment_id =  sanitize_text_field(trim($_POST['post_id']));
         $payment_history = unserialize(get_post_meta( $shipment_id, 'wpcargo_payment_history', true ));
         $received_from = get_shipper_name($shipment_id);
         $total = 0;
@@ -1030,27 +1119,65 @@ function payment_singleview_action_callback(){
        $url_barcode	= WPCARGO_PLUGIN_URL."/includes/barcode.php?codetype=Code128&size=60&text=" . $booking_reference . "";
        echo '<div id="receipt_display">';
        if(is_array($payment_receipt)) {  ?>
-         <div style="border-bottom: 4px solid;">
-            <div style="width:69%; display:inline-block; height:120px;"> <img src='<?php echo WPCARGO_PLUGIN_URL."assets/images/receipt_head.png";?>' width="100%;" height="120px;"></div>
-            <div class="print-tn" style="width:29%; display:inline-block; text-align:center; height:100px; vertical-align:top; padding-top:13px;"><?php echo $booking_reference;?><img src="<?php echo $url_barcode;?>" alt="<?php echo $booking_reference;?>" width="100%" height="70px;"/> </div>
-         </div>
-         <div class="print-body">
-           <p><div style="width:66%; display:inline-block;"> <b><span style="background:black; padding:5px; color:white;">PAYMENT RECEIPT</span> No. :</b><span style="color:red;"> <?php echo $payment_receipt["receipt_no"];?></span></div>
-              <div style="width:33%; display:inline-block;"> <b>Date :</b> <?php echo date_format(date_create($row_id),"d-M-Y, H:i");?></div></p>
-           <p> <div style="display:inline-block; width:25%;"><b>Received From : </b></div><div style="display:inline-block; width:75%; border-bottom:1px solid; text-align:center;"><?php echo $payment_receipt["received_from"];?></div></p>
-           <p> <div style="display:inline-block; width:22%;"><b>Amount of : </b> </div><div style="display:inline-block; width:78%; border-bottom:1px solid;"><?php echo numberTowords($payment_receipt["amount"]); ?></div></p>
-           <p> <div style="display:inline-block; width:74%; border-bottom:1px solid; text-align:center;">&nbsp;&nbsp;</div>
-               <div style="border:1px solid black; width:24%; height:25px; text-align:center;display:inline-block;"><b>&nbsp;M </b> <?php echo number_format((float)$payment_receipt["amount"], 2, ".", ",");?></div></p>
-           <p><div style="display:inline-block; width:31%;"><b>Booking Reference : </b> </div><div style="display:inline-block; width:69%; text-align:center; margin-top:5px; border-bottom:1px solid;"> <?php echo $booking_reference;?></div></p>
-           <p><div style="display:inline-block; width:32%;"><b>Payment Reference : </b> </div><div style="display:inline-block; width:68%; text-align:center; margin-top:5px; border-bottom:1px solid;"> <?php echo $payment_receipt["reference"];?></div></p>
-           <p><div style="display:inline-block; width:30%;"><b>Payment Method : </b> </div><div style="display:inline-block; width:70%; text-align:center; margin-top:5px; border-bottom:1px solid;"> <?php echo $payment_receipt["method"];?></div></p>
-           <p><div style="display:inline-block; width:35%;"><b>Payment Received By : </b> </div><div style="display:inline-block; width:65%; text-align:center; margin-top:5px; border-bottom:1px solid;"> <?php echo $payment_receipt["received_by"];?></div></p>
-           <p><center><b>*** Thank you for your business ***</b></center></p>
-         </div>
-         <div>
-           <img src='<?php echo WPCARGO_PLUGIN_URL."assets/images/receipt_footer.png";?>' width="100%;" height="250px;">
-         </div>
-    <?php   }
+<div style="border-bottom: 4px solid;">
+    <div style="width:69%; display:inline-block; height:120px;"> <img
+            src='<?php echo WPCARGO_PLUGIN_URL."assets/images/receipt_head.png";?>' width="100%;" height="120px;"></div>
+    <div class="print-tn"
+        style="width:29%; display:inline-block; text-align:center; height:100px; vertical-align:top; padding-top:13px;">
+        <?php echo $booking_reference;?><img src="<?php echo $url_barcode;?>" alt="<?php echo $booking_reference;?>"
+            width="100%" height="70px;" /> </div>
+</div>
+<div class="print-body">
+    <p>
+    <div style="width:66%; display:inline-block;"> <b><span style="background:black; padding:5px; color:white;">PAYMENT
+                RECEIPT</span> No. :</b><span style="color:red;"> <?php echo $payment_receipt["receipt_no"];?></span>
+    </div>
+    <div style="width:33%; display:inline-block;"> <b>Date :</b>
+        <?php echo date_format(date_create($row_id),"d-M-Y, H:i");?></div>
+    </p>
+    <p>
+    <div style="display:inline-block; width:25%;"><b>Received From : </b></div>
+    <div style="display:inline-block; width:75%; border-bottom:1px solid; text-align:center;">
+        <?php echo $payment_receipt["received_from"];?></div>
+    </p>
+    <p>
+    <div style="display:inline-block; width:22%;"><b>Amount of : </b> </div>
+    <div style="display:inline-block; width:78%; border-bottom:1px solid;">
+        <?php echo numberTowords($payment_receipt["amount"]); ?></div>
+    </p>
+    <p>
+    <div style="display:inline-block; width:74%; border-bottom:1px solid; text-align:center;">&nbsp;&nbsp;</div>
+    <div style="border:1px solid black; width:24%; height:25px; text-align:center;display:inline-block;"><b>&nbsp;M </b>
+        <?php echo number_format((float)$payment_receipt["amount"], 2, ".", ",");?></div>
+    </p>
+    <p>
+    <div style="display:inline-block; width:31%;"><b>Booking Reference : </b> </div>
+    <div style="display:inline-block; width:69%; text-align:center; margin-top:5px; border-bottom:1px solid;">
+        <?php echo $booking_reference;?></div>
+    </p>
+    <p>
+    <div style="display:inline-block; width:32%;"><b>Payment Reference : </b> </div>
+    <div style="display:inline-block; width:68%; text-align:center; margin-top:5px; border-bottom:1px solid;">
+        <?php echo $payment_receipt["reference"];?></div>
+    </p>
+    <p>
+    <div style="display:inline-block; width:30%;"><b>Payment Method : </b> </div>
+    <div style="display:inline-block; width:70%; text-align:center; margin-top:5px; border-bottom:1px solid;">
+        <?php echo $payment_receipt["method"];?></div>
+    </p>
+    <p>
+    <div style="display:inline-block; width:35%;"><b>Payment Received By : </b> </div>
+    <div style="display:inline-block; width:65%; text-align:center; margin-top:5px; border-bottom:1px solid;">
+        <?php echo $payment_receipt["received_by"];?></div>
+    </p>
+    <p>
+        <center><b>*** Thank you for your business ***</b></center>
+    </p>
+</div>
+<div>
+    <img src='<?php echo WPCARGO_PLUGIN_URL."assets/images/receipt_footer.png";?>' width="100%;" height="250px;">
+</div>
+<?php   }
        else echo "<br>no payment data";
        echo '</div>';
 
@@ -1170,32 +1297,62 @@ function statement_more_action_callback(){
      $actual_weight = wpcargo_package_actual_weight( $shipment_id );
      $dm_weight = wpcargo_package_volumetric( $shipment_id );
       ?>
-     <div style="border-bottom: 4px solid;">
-          <div style="width:69%; display:inline-block; height:120px;"> <img src='<?php echo WPCARGO_PLUGIN_URL."assets/images/receipt_head.png";?>' width="100%;" height="120px;"></div>
-          <div class="print-tn" style="width:29%; display:inline-block; text-align:center; height:100px; vertical-align:top; padding-top:13px;"><?php echo $booking_reference;?><img src="<?php echo $url_barcode;?>" alt="<?php echo $booking_reference;?>" width="100%" height="70px;"/> </div>
-       </div>
-       <div class="print-body">
-         <p><div style="width:49%; display:inline-block; vertical-align:top;">
-              <p class="black_bg" style="width:94%;"><b><?php echo $info['item_name']; ?></b></p>
-              <div style=" border: solid 1px; width:90%; padding: 0 10px;">
-                  <p><div style="width:22%; display:inline-block;"><b>Name: </b></div><div style="width:78%; border-bottom:1px solid; display:inline-block;"> <?php echo $shipper;?></div></p>
-    			  <p><div style="width:22%; display:inline-block;">&nbsp;</div><div style="width:78%; border-bottom:1px solid; display:inline-block;"><br></div></p>
-                  <p><div style="width:22%; display:inline-block;"><b>Tel/Cel: </b></div><div style="width:78%; border-bottom:1px solid; display:inline-block;"> <?php echo get_post_meta( $shipment_id, 'wpcargo_receiver_phone_1', true );?></div></p>
-                  <p><div style="width:22%; display:inline-block;"><b>Email: </b></div><div style="width:78%; border-bottom:1px solid; display:inline-block;"> <?php echo get_post_meta( $shipment_id, 'wpcargo_receiver_email', true );?></div></p>
-              </div>
-            </div>
-            <div style="width:49%; display:inline-block; vertical-align:top;">
-              <p><div style="width:35%; display:inline-block; text-align: right;"><b>Date :&nbsp;</b></div><div style="width:65%; border-bottom:1px solid; display:inline-block;">&nbsp;<?php echo date_format(date_create($info['item_date']),"d-M-Y");?></div>
-			     <div style="width:35%; display:inline-block; text-align: right;"><b>Booking Ref :&nbsp;</b></div><div style="width:65%; border-bottom:1px solid; display:inline-block;">&nbsp;<?php echo $booking_reference; ?></div>
-                 <div style="width:35%; display:inline-block; text-align: right;"><b>Route :&nbsp;</b></div><div style="width:65%; border-bottom:1px solid; display:inline-block;">&nbsp;<?php echo get_post_meta( $shipment_id, 'route_abrs', true ); ?></div>
-                 <div style="width:35%; display:inline-block; text-align: right;"><b>Packages :&nbsp;</b></div><div style="width:65%; border-bottom:1px solid; display:inline-block;">&nbsp;<?php echo $packages; ?></div>
-                 <div style="width:35%; display:inline-block; text-align: right;"><b>Actual Weight :&nbsp;</b></div><div style="width:65%; border-bottom:1px solid; display:inline-block;">&nbsp;<?php echo $actual_weight; ?></div>
-                 <div style="width:35%; display:inline-block; text-align: right;"><b>DM Weight :&nbsp;</b></div><div style="width:65%; border-bottom:1px solid; display:inline-block;">&nbsp;<?php echo $dm_weight; ?></div>
-                 <div style="width:35%; display:inline-block; text-align: right;"><b>Booking By :&nbsp;</b></div><div style="width:65%; border-bottom:1px solid; display:inline-block;">&nbsp;<?php echo $booking_by; ?></div>
-              </p>
-            </div>
-         </p>
-      <?php
+<div style="border-bottom: 4px solid;">
+    <div style="width:69%; display:inline-block; height:120px;"> <img
+            src='<?php echo WPCARGO_PLUGIN_URL."assets/images/receipt_head.png";?>' width="100%;" height="120px;"></div>
+    <div class="print-tn"
+        style="width:29%; display:inline-block; text-align:center; height:100px; vertical-align:top; padding-top:13px;">
+        <?php echo $booking_reference;?><img src="<?php echo $url_barcode;?>" alt="<?php echo $booking_reference;?>"
+            width="100%" height="70px;" /> </div>
+</div>
+<div class="print-body">
+    <p>
+    <div style="width:49%; display:inline-block; vertical-align:top;">
+        <p class="black_bg" style="width:94%;"><b><?php echo $info['item_name']; ?></b></p>
+        <div style=" border: solid 1px; width:90%; padding: 0 10px;">
+            <p>
+            <div style="width:22%; display:inline-block;"><b>Name: </b></div>
+            <div style="width:78%; border-bottom:1px solid; display:inline-block;"> <?php echo $shipper;?></div>
+            </p>
+            <p>
+            <div style="width:22%; display:inline-block;">&nbsp;</div>
+            <div style="width:78%; border-bottom:1px solid; display:inline-block;"><br></div>
+            </p>
+            <p>
+            <div style="width:22%; display:inline-block;"><b>Tel/Cel: </b></div>
+            <div style="width:78%; border-bottom:1px solid; display:inline-block;">
+                <?php echo get_post_meta( $shipment_id, 'wpcargo_receiver_phone_1', true );?></div>
+            </p>
+            <p>
+            <div style="width:22%; display:inline-block;"><b>Email: </b></div>
+            <div style="width:78%; border-bottom:1px solid; display:inline-block;">
+                <?php echo get_post_meta( $shipment_id, 'wpcargo_receiver_email', true );?></div>
+            </p>
+        </div>
+    </div>
+    <div style="width:49%; display:inline-block; vertical-align:top;">
+        <p>
+        <div style="width:35%; display:inline-block; text-align: right;"><b>Date :&nbsp;</b></div>
+        <div style="width:65%; border-bottom:1px solid; display:inline-block;">
+            &nbsp;<?php echo date_format(date_create($info['item_date']),"d-M-Y");?></div>
+        <div style="width:35%; display:inline-block; text-align: right;"><b>Booking Ref :&nbsp;</b></div>
+        <div style="width:65%; border-bottom:1px solid; display:inline-block;">&nbsp;<?php echo $booking_reference; ?>
+        </div>
+        <div style="width:35%; display:inline-block; text-align: right;"><b>Route :&nbsp;</b></div>
+        <div style="width:65%; border-bottom:1px solid; display:inline-block;">
+            &nbsp;<?php echo get_post_meta( $shipment_id, 'route_abrs', true ); ?></div>
+        <div style="width:35%; display:inline-block; text-align: right;"><b>Packages :&nbsp;</b></div>
+        <div style="width:65%; border-bottom:1px solid; display:inline-block;">&nbsp;<?php echo $packages; ?></div>
+        <div style="width:35%; display:inline-block; text-align: right;"><b>Actual Weight :&nbsp;</b></div>
+        <div style="width:65%; border-bottom:1px solid; display:inline-block;">&nbsp;<?php echo $actual_weight; ?></div>
+        <div style="width:35%; display:inline-block; text-align: right;"><b>DM Weight :&nbsp;</b></div>
+        <div style="width:65%; border-bottom:1px solid; display:inline-block;">&nbsp;<?php echo $dm_weight; ?></div>
+        <div style="width:35%; display:inline-block; text-align: right;"><b>Booking By :&nbsp;</b></div>
+        <div style="width:65%; border-bottom:1px solid; display:inline-block;">&nbsp;<?php echo $booking_by; ?></div>
+        </p>
+    </div>
+    </p>
+    <?php
        echo'
         <table class="grid_table" style="font-size: 14px; width:100%;">
         <thead><tr><td style="font-size:18px; font-weight:700;">DATE</td><td style="font-size:18px; font-weight:700;">TRANSACTION TYPE</td><td style="font-size:18px; font-weight:700;">REFERENCE</td><td style="font-size:18px; font-weight:700;">AMOUNT</td><td style="font-size:18px; font-weight:700;">BALANCE</td></tr></thead>
@@ -1226,21 +1383,26 @@ function statement_more_action_callback(){
             </tfoot></table>';
               ?>
 
-      </div>
-      <div>
-          <p><div style="width:59%; display:inline-block; vertical-align:top; margin-right:4%;">
-              <p style="border-top: solid 3px; margin-top: 25px; padding: 20px 2px;">Unless on the basis of an account, an invoice must be fully settled upon collection or delivery of goods to the final destination. proof of payment must be emailed to: <b>accounts@sky266.co.ls</b></p>
-          </div>
-          <div style="width:35%; display:inline-block; vertical-align:top;">
-              <p><b>STANDARD LESOTHO BANK</b><br>
-                 <b style="margin-left: 18px;">NAME: </b> Sky-Corp t/a Sky266<br>
-                 <b style="margin-left: 18px;">ACCOUNT #: </b> 9080007532411<br>
-                 <b style="margin-left: 18px;">BRANCH: </b> Tower (062067)<br>
-              <b>MPESA: </b> 57555325<br>
-              <b>ECOCASH: </b> 62555325</p>
-          </div></p>
-      </div>
-  <?php  wp_die(); // required. to end AJAX request.
+</div>
+<div>
+    <p>
+    <div style="width:59%; display:inline-block; vertical-align:top; margin-right:4%;">
+        <p style="border-top: solid 3px; margin-top: 25px; padding: 20px 2px;">Unless on the basis of an account, an
+            invoice must be fully settled upon collection or delivery of goods to the final destination. proof of
+            payment must be emailed to: <b>accounts@sky266.co.ls</b></p>
+    </div>
+    <div style="width:35%; display:inline-block; vertical-align:top;">
+        <p><b>STANDARD LESOTHO BANK</b><br>
+            <b style="margin-left: 18px;">NAME: </b> Sky-Corp t/a Sky266<br>
+            <b style="margin-left: 18px;">ACCOUNT #: </b> 9080007532411<br>
+            <b style="margin-left: 18px;">BRANCH: </b> Tower (062067)<br>
+            <b>MPESA: </b> 57555325<br>
+            <b>ECOCASH: </b> 62555325
+        </p>
+    </div>
+    </p>
+</div>
+<?php  wp_die(); // required. to end AJAX request.
 }
 /* Load Ajax Callback to "wp_ajax_*" Action Hook */
 add_action( 'wp_ajax_statement_more_action', 'statement_more_action_callback' );
@@ -1267,27 +1429,39 @@ function trip_form_action_callback(){
         }
      echo $heading;
         ?><table class="form-table" style='border:solid 1px gray;'>
-            <input type="hidden" id="trip_id" name="trip_id" value="<?php echo $index; ?>">
-            <tr><th style="width:20%;">Trip Name</th> <td style="width:70%;"><input style="width:50%;" type='text' id="trip_name" name='trip_name' value='<?php echo $trip_name; ?>' required placeholder="Trip Name"></td></tr>
-            <?php $temp = explode(' ',$trip_datetime); $trip_date = $temp[0]; $trip_time = $temp[1];  ?>
-            <tr><th style="width:20%;">Trip Date</th> <td style="width:80%;"><input style="width:50%;" type='date' id='trip_date' name='trip_date' value='<?php echo $trip_date;?>'><input type='time' id='trip_time' name='trip_time' value='<?php echo $trip_time;?>' hidden></td></tr>
-            <tr><th style="width:20%;">Driver</th> <td style="width:50%;">
+    <input type="hidden" id="trip_id" name="trip_id" value="<?php echo $index; ?>">
+    <tr>
+        <th style="width:20%;">Trip Name</th>
+        <td style="width:70%;"><input style="width:50%;" type='text' id="trip_name" name='trip_name'
+                value='<?php echo $trip_name; ?>' required placeholder="Trip Name"></td>
+    </tr>
+    <?php $temp = explode(' ',$trip_datetime); $trip_date = $temp[0]; $trip_time = $temp[1];  ?>
+    <tr>
+        <th style="width:20%;">Trip Date</th>
+        <td style="width:80%;"><input style="width:50%;" type='date' id='trip_date' name='trip_date'
+                value='<?php echo $trip_date;?>'><input type='time' id='trip_time' name='trip_time'
+                value='<?php echo $trip_time;?>' hidden></td>
+    </tr>
+    <tr>
+        <th style="width:20%;">Driver</th>
+        <td style="width:50%;">
 
-                                <div id="group_items" style="width:50%;">
-                                      <div>
-                                        <select class="form-control" name="item_id" id="item_id" onchange="items_grouper(this);" style="width: 100%;" >
-                                                  <option value="">Select Item</option>
-                                                  <?php
+            <div id="group_items" style="width:50%;">
+                <div>
+                    <select class="form-control" name="item_id" id="item_id" onchange="items_grouper(this);"
+                        style="width: 100%;">
+                        <option value="">Select Item</option>
+                        <?php
                                                      $drivers = get_users( [ 'role__in' => [ 'wpcargo_driver' ] ] );
                                                      foreach ( $drivers as $driver ) { $rw_id = str_replace(" ", "", esc_html($driver->display_name));
                                                           echo '<option value="'.esc_html($driver->display_name).'" id="'.$rw_id.'" >'.esc_html( $driver->display_name ).'</option>';
                                                       }
                                                   ?>
-                                       </select> <br>
-                                      </div>
+                    </select> <br>
+                </div>
 
-                                      <table id="selected_drivers_list">
-                                       <?php
+                <table id="selected_drivers_list">
+                    <?php
                                           $selected_drivers_text = unserialize($trip->drivers);
                                           if(!empty($selected_drivers_text)) {
                                              $selected_drivers = explode(",",$selected_drivers_text);
@@ -1297,39 +1471,42 @@ function trip_form_action_callback(){
                                                }
                                           }
                                        ?>
-                                      </table>
-                                      <input type="hidden" id="selected_drivers" name="selected_drivers" value="<?php echo $selected_drivers_text; ?>">
-                                      <br>
-                                  </div>
+                </table>
+                <input type="hidden" id="selected_drivers" name="selected_drivers"
+                    value="<?php echo $selected_drivers_text; ?>">
+                <br>
+            </div>
 
 
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                      <label for="sales_rep"><strong>COVERED CITIES</strong></label>
-                      <table id="group_items_list">
-                       <?php
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <label for="sales_rep"><strong>COVERED CITIES</strong></label>
+            <table id="group_items_list">
+                <?php
                           $selected_schedules_r = unserialize($selected_schedules);
                        if(is_array($selected_schedules_r)) {
                           foreach($selected_schedules_r AS $selected_schedule)  {
                         ?>
 
-                        <tr id="fields_row">
-                              <td><input type='hidden' id='selected_schedule' name='selected_schedule[]' value=''>
-                				<select id='schedule_city' name='schedule_city[]' onchange="schedule_city_select(this)">
-                					<option value="">--Select City--</option>
-                					<?php
+                <tr id="fields_row">
+                    <td><input type='hidden' id='selected_schedule' name='selected_schedule[]' value=''>
+                        <select id='schedule_city' name='schedule_city[]' onchange="schedule_city_select(this)">
+                            <option value="">--Select City--</option>
+                            <?php
                                         $schedule_cities = $wpdb->get_results( "SELECT id, city_name FROM `countries_cities`");
                                         foreach($schedule_cities AS $schedule_city){   ?>
-                                              <option value="<?php echo $schedule_city->id ?>" <?php echo ($schedule_city->id == $selected_schedule['schedule_city'] )? "selected": ""; ?> ><?php echo $schedule_city->city_name; ?></option>
-                                      <?php  } ?>
-                				</select>
-                             </td>
-                             <td>
-                                <select id='schedule_id' name='schedule_id[]'>
-                					<option value="">--Select Schedule--</option>
-                					<?php
+                            <option value="<?php echo $schedule_city->id ?>"
+                                <?php echo ($schedule_city->id == $selected_schedule['schedule_city'] )? "selected": ""; ?>>
+                                <?php echo $schedule_city->city_name; ?></option>
+                            <?php  } ?>
+                        </select>
+                    </td>
+                    <td>
+                        <select id='schedule_id' name='schedule_id[]'>
+                            <option value="">--Select Schedule--</option>
+                            <?php
                                         $current_datetime = date('Y-m-d H:i:s');
                                         $schedule_id = $selected_schedule['schedule_id'];
                                         $selected_schedule_details = $wpdb->get_results("SELECT * FROM collection_schedules WHERE id = '$schedule_id'");
@@ -1352,10 +1529,13 @@ function trip_form_action_callback(){
                                           if($final_cut_off <= $current_datetime){
                                                update_schedule_status($schedule);
                                           }  ?>
-                                              <option id="<?php echo $schedule->schedule_city; ?>" value="<?php echo $schedule->id; ?>" <?php echo ($schedule->id == $selected_schedule['schedule_id'] )? "selected": ""; ?> ><?php echo $schedule->schedule_name."(".date_format(date_create($schedule->schedule_date),'d-F-Y').")"; ?></option>
-                                      <?php }  ?>
-                                        <option id="optionslabel" value="" disabled="disabled">Old Schedules</option>
-                                      <?php
+                            <option id="<?php echo $schedule->schedule_city; ?>" value="<?php echo $schedule->id; ?>"
+                                <?php echo ($schedule->id == $selected_schedule['schedule_id'] )? "selected": ""; ?>>
+                                <?php echo $schedule->schedule_name."(".date_format(date_create($schedule->schedule_date),'d-F-Y').")"; ?>
+                            </option>
+                            <?php }  ?>
+                            <option id="optionslabel" value="" disabled="disabled">Old Schedules</option>
+                            <?php
                                       //if ( in_array( 'administrator', (array) $current_user->roles ) || in_array( 'wpcargo_manager', (array) $current_user->roles ) ) {
                                         // $oldschedules = $wpdb->get_results("SELECT * FROM collection_schedules WHERE status LIKE 'Closed' ORDER BY schedule_date DESC Limit 15 ");
                                         $oldschedules = $wpdb->get_results("SELECT *
@@ -1375,32 +1555,35 @@ function trip_form_action_callback(){
                                               update_schedule_status($schedule);
                                           }
                                            ?>
-                                              <option id="<?php echo $schedule->schedule_city; ?>" value="<?php echo $schedule->id; ?>"><?php echo $option_label; ?></option>
-                                      <?php }
+                            <option id="<?php echo $schedule->schedule_city; ?>" value="<?php echo $schedule->id; ?>">
+                                <?php echo $option_label; ?></option>
+                            <?php }
                                          //}
                                        ?>
-                				</select>
-                             </td>
-                             <td><a href="#" style="color: red; text-decoration: none;" onclick="remove_schedule(this)" >X</a></td>
-                          </tr>
+                        </select>
+                    </td>
+                    <td><a href="#" style="color: red; text-decoration: none;" onclick="remove_schedule(this)">X</a>
+                    </td>
+                </tr>
 
-                       <?php } }
+                <?php } }
                        else { ?>
-                          <tr id="fields_row">
-                              <td><input type='hidden' id='selected_schedule' name='selected_schedule[]' value=''>
-                				<select id='schedule_city' name='schedule_city[]' onchange="schedule_city_select(this)">
-                					<option value="">--Select City--</option>
-                					<?php
+                <tr id="fields_row">
+                    <td><input type='hidden' id='selected_schedule' name='selected_schedule[]' value=''>
+                        <select id='schedule_city' name='schedule_city[]' onchange="schedule_city_select(this)">
+                            <option value="">--Select City--</option>
+                            <?php
                                         $schedule_cities = $wpdb->get_results( "SELECT id, city_name FROM `countries_cities`");
                                         foreach($schedule_cities AS $schedule_city){   ?>
-                                              <option value="<?php echo $schedule_city->id ?>"><?php echo $schedule_city->city_name ?></option>
-                                      <?php  } ?>
-                				</select>
-                             </td>
-                             <td>
-                                <select id='schedule_id' name='schedule_id[]'>
-                					<option value="">--Select Schedule--</option>
-                					<?php
+                            <option value="<?php echo $schedule_city->id ?>"><?php echo $schedule_city->city_name ?>
+                            </option>
+                            <?php  } ?>
+                        </select>
+                    </td>
+                    <td>
+                        <select id='schedule_id' name='schedule_id[]'>
+                            <option value="">--Select Schedule--</option>
+                            <?php
                                         //get and display upcoming and active schedules
                                          $schedules = $wpdb->get_results("SELECT *
                                              FROM (
@@ -1417,10 +1600,12 @@ function trip_form_action_callback(){
                                               update_schedule_status($schedule);
                                           }
                                            ?>
-                                              <option id="<?php echo $schedule->schedule_city; ?>" value="<?php echo $schedule->id; ?>"><?php echo $schedule->schedule_name."(".date_format(date_create($schedule->schedule_date),'d-F-Y').")"; ?></option>
-                                      <?php }  ?>
-                                        <option id="optionlabel" value="" disabled="disabled">Old Schedules</option>
-                                      <?php
+                            <option id="<?php echo $schedule->schedule_city; ?>" value="<?php echo $schedule->id; ?>">
+                                <?php echo $schedule->schedule_name."(".date_format(date_create($schedule->schedule_date),'d-F-Y').")"; ?>
+                            </option>
+                            <?php }  ?>
+                            <option id="optionlabel" value="" disabled="disabled">Old Schedules</option>
+                            <?php
                                       //if ( in_array( 'administrator', (array) $current_user->roles ) || in_array( 'wpcargo_manager', (array) $current_user->roles ) ) {
                                         // $oldschedules = $wpdb->get_results("SELECT * FROM collection_schedules WHERE status LIKE 'Closed' ORDER BY schedule_date DESC Limit 15 ");
                                        //get and display closed schedules
@@ -1443,22 +1628,24 @@ function trip_form_action_callback(){
                                               update_schedule_status($schedule);
                                           }
                                            ?>
-                                              <option id="<?php echo $schedule->schedule_city; ?>" value="<?php echo $schedule->id; ?>"><?php echo $option_label; ?></option>
-                                      <?php }
+                            <option id="<?php echo $schedule->schedule_city; ?>" value="<?php echo $schedule->id; ?>">
+                                <?php echo $option_label; ?></option>
+                            <?php }
 
                                        ?>
-                				</select>
-                             </td>
-                             <td><a href="#" style="color: red; text-decoration: none;" onclick="remove_schedule(this)" >X</a></td>
-                          </tr>
-                      <?php }  ?>
-                    </table>
-                    <a href="#" onclick="add_row()">Add Row</a>
-                 </td>
-            </tr>
-            <!--tr><td colspan='2'><center><input class='button' type='submit' id="submit" name='submit' value='Save'></td></tr-->
-        </table>
-       <?php
+                        </select>
+                    </td>
+                    <td><a href="#" style="color: red; text-decoration: none;" onclick="remove_schedule(this)">X</a>
+                    </td>
+                </tr>
+                <?php }  ?>
+            </table>
+            <a href="#" onclick="add_row()">Add Row</a>
+        </td>
+    </tr>
+    <!--tr><td colspan='2'><center><input class='button' type='submit' id="submit" name='submit' value='Save'></td></tr-->
+</table>
+<?php
     wp_die(); // required. to end AJAX request.
 }
 /* Load Ajax Callback to "wp_ajax_*" Action Hook */
@@ -1476,23 +1663,40 @@ function trip_report_action_callback(){
      foreach ( $trips as $trip ) {
      echo '<h1>Trip Report</h1>';
         ?><table class="report-table" style='border:solid 1px gray; width: 95%; padding:20px; '>
-            <tr><td style="width:15%; font-weight: 700;">Trip Name :</td> <td style="width:70%;"><?php echo $trip->trip_name; ?></td></tr>
-            <?php $temp = explode(' ',$trip->trip_date); $trip_date = $temp[0]; $trip_time = $temp[1];  ?>
-            <tr><td style="width:15%; font-weight: 700;">Trip Date :</td> <td style="width:70%;"><?php echo date_format(date_create($trip_date." ".$trip_time),'d-M-Y');?></td></tr>
-            <tr><td style="width:15%; font-weight: 700;">Allocated Driver :</td>
-                <td style="width:70%;"><?php
+    <tr>
+        <td style="width:15%; font-weight: 700;">Trip Name :</td>
+        <td style="width:70%;"><?php echo $trip->trip_name; ?></td>
+    </tr>
+    <?php $temp = explode(' ',$trip->trip_date); $trip_date = $temp[0]; $trip_time = $temp[1];  ?>
+    <tr>
+        <td style="width:15%; font-weight: 700;">Trip Date :</td>
+        <td style="width:70%;"><?php echo date_format(date_create($trip_date." ".$trip_time),'d-M-Y');?></td>
+    </tr>
+    <tr>
+        <td style="width:15%; font-weight: 700;">Allocated Driver :</td>
+        <td style="width:70%;"><?php
                    $selected_drivers = unserialize($trip->drivers);
                    echo (!empty($selected_drivers)) ? $selected_drivers : "None";
                    ?></td>
-            </tr>
-            <tr><td style="width:15%; font-weight: 700;">Trip Status :</td> <td style="width:70%;"><?php echo $trip->status;?></td></tr>
-            <tr>
-                <td colspan="2"> <br><br>
-                      <label style="font-weight: 700;" for="sales_rep">COVERED CITIES</label><hr/>
-                      <table style="width: 90%;">
-                      <tr><th style="width:20%; text-align: left;">City Name</th><th style="width:30%; text-align: left;">Schedule</th><th style="width:10%; text-align: left;">Bookings</th><th style="width:10%; text-align: left;">Collections Amount</th><th style="width:10%; text-align: left;">Status</th></tr>
+    </tr>
+    <tr>
+        <td style="width:15%; font-weight: 700;">Trip Status :</td>
+        <td style="width:70%;"><?php echo $trip->status;?></td>
+    </tr>
+    <tr>
+        <td colspan="2"> <br><br>
+            <label style="font-weight: 700;" for="sales_rep">COVERED CITIES</label>
+            <hr />
+            <table style="width: 90%;">
+                <tr>
+                    <th style="width:20%; text-align: left;">City Name</th>
+                    <th style="width:30%; text-align: left;">Schedule</th>
+                    <th style="width:10%; text-align: left;">Bookings</th>
+                    <th style="width:10%; text-align: left;">Collections Amount</th>
+                    <th style="width:10%; text-align: left;">Status</th>
+                </tr>
 
-                      <?php $selected_schedules = unserialize($trip->city_schedules);
+                <?php $selected_schedules = unserialize($trip->city_schedules);
                             $cities=array();
                             $trip_bookings_no = 0;
                             $trip_expected_amount = 0;
@@ -1506,21 +1710,30 @@ function trip_report_action_callback(){
                                      $trip_expected_amount+=(float)$bookings['invoices_total_amount'];
                                      $trip_bookings_no+=$bookings['num_of_posts'];
                                    ?>
-                                    <tr>
-                                       <td><?php  echo $schedule->city_name;?></td>
-                                       <td><?php echo $schedule->schedule_name."(".date_format(date_create($schedule->schedule_date),'d-M-Y').")"; ?></td>
-                                       <td><?php echo $bookings['num_of_posts']; ?></td>
-                                       <td><?php echo "M ".number_format((float)$bookings['invoices_total_amount'], 2, '.', ','); ?></td>
-                                       <td style='<?php echo ($schedule->status=="Active")?"background-color: Green; color:white;" :(($schedule->status=="Upcoming")?"background-color: orange; color:white;":"background-color: black; color:white" ); ?>'><?php echo $schedule->status; ?></td>
-                                    </tr>
-                          <?php } }}  ?>
-                       <tr><td colspan="5" style="border-bottom: solid 1px;"><br></td></tr>
-                       <tr><td colspan="2"><b><b>Trip Totals</b></b></td><td><b><?php echo $trip_bookings_no; ?></b></td><td><b><?php echo "M ".number_format((float)$trip_expected_amount, 2, '.', ','); ?></b></td></tr>
-                    </table>
-                 </td>
-            </tr>
-        </table>
-       <?php   }
+                <tr>
+                    <td><?php  echo $schedule->city_name;?></td>
+                    <td><?php echo $schedule->schedule_name."(".date_format(date_create($schedule->schedule_date),'d-M-Y').")"; ?>
+                    </td>
+                    <td><?php echo $bookings['num_of_posts']; ?></td>
+                    <td><?php echo "M ".number_format((float)$bookings['invoices_total_amount'], 2, '.', ','); ?></td>
+                    <td
+                        style='<?php echo ($schedule->status=="Active")?"background-color: Green; color:white;" :(($schedule->status=="Upcoming")?"background-color: orange; color:white;":"background-color: black; color:white" ); ?>'>
+                        <?php echo $schedule->status; ?></td>
+                </tr>
+                <?php } }}  ?>
+                <tr>
+                    <td colspan="5" style="border-bottom: solid 1px;"><br></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><b><b>Trip Totals</b></b></td>
+                    <td><b><?php echo $trip_bookings_no; ?></b></td>
+                    <td><b><?php echo "M ".number_format((float)$trip_expected_amount, 2, '.', ','); ?></b></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<?php   }
     wp_die(); // required. to end AJAX request.
 }
 /* Load Ajax Callback to "wp_ajax_*" Action Hook */
@@ -1575,20 +1788,20 @@ add_action( 'wp_ajax_nopriv_terminate_trip_action', 'terminate_trip_action_callb
 function trip_status_update_action_callback(){
      $shipment_status = sanitize_text_field($_POST['shipment_status']);
    ?>
-   <p>Current Status: <?php echo "<b>".$shipment_status."</b>"; ?></p>
-   <input type="hidden" id="trip_id" name="trip_id" value="<?php echo sanitize_text_field($_POST['trip_id']); ?>">
-   <input type="hidden" id="row_index" name="row_index" value="<?php echo sanitize_text_field($_POST['row_index']); ?>">
-   <label class="form-label"><?php esc_html_e('Select New Status:','wpcargo'); ?></label>
-   <select id="new_shipment_status" required name="new_shipment_status">
-        <option value="">-- Select One --</option>
-       <?php  $arr = array("Upcoming","Active","Closed");
+<p>Current Status: <?php echo "<b>".$shipment_status."</b>"; ?></p>
+<input type="hidden" id="trip_id" name="trip_id" value="<?php echo sanitize_text_field($_POST['trip_id']); ?>">
+<input type="hidden" id="row_index" name="row_index" value="<?php echo sanitize_text_field($_POST['row_index']); ?>">
+<label class="form-label"><?php esc_html_e('Select New Status:','wpcargo'); ?></label>
+<select id="new_shipment_status" required name="new_shipment_status">
+    <option value="">-- Select One --</option>
+    <?php  $arr = array("Upcoming","Active","Closed");
              foreach($arr AS $status){  ?>
-                <option <?php echo ( $shipment_status == $status) ? 'hidden' : '' ; ?> ><?php echo $status; ?></option>
-         <?php    }
+    <option <?php echo ( $shipment_status == $status) ? 'hidden' : '' ; ?>><?php echo $status; ?></option>
+    <?php    }
        ?>
-   </select>
-   <br><br>
- <?php wp_die(); // required. to end AJAX request.
+</select>
+<br><br>
+<?php wp_die(); // required. to end AJAX request.
 }
 add_action( 'wp_ajax_trip_status_update_action', 'trip_status_update_action_callback' );
 add_action( 'wp_ajax_nopriv_trip_status_update_action', 'trip_status_update_action_callback' );
@@ -1682,40 +1895,68 @@ function schedule_form_action_callback(){
         }
      echo $heading;
         ?><table class="form-table" style='border:solid 1px gray;'>
-            <input type="hidden" id="schedule_id" name="schedule_id" value="<?php echo $schedule_id; ?>">
-            <tr><th style="width:20%;">Schedule Name </th> <td style="width:70%;"><input style="width:50%;" type='text' id="schedule_name" name='schedule_name' value='<?php echo $schedule_name; ?>' placeholder="Name of Collection Schedule"></td></tr>
-            <tr><th style="width:20%;">Schedule City</th> <td style="width:80%;">
-              <select style="width:50%;" id="schedule_city" name="schedule_city">
-    			<option value="">--Select City--</option>
-    			<?php $cities = $wpdb->get_results( "SELECT id,city_name FROM countries_cities");
+    <input type="hidden" id="schedule_id" name="schedule_id" value="<?php echo $schedule_id; ?>">
+    <tr>
+        <th style="width:20%;">Schedule Name </th>
+        <td style="width:70%;"><input style="width:50%;" type='text' id="schedule_name" name='schedule_name'
+                value='<?php echo $schedule_name; ?>' placeholder="Name of Collection Schedule"></td>
+    </tr>
+    <tr>
+        <th style="width:20%;">Schedule City</th>
+        <td style="width:80%;">
+            <select style="width:50%;" id="schedule_city" name="schedule_city">
+                <option value="">--Select City--</option>
+                <?php $cities = $wpdb->get_results( "SELECT id,city_name FROM countries_cities");
                           foreach ( $cities as $city ) { ?>
-    				        <option value='<?php echo $city->id; ?>' <?php echo ($city->id==$schedule_city)? "selected": ""; ?> ><?php echo $city->city_name; ?></option>
-    			<?php } ?>
-              </select>
-            </td></tr>
-            <?php $temp = explode(' ',$schedule_datetime); $schedule_date = $temp[0]; $schedule_time = $temp[1];
+                <option value='<?php echo $city->id; ?>' <?php echo ($city->id==$schedule_city)? "selected": ""; ?>>
+                    <?php echo $city->city_name; ?></option>
+                <?php } ?>
+            </select>
+        </td>
+    </tr>
+    <?php $temp = explode(' ',$schedule_datetime); $schedule_date = $temp[0]; $schedule_time = $temp[1];
                   $temp = explode(' ',$late_cut_off_datetime); $late_threshold_date =  $temp[0]; $late_threshold_time = $temp[1];
                   $temp = explode(' ',$final_cut_off_datetime); $cut_off_date = $temp[0]; $cut_off_time = $temp[1];
              ?>
-            <tr><th style="width:20%;">Scheduled Date</th> <td style="width:80%;"><input style="width:50%;" type='date' id='schedule_date' name='schedule_date' value='<?php echo $schedule_date;?>' required><input type='time' id='schedule_time' name='schedule_time' value='<?php echo $schedule_time;?>' hidden></td></tr>
-            <?php if($current_form == "new_schedule_form") {  ?>
-                <tr><th style="width:20%;">Repeat Method</th> <td style="width:80%;">
-                    <select style="width:50%;" id="schedule_type" name="schedule_type" onchange="toggle_schedule_repeat(this)">
-                             <option>Once Off</option>
-                             <!--option>Daily</option-->
-                             <option>Weekly</option>
-                             <option>Monthly</option>
-                    </select>
-                </td></tr>
-            <?php } ?>
-            <tr id="repeat_times_tr" style="display: none;">
-                <th colspan="2">Repeat this schedule &nbsp;<input style="width:35%;" type='text' id="repeat_times" name="repeat_times" value="1"><b> times.</b></th>
-            </tr>
-            <tr><th style="width:20%;">Cut Time</th><td style="width:80%;"><input style="width:30%; padding: 0px;" type='date' id='late_threshold_date' name='late_threshold_date' value='<?php echo $late_threshold_date; ?>'><input style="width:20%; padding: 0px;" type='time' id='late_threshold_time' name='late_threshold_time' value='<?php echo $late_threshold_time; ?>'></td></tr>
-            <tr><th style="width:20%;">Final Cut Time</th><td style="width:80%;"><input style="width:30%; padding: 0px;" type='date' id='cut_off_date' name='cut_off_date' value='<?php echo $cut_off_date; ?>'><input style="width:20%; padding: 0px;" type='time' id='cut_off_time' name='cut_off_time' value='<?php echo $cut_off_time; ?>'> </td></tr>
+    <tr>
+        <th style="width:20%;">Scheduled Date</th>
+        <td style="width:80%;"><input style="width:50%;" type='date' id='schedule_date' name='schedule_date'
+                value='<?php echo $schedule_date;?>' required><input type='time' id='schedule_time' name='schedule_time'
+                value='<?php echo $schedule_time;?>' hidden></td>
+    </tr>
+    <?php if($current_form == "new_schedule_form") {  ?>
+    <tr>
+        <th style="width:20%;">Repeat Method</th>
+        <td style="width:80%;">
+            <select style="width:50%;" id="schedule_type" name="schedule_type" onchange="toggle_schedule_repeat(this)">
+                <option>Once Off</option>
+                <!--option>Daily</option-->
+                <option>Weekly</option>
+                <option>Monthly</option>
+            </select>
+        </td>
+    </tr>
+    <?php } ?>
+    <tr id="repeat_times_tr" style="display: none;">
+        <th colspan="2">Repeat this schedule &nbsp;<input style="width:35%;" type='text' id="repeat_times"
+                name="repeat_times" value="1"><b> times.</b></th>
+    </tr>
+    <tr>
+        <th style="width:20%;">Cut Time</th>
+        <td style="width:80%;"><input style="width:30%; padding: 0px;" type='date' id='late_threshold_date'
+                name='late_threshold_date' value='<?php echo $late_threshold_date; ?>'><input
+                style="width:20%; padding: 0px;" type='time' id='late_threshold_time' name='late_threshold_time'
+                value='<?php echo $late_threshold_time; ?>'></td>
+    </tr>
+    <tr>
+        <th style="width:20%;">Final Cut Time</th>
+        <td style="width:80%;"><input style="width:30%; padding: 0px;" type='date' id='cut_off_date' name='cut_off_date'
+                value='<?php echo $cut_off_date; ?>'><input style="width:20%; padding: 0px;" type='time'
+                id='cut_off_time' name='cut_off_time' value='<?php echo $cut_off_time; ?>'> </td>
+    </tr>
 
-        </table>
-       <?php
+</table>
+<?php
     wp_die(); // required. to end AJAX request.
 }
 /* Load Ajax Callback to "wp_ajax_*" Action Hook */
@@ -1896,40 +2137,90 @@ function schedule_report_action_callback(){
                                 <td class='last'><p style='".$color.";' >".$status."<br>".get_latest_substatus(get_post_meta( $post_id, 'wpcargo_shipments_update', true ))."</p></td>
                              </tr> ";
           } ?>
-        <div>
-          <div class=" wpcargo-row">
-            <div class="wpcargo-col-md-5"><br>
-              <table class="report-table">
-                <tr><td colspan="2" style="font-weight: 700; border: none; border-bottom: solid 1px; padding-bottom: 5px;">Schedule Details</td></tr>
-                <tr><td style="width:45%; font-weight: 700;">Schedule Name :</td> <td style="width:50%;"><?php echo $schedule->schedule_name; ?></td></tr>
-                <tr><td style="width:45%; font-weight: 700;">Schedule City :</td> <td style="width:50%;"><?php echo $schedule_city[0]->city_name; ?></td></tr>
+<div>
+    <div class=" wpcargo-row">
+        <div class="wpcargo-col-md-5"><br>
+            <table class="report-table">
+                <tr>
+                    <td colspan="2"
+                        style="font-weight: 700; border: none; border-bottom: solid 1px; padding-bottom: 5px;">Schedule
+                        Details</td>
+                </tr>
+                <tr>
+                    <td style="width:45%; font-weight: 700;">Schedule Name :</td>
+                    <td style="width:50%;"><?php echo $schedule->schedule_name; ?></td>
+                </tr>
+                <tr>
+                    <td style="width:45%; font-weight: 700;">Schedule City :</td>
+                    <td style="width:50%;"><?php echo $schedule_city[0]->city_name; ?></td>
+                </tr>
                 <?php $temp = explode(' ',$schedule->schedule_date); $schedule_date = $temp[0]; $schedule_time = $temp[1];  ?>
-                <tr><td style="width:45%; font-weight: 700;">Schedule Date :</td> <td style="width:50%;"><?php echo date_format(date_create($schedule_date),'d-M-Y');?></td></tr>
-                <tr><td style="width:45%; font-weight: 700;">Cut-off :</td> <td style="width:50%;"><?php echo date_format(date_create($schedule->late_cut_off),'d-M-Y H:i'); ?></td></tr>
-                <tr><td style="width:45%; font-weight: 700;">Final Cut-off :</td> <td style="width:50%;"><?php echo date_format(date_create($schedule->final_cut_off),'d-M-Y H:i'); ?></td></tr>
+                <tr>
+                    <td style="width:45%; font-weight: 700;">Schedule Date :</td>
+                    <td style="width:50%;"><?php echo date_format(date_create($schedule_date),'d-M-Y');?></td>
+                </tr>
+                <tr>
+                    <td style="width:45%; font-weight: 700;">Cut-off :</td>
+                    <td style="width:50%;"><?php echo date_format(date_create($schedule->late_cut_off),'d-M-Y H:i'); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:45%; font-weight: 700;">Final Cut-off :</td>
+                    <td style="width:50%;"><?php echo date_format(date_create($schedule->final_cut_off),'d-M-Y H:i'); ?>
+                    </td>
+                </tr>
                 <!--tr><td style="width:45%; font-weight: 700;">Total Bookings :</td> <td style="width:50%;"><?php echo $bookings_no;?></td></tr>
                 <tr><td style="width:45%; font-weight: 700;">Total Cost :</td> <td style="width:50%;">M <?php echo number_format($expected_amount,2,",",".");?></td></tr-->
-              </table>
-              <br><br>
+            </table>
+            <br><br>
 
-              <table class="report-table-bookings" style="width: 80%;">
-                <tr><td colspan="3" style="font-weight: 700; border: none; border-bottom: solid 1px; padding-bottom: 5px;">Summary</td></tr>
-                <tr><td><b>Activity</b></td><td><b>Number</b></td><td><b>Amount</b></td></tr>
-                <tr><td>Collection</td><td><?php echo $number_collection;?></td><td>M <?php echo number_format($amount_collection,2,",",".");?></td></tr>
-                <tr><td>Delivery</td><td><?php echo $number_delivery;?></td><td>M <?php echo number_format($amount_delivery,2,",",".");?></td></tr>
-                <tr><td><b>Total</b></td><td><b><?php echo $bookings_no;?></b></td><td><b>M <?php echo number_format($expected_amount,2,",",".");?></b></td></tr>
-              </table>
-            </div>
-            <div class="wpcargo-col-md-6"><br>
-              <table class="report-table-bookings">
-                <tr><td colspan="4" style="font-weight: 700; border: none; border-bottom: solid 1px; padding-bottom: 5px;">Bookings</td></tr>
-                <tr><td style="width:30%; font-weight: 700;">Booking Reference</td> <td style="width:30%; font-weight: 700;">Shipper</td> <td style="width:20%; font-weight: 700;">Service Type</td><td class="last" style="width:20%; font-weight: 700;">Status</td></tr>
-                <?php echo $table_rows; ?>
-                </table>
-            </div>
-          </div>
+            <table class="report-table-bookings" style="width: 80%;">
+                <tr>
+                    <td colspan="3"
+                        style="font-weight: 700; border: none; border-bottom: solid 1px; padding-bottom: 5px;">Summary
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Activity</b></td>
+                    <td><b>Number</b></td>
+                    <td><b>Amount</b></td>
+                </tr>
+                <tr>
+                    <td>Collection</td>
+                    <td><?php echo $number_collection;?></td>
+                    <td>M <?php echo number_format($amount_collection,2,",",".");?></td>
+                </tr>
+                <tr>
+                    <td>Delivery</td>
+                    <td><?php echo $number_delivery;?></td>
+                    <td>M <?php echo number_format($amount_delivery,2,",",".");?></td>
+                </tr>
+                <tr>
+                    <td><b>Total</b></td>
+                    <td><b><?php echo $bookings_no;?></b></td>
+                    <td><b>M <?php echo number_format($expected_amount,2,",",".");?></b></td>
+                </tr>
+            </table>
         </div>
-       <?php   }
+        <div class="wpcargo-col-md-6"><br>
+            <table class="report-table-bookings">
+                <tr>
+                    <td colspan="4"
+                        style="font-weight: 700; border: none; border-bottom: solid 1px; padding-bottom: 5px;">Bookings
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:30%; font-weight: 700;">Booking Reference</td>
+                    <td style="width:30%; font-weight: 700;">Shipper</td>
+                    <td style="width:20%; font-weight: 700;">Service Type</td>
+                    <td class="last" style="width:20%; font-weight: 700;">Status</td>
+                </tr>
+                <?php echo $table_rows; ?>
+            </table>
+        </div>
+    </div>
+</div>
+<?php   }
     wp_die(); // required. to end AJAX request.
 }
 /* Load Ajax Callback to "wp_ajax_*" Action Hook */
@@ -2048,23 +2339,25 @@ add_action( 'wp_ajax_nopriv_duplicate_schedule_action', 'duplicate_schedule_acti
 function schedule_single_action_callback(){
     global $wpdb;
     $selected_schedule = sanitize_text_field(trim($_POST['selected_schedule'])); ?>
-    <h1>
-        <a style="margin-right:40px;" class="button" href="<?php echo admin_url().'admin.php?page=collection-schedules'; ?>" >Back</a>
-        <?php echo $selected_schedule." Settings"; ?></h1>
-       <div>
-           <table class="viewTable" id="single_schedule_table_list">
-            <thead>
-             <tr>
-               <th style=" text-align: left;width: 14%;"><?php esc_html_e('Schedule Name', 'wpcargo'); ?></th>
-               <th style=" text-align: left;width: 9%;"><?php esc_html_e('Date', 'wpcargo'); ?></th>
-               <th style=" text-align: left;width: 9%;"><?php esc_html_e('Cut-off', 'wpcargo'); ?></th>
-               <th style=" text-align: left;width: 9%;"><?php esc_html_e('Final Cut-off', 'wpcargo'); ?></th>
-               <th style=" text-align: left;width: 7%;"><?php esc_html_e('Bookings', 'wpcargo'); ?></th>
-               <th style=" text-align: left;width: 9%;"><?php esc_html_e('Status', 'wpcargo'); ?></th>
-              </tr>
-             </thead>
-            <tbody>
-             <?php
+<h1>
+    <a style="margin-right:40px;" class="button"
+        href="<?php echo admin_url().'admin.php?page=collection-schedules'; ?>">Back</a>
+    <?php echo $selected_schedule." Settings"; ?>
+</h1>
+<div>
+    <table class="viewTable" id="single_schedule_table_list">
+        <thead>
+            <tr>
+                <th style=" text-align: left;width: 14%;"><?php esc_html_e('Schedule Name', 'wpcargo'); ?></th>
+                <th style=" text-align: left;width: 9%;"><?php esc_html_e('Date', 'wpcargo'); ?></th>
+                <th style=" text-align: left;width: 9%;"><?php esc_html_e('Cut-off', 'wpcargo'); ?></th>
+                <th style=" text-align: left;width: 9%;"><?php esc_html_e('Final Cut-off', 'wpcargo'); ?></th>
+                <th style=" text-align: left;width: 7%;"><?php esc_html_e('Bookings', 'wpcargo'); ?></th>
+                <th style=" text-align: left;width: 9%;"><?php esc_html_e('Status', 'wpcargo'); ?></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
             $schedules = $wpdb->get_results( "SELECT * FROM collection_schedules WHERE schedule_name='$selected_schedule' ORDER BY schedule_date DESC ");
             $i =0;
 
@@ -2076,10 +2369,10 @@ function schedule_single_action_callback(){
                                              AND ((tbl2.meta_key LIKE 'collection_schedule_id' AND tbl2.meta_value LIKE '$schedule_id')
                                                   OR (tbl2.meta_key LIKE 'delivery_schedule_id' AND tbl2.meta_value LIKE '$schedule_id'))");
                  ?>
-                 <tr id="<?php echo $schedule_id; ?>">
-                     <td style='border-top:1px solid;'>
-                       <?php echo $schedule->schedule_name; ?>
-                       <br><span>
+            <tr id="<?php echo $schedule_id; ?>">
+                <td style='border-top:1px solid;'>
+                    <?php echo $schedule->schedule_name; ?>
+                    <br><span>
                         <?php  $acts = array();
                             $acts[] = '<a href="#" id="schedule_report" onclick="switch_links(this,'.$i.','.$schedule_id.')">View</a>';
                             if($schedule->status!="Closed") $acts[] = '<a href="#" id="edit_schedule" onclick="switch_links(this,'.$i.','.$schedule_id.')">Edit</a>';
@@ -2088,23 +2381,28 @@ function schedule_single_action_callback(){
                           $acts = implode("&nbsp;|&nbsp;",$acts);
                           print($acts);
                           ?>
-                       </span>
-                     </td>
-                     <td style='border-top:1px solid;'><span style="display:none"><?php echo strtotime($schedule->schedule_date); ?> </span> <?php echo date_format(date_create($schedule->schedule_date),'d-M-Y'); ?> </td>
-                     <td style="text-align: left;border-top:1px solid;"><?php echo date_format(date_create($schedule->late_cut_off),'d-M-Y H:i'); ?></td>
-                     <td style="text-align: left;border-top:1px solid;"><?php echo date_format(date_create($schedule->final_cut_off),'d-M-Y H:i'); ?></td>
-                     <td style='border-top:1px solid;'><?php echo $bookings; ?></td>
-                     <td style='border-top:1px solid; <?php echo ($schedule->status=="Active")?"background-color: Green; color:white;" :(($schedule->status=="Upcoming")?"background-color: orange; color:white;":"background-color: black; color:white" ); ?>'>
-                         <p id='status_text'><?php echo $schedule->status; ?></p>
-                    </td>
+                    </span>
+                </td>
+                <td style='border-top:1px solid;'><span
+                        style="display:none"><?php echo strtotime($schedule->schedule_date); ?> </span>
+                    <?php echo date_format(date_create($schedule->schedule_date),'d-M-Y'); ?> </td>
+                <td style="text-align: left;border-top:1px solid;">
+                    <?php echo date_format(date_create($schedule->late_cut_off),'d-M-Y H:i'); ?></td>
+                <td style="text-align: left;border-top:1px solid;">
+                    <?php echo date_format(date_create($schedule->final_cut_off),'d-M-Y H:i'); ?></td>
+                <td style='border-top:1px solid;'><?php echo $bookings; ?></td>
+                <td
+                    style='border-top:1px solid; <?php echo ($schedule->status=="Active")?"background-color: Green; color:white;" :(($schedule->status=="Upcoming")?"background-color: orange; color:white;":"background-color: black; color:white" ); ?>'>
+                    <p id='status_text'><?php echo $schedule->status; ?></p>
+                </td>
 
-                 </tr>
-               <?php $i++; }
+            </tr>
+            <?php $i++; }
              ?>
-           </tbody>
-         </table>
-        </div>
-  <?php   wp_die(); // required. to end AJAX request.
+        </tbody>
+    </table>
+</div>
+<?php   wp_die(); // required. to end AJAX request.
 }
 /* Load Ajax Callback to "wp_ajax_*" Action Hook */
 add_action( 'wp_ajax_schedule_single_action', 'schedule_single_action_callback' );
@@ -2119,39 +2417,52 @@ function main_schedule_edit_form_action_callback(){
     $schedule_name = sanitize_text_field(trim($_POST['schedule_name']));
     $schedule_city = sanitize_text_field(trim($_POST['schedule_city']));   ?>
 
-    <h1><?php echo $schedule_name." Details Update"; ?></h1>
-        <div class="form-table">
-            <div style="width:100%;"><label style="width:40%;"><b>Schedule Name: </b>&nbsp;</label> <input style="width:55%; display: inline-block;" type='text' id="schedule_name" name='schedule_name' value='<?php echo $schedule_name; ?>' placeholder="Name of Collection Schedule"></div>
-            <div style="width:100%;"><label style="width:40%;"><b>Schedule City:  </b>&nbsp;</label>
-              <select style="width:55%;" id="schedule_city" name="schedule_city">
-    			<option value="">--Select City--</option>
-    			<?php $cities = $wpdb->get_results( "SELECT id,city_name FROM countries_cities");
+<h1><?php echo $schedule_name." Details Update"; ?></h1>
+<div class="form-table">
+    <div style="width:100%;"><label style="width:40%;"><b>Schedule Name: </b>&nbsp;</label> <input
+            style="width:55%; display: inline-block;" type='text' id="schedule_name" name='schedule_name'
+            value='<?php echo $schedule_name; ?>' placeholder="Name of Collection Schedule"></div>
+    <div style="width:100%;"><label style="width:40%;"><b>Schedule City: </b>&nbsp;</label>
+        <select style="width:55%;" id="schedule_city" name="schedule_city">
+            <option value="">--Select City--</option>
+            <?php $cities = $wpdb->get_results( "SELECT id,city_name FROM countries_cities");
                           foreach ( $cities as $city ) { ?>
-    				        <option value='<?php echo $city->id; ?>' <?php echo ($city->id==$schedule_city)? "selected": ""; ?> ><?php echo $city->city_name; ?></option>
-    			<?php } ?>
-              </select>
-            </div>
-            <br>
-        </div>
-        <label><b>Collection Schedule Instances to edit</b></label>
-        <table class="form-table" style='border:solid 1px gray;'>
-            <tr><td>Date</td><td>Cut Time</td><td>Final Cut Time</td> </tr>
-            <?php
+            <option value='<?php echo $city->id; ?>' <?php echo ($city->id==$schedule_city)? "selected": ""; ?>>
+                <?php echo $city->city_name; ?></option>
+            <?php } ?>
+        </select>
+    </div>
+    <br>
+</div>
+<label><b>Collection Schedule Instances to edit</b></label>
+<table class="form-table" style='border:solid 1px gray;'>
+    <tr>
+        <td>Date</td>
+        <td>Cut Time</td>
+        <td>Final Cut Time</td>
+    </tr>
+    <?php
               $instant_schedules = $wpdb->get_results( "SELECT * FROM collection_schedules WHERE schedule_name = '$schedule_name' AND status = 'Upcoming' ORDER BY schedule_date ASC");
               foreach ( $instant_schedules as $instant_schedule ) {
                   $temp = explode(' ',$instant_schedule->schedule_date); $schedule_date = $temp[0]; $schedule_time = $temp[1];
                   $temp = explode(' ',$instant_schedule->late_cut_off); $late_threshold_date =  $temp[0]; $late_threshold_time = $temp[1];
                   $temp = explode(' ',$instant_schedule->final_cut_off); $cut_off_date = $temp[0]; $cut_off_time = $temp[1];
                ?>
-                  <input type="hidden" id="schedule_id" name="schedule_id[]" value="<?php echo $instant_schedule->id; ?>">
-                  <tr><td><input type='date' id='schedule_date' name='schedule_date[]' value='<?php echo $schedule_date;?>' required><input type='time' id='schedule_time' name='schedule_time[]' value='<?php echo $schedule_time;?>' hidden></td>
-                      <td><input type='date' id='late_threshold_date' name='late_threshold_date[]' value='<?php echo $late_threshold_date; ?>'><input type='time' id='late_threshold_time' name='late_threshold_time[]' value='<?php echo $late_threshold_time; ?>'></td>
-                      <td><input type='date' id='cut_off_date' name='cut_off_date[]' value='<?php echo $cut_off_date; ?>'><input type='time' id='cut_off_time' name='cut_off_time[]' value='<?php echo $cut_off_time; ?>'></td>
-                  </tr>
-              <?php  }
+    <input type="hidden" id="schedule_id" name="schedule_id[]" value="<?php echo $instant_schedule->id; ?>">
+    <tr>
+        <td><input type='date' id='schedule_date' name='schedule_date[]' value='<?php echo $schedule_date;?>'
+                required><input type='time' id='schedule_time' name='schedule_time[]'
+                value='<?php echo $schedule_time;?>' hidden></td>
+        <td><input type='date' id='late_threshold_date' name='late_threshold_date[]'
+                value='<?php echo $late_threshold_date; ?>'><input type='time' id='late_threshold_time'
+                name='late_threshold_time[]' value='<?php echo $late_threshold_time; ?>'></td>
+        <td><input type='date' id='cut_off_date' name='cut_off_date[]' value='<?php echo $cut_off_date; ?>'><input
+                type='time' id='cut_off_time' name='cut_off_time[]' value='<?php echo $cut_off_time; ?>'></td>
+    </tr>
+    <?php  }
             ?>
-         </table>
-       <?php
+</table>
+<?php
     wp_die(); // required. to end AJAX request.
 }
 /* Load Ajax Callback to "wp_ajax_*" Action Hook */
@@ -2170,11 +2481,11 @@ function schedule_dates_action_callback(){
        $collection_schedule_id = get_post_meta($post_id, 'collection_schedule_id', true);
        $delivery_schedule_id = get_post_meta($post_id, 'delivery_schedule_id', true);
  ?>
-     <label class="form-label"><?php esc_html_e('Select Date:','wpcargo'); ?></label>
-     <input type="hidden" id="schedule_field_name" value="<?php echo $element; ?>">
-      	<select id="shipment_trip_id" required name="shipment_trip_id">
-          <option value="">-- Select One --</option>
-       <?php
+<label class="form-label"><?php esc_html_e('Select Date:','wpcargo'); ?></label>
+<input type="hidden" id="schedule_field_name" value="<?php echo $element; ?>">
+<select id="shipment_trip_id" required name="shipment_trip_id">
+    <option value="">-- Select One --</option>
+    <?php
           $selected_schedule = ($element == "collection_schedule_id") ? $collection_schedule_id : $delivery_schedule_id;
           $city  = ($element == "collection_schedule_id") ? get_post_meta($post_id, 'wpcargo_origin_city_field', true) : get_post_meta($post_id, 'wpcargo_destination_city', true);
           $qr = $wpdb->get_results("SELECT id FROM countries_cities WHERE city_name = '$city' ");
@@ -2209,9 +2520,9 @@ function schedule_dates_action_callback(){
          // }
 
        ?>
-        </select>
-         <br>
-  <?php  wp_die(); // required. to end AJAX request.
+</select>
+<br>
+<?php  wp_die(); // required. to end AJAX request.
 }
 /* Load Ajax Callback to "wp_ajax_*" Action Hook */
 add_action( 'wp_ajax_schedule_dates_action', 'schedule_dates_action_callback' );
@@ -2301,38 +2612,57 @@ function driver_trip_singleview_action_callback(){
      $trip_id = sanitize_text_field($_POST['trip_id']);
      $trips = $wpdb->get_results( "SELECT * FROM trips WHERE id='$trip_id'");
         ?>
-        <br>
-            <table>
-              <tr><td>Trip Name : </td><td>&nbsp;<?php echo $trips[0]->trip_name; ?></td></tr>
-              <tr><td>Trip Date : </td><td>&nbsp;<?php echo date_format(date_create($trips[0]->trip_date),'d-M-Y'); ?></td></tr>
-              <tr><td>Assigned Drivers : </td><td>&nbsp;<?php echo unserialize($trips[0]->drivers); ?></td></tr>
-              <tr><td>Status : </td><td>&nbsp;<span id="trip_status"><?php echo $trips[0]->status; ?></span>&nbsp;&nbsp;
+<br>
+<table>
+    <tr>
+        <td>Trip Name : </td>
+        <td>&nbsp;<?php echo $trips[0]->trip_name; ?></td>
+    </tr>
+    <tr>
+        <td>Trip Date : </td>
+        <td>&nbsp;<?php echo date_format(date_create($trips[0]->trip_date),'d-M-Y'); ?></td>
+    </tr>
+    <tr>
+        <td>Assigned Drivers : </td>
+        <td>&nbsp;<?php echo unserialize($trips[0]->drivers); ?></td>
+    </tr>
+    <tr>
+        <td>Status : </td>
+        <td>&nbsp;<span id="trip_status"><?php echo $trips[0]->status; ?></span>&nbsp;&nbsp;
 
-                  <button id="trip_update_link" class="link" style='border:solid 1px white; color: white; <?php echo ($trips[0]->status=="Closed")?"display:none;" : "" ?> background:<?php echo ($trips[0]->status=="Upcoming")?"green" : "red"; ?>' onclick="update_trip_state(this);" id="<?php echo $trip_id; ?>"><?php echo ($trips[0]->status=="Upcoming")?"Activate Trip": "End Trip"; ?></button>
-              </td></tr>
-            </table>
-            <?php
+            <button id="trip_update_link" class="link"
+                style='border:solid 1px white; color: white; <?php echo ($trips[0]->status=="Closed")?"display:none;" : "" ?> background:<?php echo ($trips[0]->status=="Upcoming")?"green" : "red"; ?>'
+                onclick="update_trip_state(this);"
+                id="<?php echo $trip_id; ?>"><?php echo ($trips[0]->status=="Upcoming")?"Activate Trip": "End Trip"; ?></button>
+        </td>
+    </tr>
+</table>
+<?php
             $trip_cities = unserialize($trips[0]->city_schedules);
             $i=0;
             if(is_array($trip_cities)) {   ?>
-            <div class=" wpcargo-row" style="padding-top: 20px;">
-                <div class="wpcargo-col-md-1">
-                    <button class="back" id="back_btn" onclick="trip_singleview('back_btn');" > <?php echo "Back"; ?> </button>
-                </div>
-                <div class="wpcargo-col-md-11">
-                  <label class="header_label">
-                     <span><?php echo $trips[0]->trip_name; ?></span>
-                     <input type="hidden" name="trip_id" id="trip_id" value="<?php echo $trip_id; ?>" >
-                  </label>
-                 <div> <br>
-                    <table class="datatable" id="bookings_table_list" style=" width: 100%; font-size: 14px;">
-                     <thead>
-                          <tr  class='border_bottom'>
-                             <th>City</th><th>Schedule Date</th><th>Awaiting</th><th>Failed</th><th>Successful</th>
-                          </tr>
-                     </thead>
-                     <tbody>
-                       <?php
+<div class=" wpcargo-row" style="padding-top: 20px;">
+    <div class="wpcargo-col-md-1">
+        <button class="back" id="back_btn" onclick="trip_singleview('back_btn');"> <?php echo "Back"; ?> </button>
+    </div>
+    <div class="wpcargo-col-md-11">
+        <label class="header_label">
+            <span><?php echo $trips[0]->trip_name; ?></span>
+            <input type="hidden" name="trip_id" id="trip_id" value="<?php echo $trip_id; ?>">
+        </label>
+        <div> <br>
+            <table class="datatable" id="bookings_table_list" style=" width: 100%; font-size: 14px;">
+                <thead>
+                    <tr class='border_bottom'>
+                        <th>City</th>
+                        <th>Schedule Date</th>
+                        <th>Awaiting</th>
+                        <th>Failed</th>
+                        <th>Successful</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
                         foreach($trip_cities AS $trip_city){
                            $schedule_city_id = $trip_city['schedule_city'];
                            $schedule_city = $wpdb->get_results( "SELECT city_name FROM `countries_cities` WHERE id = '".$schedule_city_id."' ");
@@ -2342,28 +2672,30 @@ function driver_trip_singleview_action_callback(){
                            $schedule_summary =  schedule_summary($schedule_id,$trip_id,"active");
 
                         ?>
-                         <tr style="margin: 2px auto;" class='clickable-row border_bottom' onclick="driver_city_singleview(this);" id="<?php echo $schedule_id; ?>" data-schedule_city="<?php echo $schedule_city[0]->city_name; ?>">
-                             <td><?php echo $schedule_city[0]->city_name; ?></td>
-                             <td><?php echo date_format(date_create($selected_schedule[0]->schedule_date),'d-M-Y'); ?></td>
-                             <td><?php echo $schedule_summary['num_of_awaiting']; ?></td>
-                             <td><?php echo $schedule_summary['num_of_failed']; ?></td>
-                             <td><?php echo $schedule_summary['num_of_complete']; ?></td>
-                         </tr>
-                         <!--button style="width: 90%; color: black; margin: 2px auto;" onclick="driver_city_singleview(this);" id="<?php echo $schedule_id; ?>" name="<?php echo $schedule_city[0]->city_name; ?>"> <?php echo $schedule_city[0]->city_name; ?></button-->
+                    <tr style="margin: 2px auto;" class='clickable-row border_bottom'
+                        onclick="driver_city_singleview(this);" id="<?php echo $schedule_id; ?>"
+                        data-schedule_city="<?php echo $schedule_city[0]->city_name; ?>">
+                        <td><?php echo $schedule_city[0]->city_name; ?></td>
+                        <td><?php echo date_format(date_create($selected_schedule[0]->schedule_date),'d-M-Y'); ?></td>
+                        <td><?php echo $schedule_summary['num_of_awaiting']; ?></td>
+                        <td><?php echo $schedule_summary['num_of_failed']; ?></td>
+                        <td><?php echo $schedule_summary['num_of_complete']; ?></td>
+                    </tr>
+                    <!--button style="width: 90%; color: black; margin: 2px auto;" onclick="driver_city_singleview(this);" id="<?php echo $schedule_id; ?>" name="<?php echo $schedule_city[0]->city_name; ?>"> <?php echo $schedule_city[0]->city_name; ?></button-->
 
-                     <?php $i++; } ?>
-                     </tbody>
-                     <tfoot>
-                     </tfoot>
-                    </table>
-                   </div>
-                </div>
-            </div>
-          <?php }
+                    <?php $i++; } ?>
+                </tbody>
+                <tfoot>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+<?php }
           else echo "This trip has no cities defined";
     ?>
 
-    <?php
+<?php
     wp_die(); // required. to end AJAX request.
 }
 add_action( 'wp_ajax_driver_trip_singleview_action', 'driver_trip_singleview_action_callback' );
@@ -2378,27 +2710,33 @@ function driver_city_singleview_action_callback(){
      $schedule_id = sanitize_text_field($_POST['schedule_id']);
      $schedule_city = sanitize_text_field($_POST['schedule_city']);
     ?>
-  <div class=" wpcargo-row" style="padding-top: 20px;">
+<div class=" wpcargo-row" style="padding-top: 20px;">
     <div class="wpcargo-col-md-1">
-       <button class="back" id="back_btn" onclick="trip_singleview('<?php echo $trip_id; ?>');"> <?php echo "Back"; ?> </button>
+        <button class="back" id="back_btn" onclick="trip_singleview('<?php echo $trip_id; ?>');"> <?php echo "Back"; ?>
+        </button>
     </div>
     <div class="wpcargo-col-md-11">
         <label class="header_label">
-             <?php echo $schedule_city; ?> Bookings<span></span>
-         </label>
+            <?php echo $schedule_city; ?> Bookings<span></span>
+        </label>
         <input type="hidden" name="trip_id" id="trip_id" value="<?php echo $trip_id; ?>">
-        <input type="hidden" name="schedule_city" id="schedule_city" value="<?php echo $schedule_city; ?>" >
-        <input type="hidden" name="schedule_id" id="schedule_id" value="<?php echo $schedule_id; ?>" >
+        <input type="hidden" name="schedule_city" id="schedule_city" value="<?php echo $schedule_city; ?>">
+        <input type="hidden" name="schedule_id" id="schedule_id" value="<?php echo $schedule_id; ?>">
 
-      <br>
-      <table class="datatable" id="bookings_table_list" style=" width: 100%; font-size: 14px; margin-top: 20px;">
-       <thead>
-          <tr  class='border_bottom'>
-            <th style="width: 30px;">#</th><th>Booking Reference</th><th>Activity</th><th class='collapse1'>Address Type</th><th class='addr'>Address</th><th>Status</th>
-          </tr>
-       </thead>
-       <tbody>
-         <?php
+        <br>
+        <table class="datatable" id="bookings_table_list" style=" width: 100%; font-size: 14px; margin-top: 20px;">
+            <thead>
+                <tr class='border_bottom'>
+                    <th style="width: 30px;">#</th>
+                    <th>Booking Reference</th>
+                    <th>Activity</th>
+                    <th class='collapse1'>Address Type</th>
+                    <th class='addr'>Address</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
 
           $bookings =  schedule_summary($schedule_id,$trip_id);
           $i=1;
@@ -2443,15 +2781,22 @@ function driver_city_singleview_action_callback(){
           if($i==1) echo "<tr><td colspan='2'>No bookings found</td></tr>";
 
         ?>
-        </tbody>
-        <tfoot>
-           <tr><th>#</th><th>Booking Reference</th><th>Activity</th><th class='collapse1'>Address Type</th><th class='addr'>Address</th><th class='collapse1'>Status</th> </tr>
-        </tfoot>
-      </table>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>#</th>
+                    <th>Booking Reference</th>
+                    <th>Activity</th>
+                    <th class='collapse1'>Address Type</th>
+                    <th class='addr'>Address</th>
+                    <th class='collapse1'>Status</th>
+                </tr>
+            </tfoot>
+        </table>
     </div>
-    </div>
-    <?php wp_reset_postdata(); ?>
-    <?php
+</div>
+<?php wp_reset_postdata(); ?>
+<?php
     wp_die(); // required. to end AJAX request.
 }
 add_action( 'wp_ajax_driver_city_singleview_action', 'driver_city_singleview_action_callback' );
@@ -2498,16 +2843,17 @@ function driver_booking_singleview_action_callback(){
         $activity_times = (wpcargo_get_postmeta($post_id, 'col_after_hours', true)=="on")? "Any time" : "Working Hours";
      }
     ?>
-  <div class=" wpcargo-row" style="padding-top: 20px;">
+<div class=" wpcargo-row" style="padding-top: 20px;">
     <div class="wpcargo-col-md-1">
-       <button class="back" onclick="driver_city_singleview(this);" id="<?php echo $schedule_id; ?>"  data-schedule_city="<?php echo $schedule_city; ?>"> <?php echo "Back"; ?></button>
+        <button class="back" onclick="driver_city_singleview(this);" id="<?php echo $schedule_id; ?>"
+            data-schedule_city="<?php echo $schedule_city; ?>"> <?php echo "Back"; ?></button>
     </div>
     <div class="wpcargo-col-md-11">
-      <div class=" wpcargo-row">
-        <div class="wpcargo-col-md-10 header_label header_labels_div" style="margin-top: 10px;">
-            <?php echo $schedule_city." Bookings (".wpcargo_get_postmeta($post_id, 'booking_reference', true).")";   ?>
-            <span style="float: right; margin-right: 10px; text-transform: capitalize">
-                Status: <?php
+        <div class=" wpcargo-row">
+            <div class="wpcargo-col-md-10 header_label header_labels_div" style="margin-top: 10px;">
+                <?php echo $schedule_city." Bookings (".wpcargo_get_postmeta($post_id, 'booking_reference', true).")";   ?>
+                <span style="float: right; margin-right: 10px; text-transform: capitalize">
+                    Status: <?php
                       $wpcargo_shipments_update = get_post_meta( $post_id, 'wpcargo_shipments_update', true );
                       if(strpos($wpcargo_shipments_update, $activity." Successful") != false){
                           $wpcargo_status = $activity." Successful"; }
@@ -2516,72 +2862,107 @@ function driver_booking_singleview_action_callback(){
                       else
                           $wpcargo_status = "Awaiting ".$activity;
                 echo $wpcargo_status; ?></span>
-         </div>
-         <div class="wpcargo-col-md-2" style="margin-top: 10px;">
-         <?php if(($wpcargo_status == "Awaiting ".$activity || $wpcargo_status == "Awaiting ".$activity) && $trip_status =="Active"){ ?>
-           <div id="success_btns">
-             <button class="link" style="border:solid 1px white; color: white; margin-left: 15px; margin-top: 10px; background: green;" onclick="update_shipment_state(this);" value="<?php echo $activity." Successful"; ?>" id="<?php echo $post_id; ?>">Success</button>
-             <button class="link" style="border:solid 1px white; color: white; margin-left: 15px; margin-top: 10px; background: red;" onclick="update_shipment_state(this);" value="<?php echo $activity." Failed"; ?>" id="<?php echo $post_id; ?>">Failed</button>
-           </div>
-         <?php } ?>
-        </div>
-        <input type="hidden" name="trip_id" id="trip_id" value="<?php echo $trip_id; ?>">
-        <input type="hidden" name="schedule_city" id="schedule_city" value="<?php echo $schedule_city; ?>" >
-        <input type="hidden" name="schedule_id" id="schedule_id" value="<?php echo $schedule_id; ?>" >
+            </div>
+            <div class="wpcargo-col-md-2" style="margin-top: 10px;">
+                <?php if(($wpcargo_status == "Awaiting ".$activity || $wpcargo_status == "Awaiting ".$activity) && $trip_status =="Active"){ ?>
+                <div id="success_btns">
+                    <button class="link"
+                        style="border:solid 1px white; color: white; margin-left: 15px; margin-top: 10px; background: green;"
+                        onclick="update_shipment_state(this);" value="<?php echo $activity." Successful"; ?>"
+                        id="<?php echo $post_id; ?>">Success</button>
+                    <button class="link"
+                        style="border:solid 1px white; color: white; margin-left: 15px; margin-top: 10px; background: red;"
+                        onclick="update_shipment_state(this);" value="<?php echo $activity." Failed"; ?>"
+                        id="<?php echo $post_id; ?>">Failed</button>
+                </div>
+                <?php } ?>
+            </div>
+            <input type="hidden" name="trip_id" id="trip_id" value="<?php echo $trip_id; ?>">
+            <input type="hidden" name="schedule_city" id="schedule_city" value="<?php echo $schedule_city; ?>">
+            <input type="hidden" name="schedule_id" id="schedule_id" value="<?php echo $schedule_id; ?>">
 
-     </div>
-     <br><br>
-    <div class=" wpcargo-row" style=" width: 95%; background: #444444; padding: 20px;">
-       <div class="wpcargo-col-md-4"><br>
-            <h5 class="wpcargo-label" style="text-transform: uppercase; text-decoration: underline;"><b><?php echo $activity." Details"; ?></b></h5>
-            <div class="wpcargo-label-info" id="label_info_receiver" style="font-size: 13px; ">
-                <b>Route: </b><p style=" margin-left: 15px; margin-bottom: 10px;"><?php echo get_post_meta( $post_id, 'wpcargo_origin_city_field', true)." to ".get_post_meta( $post_id, 'wpcargo_destination_city', true);?></p>
-                <b>Address Type: </b><p style=" margin-left: 15px; margin-bottom: 10px;"><?php echo $address_type;?></p>
-                <b><?php echo $activity;?> Address: </b>
-                   <?php  $name = ($activity=="Collection")? "shipper":"delivery";
+        </div>
+        <br><br>
+        <div class=" wpcargo-row" style=" width: 95%; background: #444444; padding: 20px;">
+            <div class="wpcargo-col-md-4"><br>
+                <h5 class="wpcargo-label" style="text-transform: uppercase; text-decoration: underline;">
+                    <b><?php echo $activity." Details"; ?></b>
+                </h5>
+                <div class="wpcargo-label-info" id="label_info_receiver" style="font-size: 13px; ">
+                    <b>Route: </b>
+                    <p style=" margin-left: 15px; margin-bottom: 10px;">
+                        <?php echo get_post_meta( $post_id, 'wpcargo_origin_city_field', true)." to ".get_post_meta( $post_id, 'wpcargo_destination_city', true);?>
+                    </p>
+                    <b>Address Type: </b>
+                    <p style=" margin-left: 15px; margin-bottom: 10px;"><?php echo $address_type;?></p>
+                    <b><?php echo $activity;?> Address: </b>
+                    <?php  $name = ($activity=="Collection")? "shipper":"delivery";
                           $addr = ($address_type=="Business Address")? "bussiness":"estate";
                           $full_address = (!empty(get_post_meta($post_id, 'wpcargo_'.$name.'_'.$addr, true)))
                               ? get_post_meta($post_id, 'wpcargo_'.$name.'_'.$addr, true).', '.get_post_meta($post_id, 'wpcargo_'.$name.'_address', true)
                               : get_post_meta($post_id, 'wpcargo_'.$name.'_address', true);
 
                    ?>
-                   <p style=" margin-left: 15px; margin-bottom: 10px;"><?php echo $full_address;?></p>
-                <b>Contact Person: </b><p style=" margin-left: 15px; margin-bottom: 10px;"><?php echo $contact_person;?></p>
-                <b>Contacts: </b><p style=" margin-left: 15px; margin-bottom: 10px;"><a href="tel:<?php echo $phone_no1;;?>"><?php echo $phone_no1;;?></a>
-                                        <?php echo ($phone_no1!="" && $phone_no2!="")?" / " :""; ?>
-                                        <a href="tel:<?php echo $phone_no2;?>"><?php echo $phone_no2;?></a></p>
+                    <p style=" margin-left: 15px; margin-bottom: 10px;"><?php echo $full_address;?></p>
+                    <b>Contact Person: </b>
+                    <p style=" margin-left: 15px; margin-bottom: 10px;"><?php echo $contact_person;?></p>
+                    <b>Contacts: </b>
+                    <p style=" margin-left: 15px; margin-bottom: 10px;"><a
+                            href="tel:<?php echo $phone_no1;;?>"><?php echo $phone_no1;;?></a>
+                        <?php echo ($phone_no1!="" && $phone_no2!="")?" / " :""; ?>
+                        <a href="tel:<?php echo $phone_no2;?>"><?php echo $phone_no2;?></a>
+                    </p>
+                </div>
             </div>
-        </div>
-        <div class="wpcargo-col-md-4"><br>
-             <h5 class="wpcargo-label" style="text-transform: uppercase; text-decoration: underline;"><b><?php esc_html_e('Booking Details', 'wpcargo'); ?></b></h5>
-             <div class="wpcargo-label-info" id="label_info_shipper" style="font-size: 13px; ">
-                <b>Description: </b><p style=" margin-left: 15px; margin-bottom: 10px;"><?php echo wpcargo_get_postmeta($post_id, 'goods_description', true);?></p>
-                <b><?php echo $activity; ?> Reference: </b><p style=" margin-left: 15px; margin-bottom: 10px;"><?php echo $activity_reference;?></p>
-                <b><?php echo $activity; ?> Instructions: </b><p style=" margin-left: 15px; margin-bottom: 10px;"><?php echo $activity_instructions;?></p>
-                <b><?php echo $activity; ?> Times: </b><p style=" margin-left: 15px; margin-bottom: 10px;"><?php echo $activity_times;?></p>
-             </div>
-        </div>
-    	<div class="wpcargo-col-md-4"><br>
-        	<h5 class="wpcargo-label" style="text-transform: uppercase; text-decoration: underline;"><b><?php esc_html_e('Shipper Details', 'wpcargo'); ?></b></h5>
-            <div class="wpcargo-label-info" id="label_info_origin" style="font-size: 13px; margin-bottom: 0px;">
-                <b>Names: </b><p style=" margin-left: 15px; margin-bottom: 10px;"><?php echo(!empty(wpcargo_get_postmeta($post_id, 'wpcargo_receiver_company', true)))? wpcargo_get_postmeta($post_id, 'wpcargo_receiver_company', true) : wpcargo_get_postmeta($post_id, 'wpcargo_receiver_fname', true).", ".wpcargo_get_postmeta($post_id, 'wpcargo_receiver_sname', true);?></p>
-                <b>Contacts: </b><p style=" margin-left: 15px; margin-bottom: 10px;"><a href="tel:<?php echo wpcargo_get_postmeta($post_id, 'wpcargo_receiver_phone_1', true);?>"><?php echo wpcargo_get_postmeta($post_id, 'wpcargo_receiver_phone_1', true);?></a>
-                                    <a href="tel:<?php echo wpcargo_get_postmeta($post_id, 'wpcargo_receiver_phone_2', true);?>"><?php echo wpcargo_get_postmeta($post_id, 'wpcargo_receiver_phone_2', true);?></a></p>
-            </div><br>
-            <h5 class="wpcargo-label" style="text-transform: uppercase; text-decoration: underline;"><b><?php esc_html_e('Extra info', 'wpcargo'); ?></b></h5>
-            <div class="wpcargo-label-info" id="label_info_shipper" style="font-size: 13px; ">
-                <b>Booking By: </b><p style=" margin-left: 15px; margin-bottom: 10px;"><?php
+            <div class="wpcargo-col-md-4"><br>
+                <h5 class="wpcargo-label" style="text-transform: uppercase; text-decoration: underline;">
+                    <b><?php esc_html_e('Booking Details', 'wpcargo'); ?></b>
+                </h5>
+                <div class="wpcargo-label-info" id="label_info_shipper" style="font-size: 13px; ">
+                    <b>Description: </b>
+                    <p style=" margin-left: 15px; margin-bottom: 10px;">
+                        <?php echo wpcargo_get_postmeta($post_id, 'goods_description', true);?></p>
+                    <b><?php echo $activity; ?> Reference: </b>
+                    <p style=" margin-left: 15px; margin-bottom: 10px;"><?php echo $activity_reference;?></p>
+                    <b><?php echo $activity; ?> Instructions: </b>
+                    <p style=" margin-left: 15px; margin-bottom: 10px;"><?php echo $activity_instructions;?></p>
+                    <b><?php echo $activity; ?> Times: </b>
+                    <p style=" margin-left: 15px; margin-bottom: 10px;"><?php echo $activity_times;?></p>
+                </div>
+            </div>
+            <div class="wpcargo-col-md-4"><br>
+                <h5 class="wpcargo-label" style="text-transform: uppercase; text-decoration: underline;">
+                    <b><?php esc_html_e('Shipper Details', 'wpcargo'); ?></b>
+                </h5>
+                <div class="wpcargo-label-info" id="label_info_origin" style="font-size: 13px; margin-bottom: 0px;">
+                    <b>Names: </b>
+                    <p style=" margin-left: 15px; margin-bottom: 10px;">
+                        <?php echo(!empty(wpcargo_get_postmeta($post_id, 'wpcargo_receiver_company', true)))? wpcargo_get_postmeta($post_id, 'wpcargo_receiver_company', true) : wpcargo_get_postmeta($post_id, 'wpcargo_receiver_fname', true).", ".wpcargo_get_postmeta($post_id, 'wpcargo_receiver_sname', true);?>
+                    </p>
+                    <b>Contacts: </b>
+                    <p style=" margin-left: 15px; margin-bottom: 10px;"><a
+                            href="tel:<?php echo wpcargo_get_postmeta($post_id, 'wpcargo_receiver_phone_1', true);?>"><?php echo wpcargo_get_postmeta($post_id, 'wpcargo_receiver_phone_1', true);?></a>
+                        <a
+                            href="tel:<?php echo wpcargo_get_postmeta($post_id, 'wpcargo_receiver_phone_2', true);?>"><?php echo wpcargo_get_postmeta($post_id, 'wpcargo_receiver_phone_2', true);?></a>
+                    </p>
+                </div><br>
+                <h5 class="wpcargo-label" style="text-transform: uppercase; text-decoration: underline;">
+                    <b><?php esc_html_e('Extra info', 'wpcargo'); ?></b>
+                </h5>
+                <div class="wpcargo-label-info" id="label_info_shipper" style="font-size: 13px; ">
+                    <b>Booking By: </b>
+                    <p style=" margin-left: 15px; margin-bottom: 10px;"><?php
                          $booking_type = get_post_meta( $post_id, 'booking_type', true);
                          $author = ($booking_type=="Online")? get_post_meta( $post_id, 'wpcargo_receiver_fname', true)." ".get_post_meta( $post_id, 'wpcargo_receiver_fname', true)
                          : get_the_author_meta( 'display_name' , get_post_field ('post_author', $post_id) );
                          echo $booking_type.", ".$author;
                          ?></p>
-            </div>
+                </div>
             </div>
         </div>
-      </div>
     </div>
-    <?php
+</div>
+<?php
     wp_die(); // required. to end AJAX request.
 }
 add_action( 'wp_ajax_driver_booking_singleview_action', 'driver_booking_singleview_action_callback' );
