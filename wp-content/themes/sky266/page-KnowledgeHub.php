@@ -1,4 +1,3 @@
-
 <?php
 /**
 *Template Name: KnowledgeHub
@@ -15,30 +14,32 @@
 
  get_header(); ?>
 
-    				<!-- Page-title -->
-    				<section class="page-title-section" style=" padding: 0px;">
-    					<div class="container"> <br>
-    						<ol class="breadcrumb">
-    						  <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a></li>
-    						  <li class="active">Knowledge Hub</li>
-    						</ol>
-    					</div>
-    				</section><!--/.page-title-section -->
+<!-- Page-title -->
+<section class="page-title-section" style=" padding: 0px;">
+    <div class="container"> <br>
+        <ol class="breadcrumb">
+            <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a></li>
+            <li class="active">Knowledge Hub</li>
+        </ol>
+    </div>
+</section>
+<!--/.page-title-section -->
 
-          <!--about-us-intro-wrap  -->
-          <section class="about-us-intro-wrap section-padding">
+<!--about-us-intro-wrap  -->
+<section class="about-us-intro-wrap section-padding">
 
-                          <?php if ( have_posts() ) : the_post(); ?>
-            <div class="container">
-              <div class="row">
-              </div><!-- /.row -->
-            </div><!-- /.container -->
-                      </section>
-                      <?php
+    <?php if ( have_posts() ) : the_post(); ?>
+    <div class="container">
+        <div class="row">
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</section>
+<?php
                          endif;
                        ?>
 
-      <br><br<br><br>
+<br>
+<br<br><br>
 
 
-<?php get_footer(); ?>
+    <?php get_footer(); ?>

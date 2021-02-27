@@ -11,11 +11,11 @@
  * @since Twenty Sixteen 1.0
  */
 
-get_header(); ?>     jksdfhauigbfuiawe
+get_header(); ?> jksdfhauigbfuiawe
 
 <div id="primary" class="content-area">
-	<main id="main" class="site-main" role="main">
-		<?php
+    <main id="main" class="site-main" role="main">
+        <?php
 		// Start the loop.
 		while ( have_posts() ) : the_post();
 
@@ -30,9 +30,9 @@ get_header(); ?>     jksdfhauigbfuiawe
 			// End of the loop.
 		endwhile;
 		?>
-	</main><!-- .site-main -->
+    </main><!-- .site-main -->
 
-	<?php get_sidebar( 'content-bottom' ); ?>
+    <?php get_sidebar( 'content-bottom' ); ?>
 
 </div><!-- .content-area -->
 

@@ -17,10 +17,10 @@
 
 
 
-   <?php  echo do_shortcode('[shipping_plugin]');  ?> 
-    session_start();
+<?php  echo do_shortcode('[shipping_plugin]');  ?>
+session_start();
 
 
 
 
-  <?php get_footer(); ?>
+<?php get_footer(); ?>

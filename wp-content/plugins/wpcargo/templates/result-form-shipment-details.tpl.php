@@ -40,35 +40,40 @@
 
 <div id="shipment-info" class="wpcargo-row detail-section" style="margin-bottom:40px;">
     <div class="wpcargo-col-md-12">
-    <p id="shipment-information-header" class="header-title"><strong><?php echo apply_filters('result_shipment_information', esc_html__('Shipment Information', 'wpcargo')); ?></strong></p></div>
+        <p id="shipment-information-header" class="header-title">
+            <strong><?php echo apply_filters('result_shipment_information', esc_html__('Shipment Information', 'wpcargo')); ?></strong>
+        </p>
+    </div>
     <div class="wpcargo-col-md-4">
-        <p class="wpcargo-label"><?php apply_filters( 'wpc_multiple_package_header', esc_html_e( 'Clearance:', 'wpcargo' ) ); ?></p>
+        <p class="wpcargo-label">
+            <?php apply_filters( 'wpc_multiple_package_header', esc_html_e( 'Clearance:', 'wpcargo' ) ); ?></p>
         <p class="wpcargo-label-info" id="label_info_clearance" style="font-size: 13px; "><?php echo $clearance; ?></p>
     </div>
     <div class="wpcargo-col-md-4">
-        <p class="wpcargo-label"><?php apply_filters( 'wpc_multiple_package_header', esc_html_e( 'Collection:', 'wpcargo' ) ); ?></p>
+        <p class="wpcargo-label">
+            <?php apply_filters( 'wpc_multiple_package_header', esc_html_e( 'Collection:', 'wpcargo' ) ); ?></p>
         <p class="wpcargo-label-info">
-                        <?php echo $collection; ?><br>
-                        <?php echo $collection_address; ?></p>
+            <?php echo $collection; ?><br>
+            <?php echo $collection_address; ?></p>
     </div>
     <div class="wpcargo-col-md-4">
-    	<p class="wpcargo-label"><?php esc_html_e('Trip:', 'wpcargo'); ?></p>
+        <p class="wpcargo-label"><?php esc_html_e('Trip:', 'wpcargo'); ?></p>
         <p class="wpcargo-label-info"><?php echo $shipment_origin." (".$shipment_origin_city.")"; ?><br>
-                                 <?php echo $shipment_destination." (".$shipment_destination_city.")"; ?><br>
-                                 <?php echo $trip; ?></p>
+            <?php echo $shipment_destination." (".$shipment_destination_city.")"; ?><br>
+            <?php echo $trip; ?></p>
     </div>
     <div class="wpcargo-col-md-4">
-    	<p class="wpcargo-label"><?php esc_html_e('Documents:', 'wpcargo'); ?> </p>
+        <p class="wpcargo-label"><?php esc_html_e('Documents:', 'wpcargo'); ?> </p>
         <p class="wpcargo-label-info">
-                        <?php echo "Documents To collect"; ?>
-                        <?php echo "Uploaded Documents"; ?></p>
+            <?php echo "Documents To collect"; ?>
+            <?php echo "Uploaded Documents"; ?></p>
     </div>
     <div class="wpcargo-col-md-4">
-    	<p class="wpcargo-label"><?php esc_html_e('Best Collection Time:', 'wpcargo'); ?> </p>
+        <p class="wpcargo-label"><?php esc_html_e('Best Collection Time:', 'wpcargo'); ?> </p>
         <p class="wpcargo-label-info"><?php echo $collection_time; ?></p>
     </div>
     <div class="wpcargo-col-md-4">
-    	<p class="wpcargo-label"><?php esc_html_e('Total Freight Cost:', 'wpcargo'); ?> </p>
+        <p class="wpcargo-label"><?php esc_html_e('Total Freight Cost:', 'wpcargo'); ?> </p>
         <p class="wpcargo-label-info">M<?php echo $shipment_total_freight; ?></p>
     </div>
 </div>

@@ -1,5 +1,4 @@
-
-    <?php
+<?php
 
              //update/close unclosed schedules
             // update_schedules_status();
@@ -12,27 +11,34 @@
             ?>
 
 
-            <?php
+<?php
             if(is_array($trip_cities)) {   ?>
-                <div class="panel-group" id="accordion" style="padding-left:3%;"> <br>
-                  <?php
+<div class="panel-group" id="accordion" style="padding-left:3%;"> <br>
+    <?php
               foreach($trip_cities AS $trip_city){
                         $schedule_city_id = $trip_city['schedule_city'];
                         $schedule_city = $wpdb->get_results( "SELECT city_name FROM `countries_cities` WHERE id = '".$schedule_city_id."' ");
                         $schedule_id = $trip_city['schedule_id'];
                      ?>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                          <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#<?php echo 'accordion'.$i;?>">
-                              <?php echo $schedule_city[0]->city_name; ?></a>
-                          </h4>
-                        </div>
-                        <div id="<?php echo 'accordion'.$i;?>" class="panel-collapse collapse">
-                          <div class="panel-body" style="color: black; padding-left: 40px;">
-                            <table id="bookings_table_list">
-                              <tr><th>Booking Reference</th><th>Activity</th><th>Service Type</th><th>Address Type</th><th>Status</th><th>Actions</th></tr>
-                              <?php
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#<?php echo 'accordion'.$i;?>">
+                    <?php echo $schedule_city[0]->city_name; ?></a>
+            </h4>
+        </div>
+        <div id="<?php echo 'accordion'.$i;?>" class="panel-collapse collapse">
+            <div class="panel-body" style="color: black; padding-left: 40px;">
+                <table id="bookings_table_list">
+                    <tr>
+                        <th>Booking Reference</th>
+                        <th>Activity</th>
+                        <th>Service Type</th>
+                        <th>Address Type</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                    <?php
 
                                $bookings= $wpdb->get_results( "SELECT * FROM `{$wpdb->prefix}posts` AS tbl1 JOIN `{$wpdb->prefix}postmeta` AS tbl2 ON tbl1.ID = tbl2.post_id
                                                                WHERE tbl1.post_status LIKE 'publish' AND tbl1.post_type LIKE 'wpcargo_shipment'
@@ -62,13 +68,13 @@
                                 }
                                 else echo "<tr><td colspan='2'>No bookings found</td></tr>";
                               ?>
-                            </table>
-                          </div>
-                        </div>
-                    </div>
-                 <?php $i++; } ?>
-                </div>
-          <?php }
+                </table>
+            </div>
+        </div>
+    </div>
+    <?php $i++; } ?>
+</div>
+<?php }
 
            /* $schedules = $wpdb->get_results( "SELECT * FROM collection_schedules GROUP BY schedule_name ORDER BY schedule_city ASC, schedule_name ASC ");
             $i =0;
@@ -82,7 +88,7 @@
 
     ?>
 
-	<!--div id="shipment-list">
+<!--div id="shipment-list">
 		<table id="dataTable" class="display table wpcargo-table-responsive-md wpcargo-table" style="width:100%;">
            <thead>
 				<tr>

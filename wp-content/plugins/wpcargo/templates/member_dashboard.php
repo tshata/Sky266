@@ -8,7 +8,7 @@
                 </div>
                 <?php require( __DIR__.'/shipments-table.php'  ); ?>
                 <ul class="card-module_menu-container_3Hu8Y">
-                
+
                     <li><a href="<?php echo esc_url( home_url( 'index.php/request' ) ); ?>">Make New Booking</a></li>
                     <li><a href="#">Edit Bookings(only none collected)</a></li>
                     <li><a href="#">Delete Booking</a></li>
@@ -27,7 +27,7 @@
                 </ul>
             </div>
         </div>
-       
+
         <div class="cell medium-6 align-self-stretch dashboard-module_animate-card_2Y2b-">
             <div class="card-module_card_3XoAu">
                 <div class="card-module_card-header_QEX_8 card-module_user-account_2Lhi4">
@@ -40,13 +40,17 @@
                 </ul>
             </div>
         </div>
-       
+
     </div>
 </section>
 
 
 <style>
-.h1, .h2, .h3, .h4, .p {
+.h1,
+.h2,
+.h3,
+.h4,
+.p {
     margin-top: 0;
 }
 
@@ -78,7 +82,7 @@
     margin: 0;
     padding: 0;
     background: #f4f4f4;
-    font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
     font-weight: normal;
     line-height: 1.5;
     color: #0a0a0a;
@@ -129,7 +133,9 @@
     padding: 15px 0 0 20px;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     -webkit-box-sizing: inherit;
     box-sizing: inherit;
 }
@@ -152,12 +158,11 @@
     margin: 0;
     padding: 0;
     background: #f4f4f4;
-    font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
     font-weight: normal;
     line-height: 1.5;
     color: #0a0a0a;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-
 </style>

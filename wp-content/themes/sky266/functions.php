@@ -556,5 +556,3 @@ function custom_posts_creator() {
     );
 
 }
-
-

@@ -9,31 +9,32 @@
 
 get_header(); ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+<div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
 
-			<?php
+        <?php
 				// Start the loop.
 				while ( have_posts() ) : the_post();
 			?>
 
-				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+        <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-					<nav id="image-navigation" class="navigation image-navigation">
-						<div class="nav-links">
-							<div class="nav-previous"><?php previous_image_link( false, __( 'Previous Image', 'twentysixteen' ) ); ?></div>
-							<div class="nav-next"><?php next_image_link( false, __( 'Next Image', 'twentysixteen' ) ); ?></div>
-						</div><!-- .nav-links -->
-					</nav><!-- .image-navigation -->
+            <nav id="image-navigation" class="navigation image-navigation">
+                <div class="nav-links">
+                    <div class="nav-previous">
+                        <?php previous_image_link( false, __( 'Previous Image', 'twentysixteen' ) ); ?></div>
+                    <div class="nav-next"><?php next_image_link( false, __( 'Next Image', 'twentysixteen' ) ); ?></div>
+                </div><!-- .nav-links -->
+            </nav><!-- .image-navigation -->
 
-					<header class="entry-header">
-						<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-					</header><!-- .entry-header -->
+            <header class="entry-header">
+                <?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+            </header><!-- .entry-header -->
 
-					<div class="entry-content">
+            <div class="entry-content">
 
-						<div class="entry-attachment">
-							<?php
+                <div class="entry-attachment">
+                    <?php
 								/**
 								 * Filter the default twentysixteen image attachment size.
 								 *
@@ -46,11 +47,11 @@ get_header(); ?>
 								echo wp_get_attachment_image( get_the_ID(), $image_size );
 							?>
 
-							<?php twentysixteen_excerpt( 'entry-caption' ); ?>
+                    <?php twentysixteen_excerpt( 'entry-caption' ); ?>
 
-						</div><!-- .entry-attachment -->
+                </div><!-- .entry-attachment -->
 
-						<?php
+                <?php
 							the_content();
 							wp_link_pages( array(
 								'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'twentysixteen' ) . '</span>',
@@ -61,11 +62,11 @@ get_header(); ?>
 								'separator'   => '<span class="screen-reader-text">, </span>',
 							) );
 						?>
-					</div><!-- .entry-content -->
+            </div><!-- .entry-content -->
 
-					<footer class="entry-footer">
-						<?php twentysixteen_entry_meta(); ?>
-						<?php
+            <footer class="entry-footer">
+                <?php twentysixteen_entry_meta(); ?>
+                <?php
 							// Retrieve attachment metadata.
 							$metadata = wp_get_attachment_metadata();
 							if ( $metadata ) {
@@ -77,7 +78,7 @@ get_header(); ?>
 								);
 							}
 						?>
-						<?php
+                <?php
 							edit_post_link(
 								sprintf(
 									/* translators: %s: Name of current post */
@@ -88,10 +89,10 @@ get_header(); ?>
 								'</span>'
 							);
 						?>
-					</footer><!-- .entry-footer -->
-				</article><!-- #post-## -->
+            </footer><!-- .entry-footer -->
+        </article><!-- #post-## -->
 
-				<?php
+        <?php
 					// If comments are open or we have at least one comment, load up the comment template.
 					if ( comments_open() || get_comments_number() ) {
 						comments_template();
@@ -105,8 +106,8 @@ get_header(); ?>
 				endwhile;
 			?>
 
-		</main><!-- .site-main -->
-	</div><!-- .content-area -->
+    </main><!-- .site-main -->
+</div><!-- .content-area -->
 
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

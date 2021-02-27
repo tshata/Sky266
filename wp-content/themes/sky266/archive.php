@@ -16,29 +16,30 @@
  * @since Twenty Sixteen 1.0
  */
 get_header(); ?>
-		<!-- Page-title -->
-		<section class="page-title-section" style=" padding: 0px;">
-			<div class="container"> <br>
-				<ol class="breadcrumb">
-				  <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a></li>
-				  <li class="active">
-					 <?php the_archive_title(); ?>
-                  </li>
-				</ol>
-			</div>
-		</section><!--/.page-title-section -->
+<!-- Page-title -->
+<section class="page-title-section" style=" padding: 0px;">
+    <div class="container"> <br>
+        <ol class="breadcrumb">
+            <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a></li>
+            <li class="active">
+                <?php the_archive_title(); ?>
+            </li>
+        </ol>
+    </div>
+</section>
+<!--/.page-title-section -->
 
- <!-- Single-Service-Start -->
-          <section class="single-service-wrap">
-            <div class="container">
-              <div class="row" style="margin-bottom: 40px;">
-                <div class="col-sm-3">
-                   <?php get_sidebar( 'services' ); ?>
-                </div><!-- /.col -->
-                <div class="col-sm-9">
-                  <div class="single-service-content">
-                      <?php if ( have_posts() ) : ?>
-            			<?php
+<!-- Single-Service-Start -->
+<section class="single-service-wrap">
+    <div class="container">
+        <div class="row" style="margin-bottom: 40px;">
+            <div class="col-sm-3">
+                <?php get_sidebar( 'services' ); ?>
+            </div><!-- /.col -->
+            <div class="col-sm-9">
+                <div class="single-service-content">
+                    <?php if ( have_posts() ) : ?>
+                    <?php
                 			// Start the Loop.
                 			while ( have_posts() ) : the_post();
 
@@ -65,13 +66,13 @@ get_header(); ?>
 
             		endif;
             		?>
-                  </div><!-- /.single-service-content -->
+                </div><!-- /.single-service-content -->
 
-                </div><!-- /.col -->
-              </div><!-- /.row -->
-            </div><!-- /.container -->
-          </section>
-          <!-- Single-Service-End-->
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</section>
+<!-- Single-Service-End-->
 
 
 <?php get_footer(); ?>

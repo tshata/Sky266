@@ -10,20 +10,24 @@
 ?>
 <div id="shipper-info" class="wpcargo-row">
     <div class="wpcargo-col-md-6 detail-section">
-            <p id="shipper-header" class="header-title"><strong><?php echo apply_filters('result_shipper_address', esc_html__('Shipper Information', 'wpcargo')); ?></strong></p>
-            <p class="shipper details">
-              <?php echo $shipper_name; ?><br />
-              <?php echo $shipper_phone; ?><br />
-              <?php echo $shipper_address; ?><br />
-              <?php echo $shipper_email; ?><br /></p>
+        <p id="shipper-header" class="header-title">
+            <strong><?php echo apply_filters('result_shipper_address', esc_html__('Shipper Information', 'wpcargo')); ?></strong>
+        </p>
+        <p class="shipper details">
+            <?php echo $shipper_name; ?><br />
+            <?php echo $shipper_phone; ?><br />
+            <?php echo $shipper_address; ?><br />
+            <?php echo $shipper_email; ?><br /></p>
     </div>
     <div class="wpcargo-col-md-6 detail-section">
-            <p id="receiver-header" class="header-title"><strong><?php echo apply_filters('result_receiver_address', esc_html__('Receiver Information', 'wpcargo')); ?></strong></p>
-            <p class="receiver details">
-              <?php echo $receiver_name; ?><br />
-              <?php echo $receiver_phone; ?><br />
-              <?php echo $receiver_address; ?><br />
-              <?php echo $receiver_email; ?><br /></p>
+        <p id="receiver-header" class="header-title">
+            <strong><?php echo apply_filters('result_receiver_address', esc_html__('Receiver Information', 'wpcargo')); ?></strong>
+        </p>
+        <p class="receiver details">
+            <?php echo $receiver_name; ?><br />
+            <?php echo $receiver_phone; ?><br />
+            <?php echo $receiver_address; ?><br />
+            <?php echo $receiver_email; ?><br /></p>
     </div>
     <div class="clear-line"></div>
 </div>
