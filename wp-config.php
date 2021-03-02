@@ -46,14 +46,14 @@ define( 'DB_COLLATE', '' );
  *
  * @since 2.6.0
  */
-define('AUTH_KEY',         'FyDujeuEPs7*Pl{X~N#t,)&#~sR;m-H|vy5i/{=NA^yU3ch#Lp|;TZwDN|,G#afc');
-define('SECURE_AUTH_KEY',  'rWeLlH<<#u5Pe+ oMdzufsYWO}>>pk&r~n%b,U<t=Pix$GXDZri-f,kujc]B(wuk');
-define('LOGGED_IN_KEY',    'PaS(Obfq2KVxXkdHt0CSrxz$xK#B*]y`)[2-oVqlE Xkl/UdKBL=aF-`V-VhjlBm');
-define('NONCE_KEY',        'iy2IhRX2Q:oK={rM/~2B]3~GQa<Ypx&~`|v*^vaY|K/EIEa/_QN_gb`5O_1ZTBs:');
-define('AUTH_SALT',        '5*e|Tqw|fd}ceG$[T/,zAv9 Q%)=bBF@x$nKC5Ol(doHWK[tVr|{l_uCn^)-3S4g');
-define('SECURE_AUTH_SALT', 'Opj~=Rm>)CVZ,nxWZ7Jt9U!j23Zv]&{|*U|OP>80Kpqg>?-3ymxH/Uek$eG-R;E[');
-define('LOGGED_IN_SALT',   'ZO#B0V:wu!@Ll0tlIq:w|Lp4F@]U Z28-v=&1D=%TS>AYz:~]b2il7_F[P+kA:Z.');
-define('NONCE_SALT',       'C77-K+y(?xF|[4XVVMY/u#aEBSB O:`U?wXWsKQ;De+YSyF4he.PuY~TP0-N|!i5');
+define('AUTH_KEY',         '<b2mvDQ%E~I=jPx@%E(iPs~R]DF#c2-{ZhT!.eo 2o)r1+tJS*G|kD.Wfm(?-:5~');
+define('SECURE_AUTH_KEY',  ';87hn?Q<SA|{`B7= +YP-$[pJu-,uS68Dn4[)z5A-~<a+*r:?C+UfJBk0 rNYRF,');
+define('LOGGED_IN_KEY',    '}.*J:-c]l44Vdu;%}<Wth7d1b0U;V*K1+Vdkv5%1|(HBo4Lzy,#$JvRk%[|}T*)4');
+define('NONCE_KEY',        'Pp,0dcCUe/ QQ#@(}ID%yM+(~@8J>R [`r>[OX8 &AzK{OI?ypio^D6bCZ_Gd:4|');
+define('AUTH_SALT',        ' 5N/-^h{l&;HB<J,)^B 6p;rx7_$18BUdxAE37{;*$>|;y;LtqS.~]>Pi-lp6){w');
+define('SECURE_AUTH_SALT', '/@UN|V))4L`e+q|u3rC]{7tl?D*j-U)P.&Yd)k|T#K6reR+yXX?-5Y/:2Ti_-bJ5');
+define('LOGGED_IN_SALT',   '6{IOKbac`o&s96*p/MnTFVGawF3O({-9vv:^(e6a(Tf]gi1DXI_:ng2uD:<kQ.h+');
+define('NONCE_SALT',       'i#1.M_T-R-<`@w1h=TG($ph5+LWr]Ym?c/1[a|+14 oQI/&pzDspmm%*mIM_2m?z');
 
 /**#@-*/
 
@@ -88,5 +88,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /** Sets up WordPress vars and included files. */
 require_once ABSPATH . 'wp-settings.php';
+
 
 

@@ -2,7 +2,7 @@
     <?php echo esc_html__('You are Logged in as: ', 'wpcargo' ).' <b>'.$user_full_name.'</b>'; ?>
     <div id="dashboard_nav">
         <button class="link active" name="dashboard" id="dashboard" onclick="payments_toggle(this)">Dashboard</button>
-        <button class="link" name="profile" id="profile" onclick="payments_toggle(this)">My Profile</button>
+        <button class="link" name="profile" id="profile" onclick="payments_toggle(this)" >My Profile</button>
         <a class="link" href="<?php echo esc_url(wp_logout_url(home_url())); ?>">Logout<i class="fa fa-key"></i></a>
     </div>
 </h5>
