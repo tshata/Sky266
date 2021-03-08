@@ -1,7 +1,7 @@
 <?php
 // datastore=auditqueue;
 // created_on=1604999587;
-// updated_on=1613726132;
+// updated_on=1615208779;
 exit(0);
 ?>
 1613209475_6052:"Notice: Matete, 129.232.17.183; Wpcargo_shipment status has been changed; details: ID: 3133,Old status: publish,New status: archive,Title: SKY-031772-CARGO"
@@ -346,3 +346,29 @@ exit(0);
 1614929061_163:"Error: 127.0.0.1; Password retrieval attempt: tshata"
 1614929061_1893:"Warning: 127.0.0.1; User account edited; ID: 32; name: tshata; old_name: tshata; email: tseposhata@gmail.com; old_email: tseposhata@gmail.com; roles: um_gold-member; old_roles: um_gold-member"
 1614929129_8799:"Notice: tshata, 127.0.0.1; User authentication succeeded: tshata"
+1614934325_2183:"Error: 127.0.0.1; User authentication failed: Unknown"
+1614934360_5273:"Notice: 127.0.0.1; User authentication succeeded: tshata"
+1614934677_5032:"Notice: 127.0.0.1; User authentication succeeded: tshata"
+1614935842_3305:"Warning: Skysite_Man, 127.0.0.1; Plugin deactivated: Form Plugin (v1.0; form-plugin\/form-plugin.php)"
+1614935856_1143:"Warning: Skysite_Man, 127.0.0.1; Plugin deactivated: User Role Editor (v4.56.1; user-role-editor\/user-role-editor.php)"
+1614935864_9109:"Warning: Skysite_Man, 127.0.0.1; Plugin deactivated: Ultimate Member - reCAPTCHA (v2.1.7; um-recaptcha\/um-recaptcha.php)"
+1614935873_1038:"Warning: Skysite_Man, 127.0.0.1; Plugin deactivated: WP Admin UI Customize (v1.5.12; wp-admin-ui-customize\/wp-admin-ui-customize.php)"
+1614935942_6014:"Warning: Skysite_Man, 127.0.0.1; Plugin deactivated: Courier-Plugin (v1.0.0; wpcargo\/wpcargo.php)"
+1614935989_4795:"Warning: Skysite_Man, 127.0.0.1; Plugin deactivated: Akismet Anti-Spam (v4.1.8; akismet\/akismet.php)"
+1614935989_5088:"Debug: Skysite_Man, 127.0.0.1; Sucuri plugin has been deactivated"
+1614935989_5274:"Warning: Skysite_Man, 127.0.0.1; Plugin deactivated: Sucuri Security - Auditing, Malware Scanner and Hardening (v1.8.24; sucuri-scanner\/sucuri.php)"
+1614935989_549:"Warning: Skysite_Man, 127.0.0.1; Plugin deactivated: Ultimate Member (v2.1.15; ultimate-member\/ultimate-member.php)"
+1614935989_5673:"Warning: Skysite_Man, 127.0.0.1; Plugin deactivated: WP Approve User (v7; wp-approve-user\/wp-approve-user.php)"
+1614935989_5854:"Warning: Skysite_Man, 127.0.0.1; Plugin deactivated: WP Mail SMTP (v2.6.0; wp-mail-smtp\/wp_mail_smtp.php)"
+1614940947_7862:"Warning: Skysite_Man, 127.0.0.1; Plugin activated: Sucuri Security - Auditing, Malware Scanner and Hardening (v1.8.24; sucuri-scanner\/sucuri.php)"
+1614940948_0208:"Warning: Skysite_Man, 127.0.0.1; Plugin activated: Ultimate Member - reCAPTCHA (v2.1.7; um-recaptcha\/um-recaptcha.php)"
+1614940948_121:"Warning: Skysite_Man, 127.0.0.1; Plugin activated: User Role Editor (v4.56.1; user-role-editor\/user-role-editor.php)"
+1614940949_5036:"Warning: Skysite_Man, 127.0.0.1; Plugin activated: Wordpress Calculated Fields (v1.0.422; wp-calculated-fields\/cp_calculatedfieldsf_free.php)"
+1614940949_5455:"Warning: Skysite_Man, 127.0.0.1; Plugin activated: WP Admin UI Customize (v1.5.12; wp-admin-ui-customize\/wp-admin-ui-customize.php)"
+1614940949_6415:"Warning: Skysite_Man, 127.0.0.1; Plugin activated: WP Approve User (v7; wp-approve-user\/wp-approve-user.php)"
+1614940949_6953:"Warning: Skysite_Man, 127.0.0.1; Plugin activated: WP Mail SMTP (v2.6.0; wp-mail-smtp\/wp_mail_smtp.php)"
+1614946156_7641:"Warning: Skysite_Man, 127.0.0.1; Plugin deactivated: Wordpress Calculated Fields (v1.0.422; wp-calculated-fields\/cp_calculatedfieldsf_free.php)"
+1615013734_3242:"Warning: Skysite_Man, 127.0.0.1; Plugin deactivated: Ultimate Member - reCAPTCHA (v2.1.7; um-recaptcha\/um-recaptcha.php)"
+1615208778_7346:"Warning: 127.0.0.1; Post deleted: (multiple entries): Post id: 3244,Post author: 1,Post type: post,Post status: auto-draft,Post inserted: 2021-03-01 09:29:02,Post modified: 2021-03-01 09:29:02,Post guid: https:\/\/localhost\/sky266\/?p=3244,Post title: Auto Draft"
+1615209275_3917:"Error: 127.0.0.1; User authentication failed: tshata"
+1615209311_1874:"Notice: tshata, 127.0.0.1; User authentication succeeded: tshata"

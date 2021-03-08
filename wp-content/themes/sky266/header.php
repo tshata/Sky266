@@ -115,7 +115,7 @@
                                         <?php } ?>
                                         <?php if( !is_user_logged_in()){ ?>
                                     <li><a class="btn btn-primary"
-                                            href="<?php echo esc_url( home_url( 'index.php/my-account' ) ); ?>">Login<i
+                                            href="<?php echo esc_url( home_url( 'index.php/login' ) ); ?>">Login<i
                                                 class="fa fa-key"></i></a></li>
                                     </li> <?php } ?>
 
@@ -126,7 +126,7 @@
 
                                     <?php if( is_user_logged_in() ){ ?>
                                     <li class="dropdown"><a class="btn btn-primary"
-                                            href="<?php echo esc_url( home_url( 'index.php/my-account' ) ); ?>">Profile<b
+                                            href="<?php echo esc_url( home_url( 'index.php/profile' ) ); ?>">Profile<b
                                                 class="caret"></b></a>
 
                                         <!-- submenu-wrapper -->
