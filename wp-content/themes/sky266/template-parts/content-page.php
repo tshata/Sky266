@@ -10,9 +10,19 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
-		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+		
 	</header><!-- .entry-header -->
-
+<!-- Page-title -->
+<section class="page-title-section" style=" padding: 0px;">
+    <div class="container">
+        <div class="page-header"><br>
+            <ol class="breadcrumb">
+                <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a></li>
+                <li class="active"><?php the_title();?></li>
+            </ol>
+        </div>
+    </div>
+</section>
 	<?php twentysixteen_post_thumbnail(); ?>
 
 	<div class="entry-content">
@@ -44,5 +54,5 @@
 
 </article><!-- #post-## -->
 
-  <?php  echo do_shortcode('[form_plugin]');  ?>
+  <?php // echo do_shortcode('[form_plugin]');  ?>
 

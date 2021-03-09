@@ -47,6 +47,8 @@ $(document).ready(function() {
     <?php echo  $user_info; ?>
 });
 </script>
+
+<?php get_footer(); ?>
 <!--style>
    #wpcargo-account {
       border:solid 1px white;

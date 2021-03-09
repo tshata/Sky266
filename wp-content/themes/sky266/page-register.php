@@ -37,3 +37,4 @@
 	</main><!-- .site-main -->
       <br><br>
 </div><!-- .content-area -->
+<?php get_footer(); ?>
