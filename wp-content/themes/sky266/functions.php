@@ -556,3 +556,17 @@ function custom_posts_creator() {
     );
 
 }
+
+/**
+ * Integration for Paid Memberships Pro
+ *
+ * @package My_Theme_Name
+ */
+
+// Enqueue additional stylesheets for sites running Paid Memberships Pro
+function my_theme_pmpro_init_styles() {
+	if ( defined( 'PMPRO_VERSION' ) ) {
+		wp_enqueue_style( 'paid-memberships-pro-customizations', get_template_directory_uri() . '/css/paid-memberships-pro.css', array(), '1.0' );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'my_theme_pmpro_init_styles' );

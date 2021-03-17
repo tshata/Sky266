@@ -1,0 +1,301 @@
+/*---------------------------------------
+	Buttons
+---------------------------------------*/
+
+.pmpro_btn {}
+
+.pmpro_content_message a {}
+
+.pmpro_btn.active {}
+
+.pmpro_btn.disabled,
+.pmpro_btn[disabled],
+fieldset[disabled] .pmpro_btn {}
+
+.pmpro_btn.pmpro_btn-cancel {}
+
+.pmpro_btn.pmpro_btn-submit-checkout {}
+
+input[type="button"]#discount_code_button,
+input[type="button"]#other_discount_code_button {}
+
+
+/*---------------------------------------
+	Forms
+---------------------------------------*/
+
+
+/* -- Checkout, Billing Information, etc. --*/
+
+form.pmpro_form .pmpro_checkout-fields div {}
+
+form.pmpro_form label {}
+
+form.pmpro_form #pmpro_payment_information_fields .pmpro_checkout-fields label {}
+
+form.pmpro_form .pmpro_checkout-field-checkbox label {}
+
+form.pmpro_form label.pmpro_label-inline {}
+
+form.pmpro_form label.pmpro_clickable {}
+
+form.pmpro_form .pmpro_asterisk abbr {}
+
+form.pmpro_form input[type=checkbox]#tos {}
+
+form.pmpro_form .input {}
+
+form.pmpro_form textarea {}
+
+form.pmpro_form select {}
+
+form.pmpro_form .pmpro_checkout-field-bcity_state_zip .input {}
+
+form.pmpro_form .pmpro_checkout-field-bcity_state_zip select {}
+
+form.pmpro_form .pmpro_payment-cvv .input {}
+
+form.pmpro_form .pmpro_payment-discount-code .input {}
+
+form.pmpro_form #other_discount_code.input {}
+
+form.pmpro_form .lite {}
+
+form.pmpro_form .pmpro_captcha div {}
+
+form.pmpro_form .pmpro_submit {}
+
+form.pmpro_form #pmpro_processing_message {}
+
+
+/* -- Log In, Password Reset --*/
+
+#loginform label {}
+
+#loginform input[type=text] {}
+
+#loginform input[type=password] {}
+
+form.pmpro_form .pmpro_lost_password-fields div {}
+
+
+/* -- Member Profile Edit --*/
+
+form.pmpro_form .pmpro_member_profile_edit-fields div {}
+
+
+/* -- Change Password (logged in) --*/
+
+form.pmpro_form .pmpro_change_password-fields div {}
+
+
+/* -- Reset Password (not logged in) --*/
+
+.pmpro_reset_password_wrap form.pmpro_form .lite {}
+
+form.pmpro_form .pmpro_change_password-fields .lite {}
+
+
+/* -- Password Strength Meter on Frontend Forms --*/
+
+.pmpro_reset_password_wrap form.pmpro_form #pass-strength-result {}
+
+form.pmpro_form .pmpro_change_password-fields #pass-strength-result {}
+
+
+/*--------------------------------------------------
+	Messages - Success, Error, Alert
+----------------------------------------------------*/
+
+.pmpro_message {}
+
+.pmpro_message p:last-child {}
+
+.pmpro_success {}
+
+.pmpro_error,
+input[type="text"].pmpro_error,
+input[type="email"].pmpro_error,
+input[type="url"].pmpro_error,
+input[type="password"].pmpro_error,
+input[type="number"].pmpro_error,
+input[type="tel"].pmpro_error,
+input[type="range"].pmpro_error,
+input[type="date"].pmpro_error,
+input[type="month"].pmpro_error,
+input[type="week"].pmpro_error,
+input[type="time"].pmpro_error,
+input[type="datetime"].pmpro_error,
+input[type="datetime-local"].pmpro_error,
+input[type="color"].pmpro_error,
+textarea.pmpro_error {}
+
+select.pmpro_error {}
+
+.pmpro_alert {}
+
+.pmpro_message a {}
+
+.pmpro_success a {}
+
+.pmpro_error a {}
+
+.pmpro_alert a {}
+
+#pmpro_message_bottom {}
+
+
+/*---------------------------------------
+	Membership Account
+---------------------------------------*/
+
+#pmpro_account .pmpro_box {}
+
+#pmpro_account .pmpro_box h3 {}
+
+#pmpro_account .pmpro_box p {}
+
+#pmpro_account .pmpro_box ul {}
+
+#pmpro_account #pmpro_account-membership {}
+
+#pmpro_account #pmpro_account-profile {}
+
+#pmpro_account #pmpro_account-billing {}
+
+#pmpro_account #pmpro_account-invoices {}
+
+#pmpro_account #pmpro_account-links {}
+
+#pmpro_account #pmpro_account-profile .pmpro_actionlinks {}
+
+.pmpro_actionlinks a {}
+
+.pmpro_actionlinks a:last-child {}
+
+.pmpro_hidden {}
+
+
+/*---------------------------------------
+	Membership Billing Page
+---------------------------------------*/
+
+.pmpro_billing_wrap {}
+
+
+/*---------------------------------------
+	Membership Cancel Page
+---------------------------------------*/
+
+.pmpro_cancel_wrap {}
+
+
+/*---------------------------------------
+	Membership Checkout
+---------------------------------------*/
+
+#pmpro_form .pmpro_checkout h3 {}
+
+.pmpro_checkout h3 span.pmpro_checkout-h3-name {}
+
+.pmpro_checkout h3 span.pmpro_checkout-h3-msg {}
+
+#pmpro_payment_method span.gateway_paypalexpress {}
+
+#pmpro_payment_information_fields .pmpro_checkout-fields-display-seal {}
+
+#pmpro_license {}
+
+
+/*-- Stripe gateway Membership Checkout specific styles. --*/
+
+.pmpro_checkout_gateway-stripe form.pmpro_form #pmpro_payment_information_fields .pmpro_checkout-fields,
+.pmpro_billing_gateway-stripe form.pmpro_form #pmpro_payment_information_fields .pmpro_checkout-fields {}
+
+.pmpro_checkout_gateway-stripe form.pmpro_form #pmpro_payment_information_fields div#AccountNumber,
+.pmpro_checkout_gateway-stripe form.pmpro_form #pmpro_payment_information_fields div#Expiry,
+.pmpro_checkout_gateway-stripe form.pmpro_form #pmpro_payment_information_fields div#CVV,
+.pmpro_billing_gateway-stripe form.pmpro_form #pmpro_payment_information_fields div#AccountNumber,
+.pmpro_billing_gateway-stripe form.pmpro_form #pmpro_payment_information_fields div#Expiry,
+.pmpro_billing_gateway-stripe form.pmpro_form #pmpro_payment_information_fields div#CVV {}
+
+.pmpro_checkout_gateway-stripe form.pmpro_form #pmpro_payment_information_fields .pmpro_payment-account-number,
+.pmpro_billing_gateway-stripe form.pmpro_form #pmpro_payment_information_fields .pmpro_payment-account-number {}
+
+.pmpro_checkout_gateway-stripe form.pmpro_form #pmpro_payment_information_fields .pmpro_payment-expiration,
+.pmpro_billing_gateway-stripe form.pmpro_form #pmpro_payment_information_fields .pmpro_payment-expiration {}
+
+.pmpro_checkout_gateway-stripe form.pmpro_form #pmpro_payment_information_fields .pmpro_payment-cvv,
+.pmpro_billing_gateway-stripe form.pmpro_form #pmpro_payment_information_fields .pmpro_payment-cvv {}
+
+.pmpro_checkout_gateway-stripe form.pmpro_form #pmpro_payment_information_fields .pmpro_payment-discount-code {}
+
+
+/*---------------------------------------
+	Membership Confirmation Page
+---------------------------------------*/
+
+.pmpro_confirmation_wrap {}
+
+
+/*---------------------------------------
+	Membership Invoice Page
+---------------------------------------*/
+
+.pmpro_invoice_wrap {}
+
+.pmpro_invoice_details {}
+
+.pmpro_invoice_details .pmpro_invoice-billing-address {}
+
+.pmpro_invoice_details .pmpro_invoice-payment-method {}
+
+.pmpro_invoice_details .pmpro_invoice-total {}
+
+.pmpro_invoice_details .pmpro_invoice-billing-address {}
+
+.pmpro_invoice_details .pmpro_invoice-payment-method {}
+
+
+/*---------------------------------------
+	Membership Levels
+---------------------------------------*/
+
+#pmpro_levels_table {}
+
+
+/*---------------------------------------
+	Log In and Password Reset Pages
+---------------------------------------*/
+
+.pmpro_login_wrap {}
+
+.pmpro_lost_password_wrap {}
+
+.pmpro_reset_password_wrap {}
+
+
+/*---------------------------------------
+	Member Profile Edit Page
+---------------------------------------*/
+
+.pmpro_member_profile_edit_wrap {}
+
+.pmpro_change_password_wrap {}
+
+
+/*---------------------------------------
+	Misc
+---------------------------------------*/
+
+.pmpro_actions_nav {}
+
+.pmpro_actions_nav-left {}
+
+.pmpro_actions_nav-right {}
+
+.pmpro_a-print {}
+
+.pmpro_grey {}
+
+.pmpro_small {}
