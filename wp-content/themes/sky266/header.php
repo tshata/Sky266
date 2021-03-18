@@ -24,6 +24,8 @@
        <div id="embed-fobi"  data-fobi-id="83dyUj5" data-bot-title= "Chat" data-hd-bg= "#2980B9" data-hd-ti-clr= "#FFF" data-ct-pm= "#2980B9" data-ct-sc= "#FFF" data-ct-bot-img= "https://fobi.io/head.png" data-btn-offset= "Right: 30px" data-cb-offset= "Right: 30px" data-btn-img= "https://fobi.io/icon.png" data-btn-bg= "#2980B9" data-cb-height= "400px" data-cb-width= "330px" ></div>
      <!--------Method one: Bubble chat - End ---------------->
 <style type="text/css" href="wp-content\plugins\ultimate-member\assets\css\um-misc.css"></style>
+<style type="text/css" href="wp-content\themes\sky266\css\paid-membership-pro.css"></style>
+
 
 </head>
 

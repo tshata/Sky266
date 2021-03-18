@@ -1,46 +1,47 @@
-<section class="dashboard-module_dashboard_2I0lL">
-    <h2>My Account</h2>
+<section style="text-align: center;" class="dashboard-module_dashboard_2I0lL">
+  <!--  <h3 style="text-align: center;">My Account</h3> -->
+    <div style=" display: flex; justify-content: center;">
     <div class="grid-x grid-margin-x grid-margin-y card-container dashboard-module_card-container_1wMCY">
-        <div class="cell medium-6 align-self-stretch dashboard-module_animate-card_2Y2b-">
-            <div class="card-module_card_3XoAu">
-                <div class="card-module_card-header_QEX_8 card-module_add-to-cart_3naMa">
+        <div class=" align-self-stretch dashboard-module_animate-card_2Y2b-">
+            <div class="">
+                <div style="text-align: center;" class="card-module_card-header_QEX_8 card-module_add-to-cart_3naMa">
                     <h4>Bookings</h4>
                 </div>
-                <?php require( __DIR__.'/shipments-table.php'  ); ?>
-                <ul class="card-module_menu-container_3Hu8Y">
+                <?php/* require( __DIR__.'/shipments-table.php'  ); */?>
+                <ul style="text-align: center;" class="card-module_menu-container_3Hu8Y">
 
                     <li><a href="<?php echo esc_url( home_url( 'index.php/request' ) ); ?>">Make New Booking</a></li>
-                    <li><a href="#">Edit Bookings(only none collected)</a></li>
+                    <li><a href="<?php echo esc_url( home_url( 'index.php/request-quote' ) ); ?>">Edit Bookings</a></li>
                     <li><a href="#">Delete Booking</a></li>
                 </ul>
             </div>
         </div>
         <br><br>
-        <div class="cell medium-6 align-self-stretch dashboard-module_animate-card_2Y2b-">
-            <div class="card-module_card_3XoAu">
-                <div class="card-module_card-header_QEX_8 card-module_credit-card_2ccm3">
+        <div class=" dashboard-module_animate-card_2Y2b-">
+            <div class="">
+                <div style="text-align: center;" class="">
                     <h4>Payments &amp; Invoices</h4>
                 </div>
-                <ul class="card-module_menu-container_3Hu8Y">
+                <ul style="text-align: center;" class="card-module_menu-container_3Hu8Y">
                     <li><a data-react-link="true" href="/invoices">Invoices</a></li>
-                    <li><a data-react-link="true" href="/pay_methods.php">Payment Methods</a></li>
+                    <li><a data-react-link="true" href="/pay_methods.php">Payments</a></li>
                 </ul>
             </div>
         </div>
 
-        <div class="cell medium-6 align-self-stretch dashboard-module_animate-card_2Y2b-">
-            <div class="card-module_card_3XoAu">
-                <div class="card-module_card-header_QEX_8 card-module_user-account_2Lhi4">
+        <div class="medium-6 align-self-stretch dashboard-module_animate-card_2Y2b-">
+            <div class="">
+                <div style="text-align: center;" class="card-module_card-header_QEX_8 card-module_user-account_2Lhi4">
                     <h4>Customer Information</h4>
                 </div>
-                <ul class="card-module_menu-container_3Hu8Y">
+                <ul style="text-align: center;" class="card-module_menu-container_3Hu8Y">
                     <li><a data-react-link="true" href="/account/personal-details">Personal Details</a></li>
                     <li><a data-react-link="true" href="/account/address-book">Address Book</a></li>
                     <li><a data-react-link="true" href="/account/newsletters">Newsletter Subscriptions</a></li>
                 </ul>
             </div>
         </div>
-
+    </div>
     </div>
 </section>
 
@@ -166,3 +167,4 @@
     -moz-osx-font-smoothing: grayscale;
 }
 </style>
+

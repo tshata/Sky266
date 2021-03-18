@@ -70,11 +70,20 @@ form.pmpro_form #pmpro_processing_message {}
 
 /* -- Log In, Password Reset --*/
 
-#loginform label {}
+#loginform label {
+    width: 400px;
+    margin: 0 auto;
+}
 
-#loginform input[type=text] {}
+#loginform input[type=text] {
+    width: 400px;
+    margin: 0 auto;
+}
 
-#loginform input[type=password] {}
+#loginform input[type=password] {
+    width: 400px;
+    margin: 0 auto;
+}
 
 form.pmpro_form .pmpro_lost_password-fields div {}
 
@@ -268,11 +277,22 @@ select.pmpro_error {}
 	Log In and Password Reset Pages
 ---------------------------------------*/
 
-.pmpro_login_wrap {}
+.pmpro_login_wrap {
+    padding: 40px;
+    border: 1px solid #cecece;
+    width: 400px;
+    margin: 0 auto;
+}
 
-.pmpro_lost_password_wrap {}
+.pmpro_lost_password_wrap {
+    width: 400px;
+    margin: 0 auto;
+}
 
-.pmpro_reset_password_wrap {}
+.pmpro_reset_password_wrap {
+    width: 400px;
+    margin: 0 auto;
+}
 
 
 /*---------------------------------------
