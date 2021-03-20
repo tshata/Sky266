@@ -570,3 +570,29 @@ function my_theme_pmpro_init_styles() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'my_theme_pmpro_init_styles' );
+
+function my_admin_menu() {  // add a menu option to the WordPress Admin sidebar
+    add_menu_page('CSV', 'CSV File', 'manage_options', 'csv-file', 'csvFile', 'dashicons-admin-post',6);
+}
+ 
+function csvFile() {
+ 
+    $user_id = $_GET['ID'];  // or however you need to get the user id's
+    $path = wp_upload_dir();   // or where ever you want the file to go
+    $outstream = fopen($path['path']."/shippinglabels.csv", "w");  // the file name you choose
+ 
+    $fields = array(ID, user_login,user_pass,user_nicename, user_email, user_email, user_url, user_registered, user_activation_key, user_status, display_name);  // the user information you want in the csv file
+ 
+    fputcsv($outstream, $fields);  //creates the first line in the csv file
+     
+    $user = get_user_by('ID',$user_id);  // find the user
+    $values=array();    // initialize the array
+    foreach($fields as $field)
+    {
+       $values[$field] =  ($user->$field)  ? $user->$field : get_user_meta($user_id, $field, true);   // check the user record first, if not there, check user meta
+    }
+    fputcsv($outstream, $values);  //output the user info line to the csv file
+ 
+    fclose($outstream); 
+    echo '<a href="'.$path['url'].'/shippinglabels.csv">Download</a>';  //make a link to the file so the user can download.
+}

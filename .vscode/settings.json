@@ -1,4 +1,5 @@
 {
     "42header.email": "tseposhata@gmail.com",
-    "42header.username": "Tsepo Shata"
+    "42header.username": "Tsepo Shata",
+    "git.ignoreLimitWarning": true
 }

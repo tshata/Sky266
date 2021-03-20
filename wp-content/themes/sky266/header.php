@@ -153,7 +153,7 @@
                 </header>
                 <?php
                       $pagename = get_query_var('pagename');
-                      $excluded_pages = array("request-quote","my-account","register","about","tracking","contact","KnowledgeHub","profile","login", "password-reset", " ");
+                      $excluded_pages = array("request-quote","my-account","register","about","tracking","contact","KnowledgeHub","profile","login", "password-reset", "account-2");
                       if(!in_array($pagename, $excluded_pages)) {
                     ?>
                 <div id="main-carousel" class="carousel slide hero-slide" data-ride="carousel">
