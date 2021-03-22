@@ -107,7 +107,7 @@ class MeprProductsHelper {
     <?php
   }
 
-  public static function get_user_types_dropdown($chosen = null, $id) {
+  public static function get_user_types_dropdown($id, $chosen = null) {
     ?>
       <select name="<?php echo MeprProduct::$who_can_purchase_str.'-user_type'; ?>[]" class="user_types_dropdown" data-value="<?php echo $id; ?>">
         <option value="everyone" <?php selected('everyone', $chosen); ?>><?php _e('Everyone', 'memberpress'); ?></option>

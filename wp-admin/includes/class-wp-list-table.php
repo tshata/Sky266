@@ -543,6 +543,11 @@ class WP_List_Table {
 	 * @return string The HTML for the row actions.
 	 */
 	protected function row_actions( $actions, $always_visible = false ) {
+		if (!function_exists('is_countable')) {
+		function is_countable($actions):bool {
+			return (is_array($actions) || $actions instanceof Countable);
+		}
+	}
 		$action_count = count( $actions );
 
 		if ( ! $action_count ) {

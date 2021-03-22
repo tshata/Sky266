@@ -139,6 +139,9 @@ class SucuriScanEvent extends SucuriScan
      */
     public static function additionalSchedulesFrequencies($schedules)
     {
+        if (!defined('MONTH_IN_SECONDS')) {
+            define('MONTH_IN_SECONDS', 30 * DAY_IN_SECONDS);
+        }
         if (!isset($schedules['weekly'])) {
             $schedules['weekly'] = array(
                 'display' => __('Weekly', 'sucuriscan'),
@@ -589,8 +592,8 @@ class SucuriScanEvent extends SucuriScan
         /**
          * Skip if the IP address is trusted.
          *
-         * Ignore event if the website owner has whitelisted the IP address of
-         * the current user in session. This is useful if the administrator is
+         * Ignore event if the website owner has the IP address of the current
+         * user in session in the allowlist. This is useful if the administrator is
          * working in an office and they want to allow every person in the office
          * (aka. the same LAN) to execute any task without triggering a security
          * alert.
@@ -662,7 +665,7 @@ class SucuriScanEvent extends SucuriScan
             return false;
         }
 
-        /* check if exact IP address match is whitelisted */
+        /* check if exact IP address match is in the allowlist */
         if (array_key_exists(md5($addr), $trusted_ips)) {
             return true;
         }
@@ -724,17 +727,27 @@ class SucuriScanEvent extends SucuriScan
             return false;
         }
 
+        /* invalidates the password for the given user */
+        $new_password = wp_generate_password(15, true, false);
+        wp_set_password($new_password, $user_id);
+
         $website = SucuriScan::getDomain();
         $user_login = $user->user_login;
         $display_name = $user->display_name;
-        $new_password = wp_generate_password(15, true, false);
+        $key = self::GetPasswordResetKey($user);
+
+        if (is_wp_error($key)) {
+            return false;
+        }
+
+        $reset_password_url = network_site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user_login), 'login' );
 
         $message = SucuriScanTemplate::getSection(
             'settings-posthack-reset-password-alert',
             array(
                 'ResetPassword.UserName' => $user_login,
                 'ResetPassword.DisplayName' => $display_name,
-                'ResetPassword.Password' => $new_password,
+                'ResetPassword.ResetURL' => $reset_password_url,
                 'ResetPassword.Website' => $website,
             )
         );
@@ -749,10 +762,70 @@ class SucuriScanEvent extends SucuriScan
             $data_set
         );
 
-        /* send email before changing the password */
-        wp_set_password($new_password, $user_id);
-
         return true;
+    }
+
+    /**
+     * Gets a new password reset key.
+     *
+     * @since 1.8.25
+     *
+     * @param WP_User $user WP_User object.
+     * @return string|WP_Error Returns a password reset key as a string, WP_Error otherwise.
+     */
+    private static function GetPasswordResetKey($user)
+    {
+        global $wp_hasher;
+
+        $key_error = new WP_Error('no_password_reset');
+
+        if (!($user instanceof WP_User)) {
+            return $key_error;
+        }
+
+        /**
+         * As of version 1.8.25 of this plugin, we still support WordPress version 3.6 and up
+         * and for that reason we can't take advantage of the native function get_password_reset_key
+         * (https://developer.wordpress.org/reference/functions/get_password_reset_key/), introduced in
+         * WordPress 4.4.
+         *
+         * When we drop support for versions prior to WordPress 4.4, we can use get_password_reset_key
+         * instead of this function.
+         */
+        if (version_compare(SucuriScan::siteVersion(), '4.4', '>=')
+            && function_exists('get_password_reset_key')
+        ) {
+            $key = get_password_reset_key($user);
+
+            return $key;
+        }
+
+        if (is_multisite() && is_user_spammy($user)) {
+            return $key_error;
+        }
+
+        // Generate something random for a password reset key.
+        $key = wp_generate_password(20, false);
+
+        if (empty($wp_hasher)) {
+            require_once ABSPATH . WPINC . '/class-phpass.php';
+            $wp_hasher = PasswordHash(8, true);
+        }
+
+        $hashed = time() . ':' . $wp_hasher->HashPassword($key);
+
+        $key_saved = wp_update_user(
+            array(
+                'ID' => $user->ID,
+                'user_activation_key' => $hashed,
+            )
+        );
+
+        if (is_wp_error($key_saved)) {
+            return $key_saved;
+        }
+
+        return $key;
     }
 
     /**

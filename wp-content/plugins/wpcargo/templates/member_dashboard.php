@@ -4,7 +4,7 @@
     <div class="grid-x grid-margin-x grid-margin-y card-container dashboard-module_card-container_1wMCY">
         <div class=" align-self-stretch dashboard-module_animate-card_2Y2b-">
             <div class="">
-                <div style="text-align: center;" class="card-module_card-header_QEX_8 card-module_add-to-cart_3naMa">
+                <div style="text-align: center;" class="">
                     <h4>Bookings</h4>
                 </div>
                 <?php/* require( __DIR__.'/shipments-table.php'  ); */?>
@@ -17,7 +17,21 @@
             </div>
         </div>
         <br><br>
-        <div class=" dashboard-module_animate-card_2Y2b-">
+
+        <div class=" align-self-stretch dashboard-module_animate-card_2Y2b-">
+            <div class="">
+                <div style="text-align: center;" class="card-module_card-header_QEX_8 card-module_user-account_2Lhi4">
+                    <h4>Customer Information</h4>
+                </div>
+                <ul style="text-align: center;" class="card-module_menu-container_3Hu8Y">
+                    <li><a data-react-link="true" href="/account/personal-details">Personal Details</a></li>
+                    <li><a data-react-link="true" href="/account/address-book">Address Book</a></li>
+                    <li><a data-react-link="true" href="/account/newsletters">Newsletter Subscriptions</a></li>
+                </ul>
+            </div>
+        </div>
+        <?php/* echo phpinfo(); */?> 
+        <div class="align-self-stretch dashboard-module_animate-card_2Y2b-">
             <div class="">
                 <div style="text-align: center;" class="">
                     <h4>Payments &amp; Invoices</h4>
@@ -29,15 +43,16 @@
             </div>
         </div>
 
-        <div class="medium-6 align-self-stretch dashboard-module_animate-card_2Y2b-">
+       
+         <div class=" align-self-stretch dashboard-module_animate-card_2Y2b-">
             <div class="">
                 <div style="text-align: center;" class="card-module_card-header_QEX_8 card-module_user-account_2Lhi4">
-                    <h4>Customer Information</h4>
+                    <h4>Membership</h4>
                 </div>
                 <ul style="text-align: center;" class="card-module_menu-container_3Hu8Y">
-                    <li><a data-react-link="true" href="/account/personal-details">Personal Details</a></li>
-                    <li><a data-react-link="true" href="/account/address-book">Address Book</a></li>
-                    <li><a data-react-link="true" href="/account/newsletters">Newsletter Subscriptions</a></li>
+                    <li><a data-react-link="true" href="/account/personal-details">Account Members</a></li>
+                    <li><a data-react-link="true" href="/account/address-book">Change Membership</a></li>
+                    <li><a data-react-link="true" href="/account/newsletters">Membership Specials</a></li>
                 </ul>
             </div>
         </div>
@@ -109,7 +124,7 @@
 
 .dashboard-module_animate-card_2Y2b->div {
     min-height: 185px;
-    min-width: 380px;
+    min-width: 320px;
 }
 
 

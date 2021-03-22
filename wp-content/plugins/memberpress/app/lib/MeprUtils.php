@@ -1651,7 +1651,7 @@ class MeprUtils {
     return get_current_user_id();
   }
 
-  public static function get_user_by($field = 'login', $value) {
+  public static function get_user_by($value, $field = 'login') {
     self::include_pluggables('get_user_by');
 
     return get_user_by($field, $value);
